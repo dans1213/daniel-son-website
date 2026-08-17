@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Son</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Oswald:wght@300;400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  :root{ --accent:#bb5a35; --accent-dark:#8f4326; --ink:#2b2118; --muted:#8f8074; --hairline:#e9ded0;
+         --paper:#fbf6ee; --header:#2a1e16; --col:660px; --left:150px; --right:250px; --gap:40px; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{ font-family:'Lora', Georgia, 'Times New Roman', serif; font-size:18px; line-height:1.625;
+    color:var(--ink); background:var(--paper); padding-top:65px; -webkit-font-smoothing:antialiased; }
+
+  /* ---------- Header ---------- */
+  .site-header{ position:fixed; top:0; left:0; right:0; height:65px; background:var(--header); z-index:200;
+    display:flex; align-items:center; justify-content:space-between; padding:0 40px; }
+  .logo{ font-family:'Permanent Marker', cursive; color:#f3e9dc; font-size:31px; line-height:1;
+    letter-spacing:.5px; text-decoration:none; white-space:nowrap; }
+  .main-nav{ display:flex; flex-wrap:wrap; gap:20px; align-items:center; }
+  .main-nav a{ font-family:'Oswald', sans-serif; font-size:14px; font-weight:400; text-transform:uppercase;
+    letter-spacing:1px; color:#e7d9c6; text-decoration:none; transition:color .15s ease; cursor:pointer; }
+  .main-nav a:hover, .main-nav a.active{ color:var(--accent); }
+
+  /* ---------- 3-column layout ---------- */
+  .layout{ max-width:calc(var(--left) + var(--col) + var(--right) + var(--gap)*2 + 40px);
+    margin:0 auto; padding:54px 20px 0; display:grid;
+    grid-template-columns:var(--left) var(--col) var(--right); gap:var(--gap);
+    justify-content:center; align-items:start; }
+  .center{ min-width:0; padding-bottom:80px; }
+
+  /* ---------- Rails / widgets ---------- */
+  .rail{ font-size:15px; }
+  .widget{ margin-bottom:34px; }
+  .widget h3{ font-family:'Oswald', sans-serif; text-transform:uppercase; letter-spacing:1.5px;
+    font-size:13px; font-weight:600; color:var(--ink); margin-bottom:14px;
+    padding-bottom:7px; border-bottom:2px solid var(--ink); }
+  .rail-left{ position:sticky; top:90px; }
+  .rail-right{ position:sticky; top:90px; }
+
+  .hl{ margin-bottom:16px; line-height:1.35; }
+  .hl b{ font-family:'Oswald', sans-serif; font-weight:500; font-size:15px; letter-spacing:.3px;
+    display:block; color:var(--ink); }
+  .hl span{ font-size:13px; color:var(--muted); }
+
+  .about-photo{ width:130px; height:130px; border-radius:50%; object-fit:cover;
+    object-position:50% 30%; display:block; margin-bottom:14px; }
+  .about-bio{ font-size:15px; line-height:1.55; }
+  .about-bio a{ color:var(--accent); text-decoration:none; }
+  .glance li{ list-style:none; font-size:14px; line-height:1.5; padding:4px 0;
+    border-bottom:1px solid var(--hairline); }
+  .glance li b{ font-family:'Oswald',sans-serif; font-weight:500; }
+
+  /* ---------- Tabs ---------- */
+  .tab-panel{ display:none; }
+  .tab-panel.active{ display:block; animation:fade .25s ease; }
+  @keyframes fade{ from{ opacity:0; transform:translateY(4px);} to{ opacity:1; transform:translateY(0);} }
+
+  /* ---------- Center content ---------- */
+  .post{ margin-bottom:0; }
+  .post-title{ font-family:'Oswald', sans-serif; font-weight:400; font-size:36px; line-height:1.06;
+    color:var(--ink); margin-bottom:7px; }
+  .post-meta{ font-family:'Lora', serif; font-size:16px; color:var(--muted); margin-bottom:18px; }
+  .post-img{ display:block; max-width:100%; max-height:520px; width:auto; height:auto; margin:4px auto 22px; }
+  .post-body p{ margin-bottom:15px; } .post-body p:last-child{ margin-bottom:0; }
+  .post-body a{ color:var(--accent); text-decoration:none; } .post-body a:hover{ text-decoration:underline; }
+
+  /* ---------- Composition components ---------- */
+  /* Stat row: a band of callout numbers */
+  .stat-row{ display:flex; flex-wrap:wrap; gap:28px 36px; margin:26px 0 30px;
+    padding:20px 0; border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline); }
+  .stat-row .stat{ min-width:90px; }
+  .stat-row .num{ display:block; font-family:'Oswald', sans-serif; font-weight:600; font-size:28px;
+    color:var(--accent); line-height:1.1; }
+  .stat-row .label{ font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); }
+
+  /* Pull quote: a large standout line pulled from the text */
+  .pull-quote{ font-family:'Lora', serif; font-style:italic; font-size:24px; line-height:1.42;
+    color:var(--ink); border-left:3px solid var(--accent); padding:2px 0 2px 22px; margin:30px 0; }
+
+  /* Image grids: room for more photos, laid out unevenly on purpose */
+  .img-grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:6px 0 26px; }
+  .img-grid-3{ display:grid; grid-template-columns:1.3fr 1fr; grid-template-rows:1fr 1fr; gap:14px;
+    margin:6px 0 26px; }
+  .img-grid-3 .g-tall{ grid-row:1 / 3; }
+  .img-grid-2 img, .img-grid-3 img, .img-placeholder{ width:100%; height:100%; object-fit:cover;
+    display:block; border-radius:2px; }
+  .img-grid-2 .cell, .img-grid-3 .cell{ aspect-ratio:4/3; overflow:hidden; }
+  .img-grid-3 .g-tall{ aspect-ratio:auto; }
+
+  /* Placeholder: marks a slot meant for another photo */
+  .img-placeholder{ height:100%; min-height:120px; border:1.5px dashed #d9c9b3; border-radius:2px;
+    background:#f4ece0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:4px; color:#a9906f; text-align:center; padding:10px; }
+  .img-placeholder .plus{ font-family:'Oswald', sans-serif; font-size:22px; line-height:1; }
+  .img-placeholder .cap{ font-family:'Oswald', sans-serif; font-size:10px; text-transform:uppercase;
+    letter-spacing:1px; max-width:140px; }
+
+  /* Filled photo cell: same footprint as a placeholder, once a real photo is in */
+  .photo-cell{ overflow:hidden; border-radius:2px; }
+  .photo-cell img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* Split: asymmetric two-column pairing of image and text */
+  .split{ display:grid; grid-template-columns:1.1fr 1fr; gap:34px; align-items:center; margin:8px 0 30px; }
+  .split img{ width:100%; display:block; border-radius:2px; }
+  .split.reverse .split-img{ order:2; }
+  .split.reverse .split-text{ order:1; }
+  .split-text p{ margin-bottom:12px; } .split-text p:last-child{ margin-bottom:0; }
+
+  /* Voice block: a personal, off-the-resume aside */
+  .voice-block{ margin:26px 0 8px; padding:22px 26px; background:#f4ece0; border-radius:3px; border-left:3px solid var(--accent); }
+  .voice-block p{ font-size:16.5px; line-height:1.62; color:var(--ink); margin-bottom:0; }
+
+  .fillme{ color:var(--muted); font-style:italic; }
+
+  /* Badge: a small centered emblem/logo, framed as a patch rather than a banner photo */
+  .badge-wrap{ display:flex; justify-content:center; margin:4px 0 28px; }
+  .badge{ width:190px; height:190px; border-radius:14px; overflow:hidden; box-shadow:0 8px 20px rgba(43,33,24,.2); }
+  .badge img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  .hero{ margin-bottom:60px; }
+  .hero-img{ display:block; width:100%; max-height:520px; object-fit:cover; object-position:50% 38%; margin:0 0 22px; }
+  .hero .kicker{ font-family:'Oswald', sans-serif; text-transform:uppercase; letter-spacing:2px;
+    font-size:13px; color:var(--accent); margin-bottom:12px; }
+  .hero h1{ font-family:'Oswald', sans-serif; font-weight:600; font-size:50px; line-height:1.02;
+    letter-spacing:.5px; margin-bottom:14px; }
+  .hero p{ font-size:19px; }
+
+  .site-footer{ border-top:1px solid var(--hairline); padding:30px 20px 60px; text-align:center;
+    font-family:'Oswald', sans-serif; text-transform:uppercase; letter-spacing:1.5px;
+    font-size:13px; color:var(--muted); }
+  .site-footer .name{ color:var(--ink); font-weight:600; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1080px){
+    .layout{ display:block; max-width:660px; padding-top:46px; }
+    .rail-left{ display:none; }
+    .rail-right{ position:static; margin-top:20px; padding-top:26px; border-top:2px solid var(--ink); }
+    .center{ padding-bottom:40px; }
+  }
+  @media (max-width:700px){
+    body{ padding-top:0; }
+    .site-header{ position:static; height:auto; flex-direction:column; align-items:flex-start;
+      gap:12px; padding:16px 20px; }
+    .main-nav{ gap:12px 16px; }
+    .hero h1{ font-size:38px; } .post-title{ font-size:30px; }
+    .hero-img{ max-height:340px; }
+    .split{ grid-template-columns:1fr; gap:16px; }
+    .split.reverse .split-img, .split.reverse .split-text{ order:initial; }
+    .img-grid-3{ grid-template-columns:1fr 1fr; }
+    .pull-quote{ font-size:20px; padding-left:16px; }
+    .stat-row{ gap:20px 28px; }
+  }
+  @media (max-width:480px){
+    .img-grid-2{ grid-template-columns:1fr; }
+    .img-grid-3{ grid-template-columns:1fr; grid-template-rows:none; }
+    .img-grid-3 .g-tall{ grid-row:auto; }
+  }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="#home" class="logo" data-tab="home">Daniel Son</a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="#home" data-tab="home">Home</a>
+      <a href="#ckf" data-tab="ckf">CKF</a><a href="#art" data-tab="art">Art</a><a href="#research" data-tab="research">Research</a>
+      <a href="#haegeum" data-tab="haegeum">Haegeum</a><a href="#cap" data-tab="cap">CAP</a><a href="#scioly" data-tab="scioly">SciOly</a>
+      <a href="#csclub" data-tab="csclub">CS Club</a><a href="#freeflight" data-tab="freeflight">Free Flight</a>
+    </nav>
+  </header>
+
+  <div class="layout">
+
+    <!-- LEFT RAIL -->
+    <aside class="rail rail-left">
+      <div class="widget">
+        <h3>Highlights</h3>
+        <div class="hl"><b>World Champion Team</b><span>F1A Free Flight &middot; 2026 FAI Jr. World Championship</span></div>
+        <div class="hl"><b>Solo Haegeum</b><span>Carnegie Hall &middot; 1st Prize, world competition</span></div>
+        <div class="hl"><b>Cadet Commander</b><span>Civil Air Patrol &middot; 120+ cadets</span></div>
+        <div class="hl"><b>Founder, CKF</b><span>150+ volunteers &middot; 50,000+ service hours</span></div>
+        <div class="hl"><b>MHD Research</b><span>Cal Poly Pomona &middot; Anderson Lab</span></div>
+      </div>
+    </aside>
+
+    <!-- CENTER -->
+    <main class="center">
+      <section class="hero tab-panel active" id="home">
+        <img class="hero-img" src="images/hero.jpg" alt="Daniel Son mentoring a student">
+        <div class="kicker">Welcome</div>
+        <h1>Daniel Son</h1>
+        <p>I&rsquo;m a student researcher, youth&nbsp;nonprofit founder, cadet commander, and haegeum soloist based in California. I like building things that connect people &mdash; engines, ensembles, classrooms, and squadrons. Here&rsquo;s what I&rsquo;ve been working on.</p>
+        <div class="stat-row">
+          <div class="stat"><span class="num">8</span><span class="label">Pursuits</span></div>
+          <div class="stat"><span class="num">World&nbsp;Champ.</span><span class="label">F1A Free Flight, 2026</span></div>
+          <div class="stat"><span class="num">50,000+</span><span class="label">Service Hours, CKF</span></div>
+          <div class="stat"><span class="num">3</span><span class="label">Founded Organizations</span></div>
+        </div>
+
+        <div class="voice-block">
+          <p>The list above is what fits on a page. What doesn&rsquo;t fit is that CKF started on a 1am phone call complaining about how boring volunteering usually is, or that most of what I know about competing came from a coach yelling at me to stop having bad days and just watch the plane. Each tab has a bit more of that version, past the stats.</p>
+        </div>
+      </section>
+
+      <article class="post tab-panel" id="ckf">
+        <h2 class="post-title">Connect Key Foundation</h2>
+        <div class="post-meta">Founder &amp; President, 501(c)(3) Youth Nonprofit</div>
+        <img class="post-img" src="images/ckf.jpg" alt="CKF CurioCrate outreach team">
+        <div class="post-body">
+          <p>Connect Key Foundation is the 501(c)(3) youth nonprofit I founded and now run across <strong>17+ regions</strong>, including Southern California, Georgia, and Hong Kong. I direct <strong>150+ volunteers</strong> in five divisions &mdash; STEM, art, English, outreach, and environment &mdash; who have delivered <strong>more than 50,000 hours</strong> of free service to their communities.</p>
+
+          <div class="stat-row">
+            <div class="stat"><span class="num">150+</span><span class="label">Volunteers</span></div>
+            <div class="stat"><span class="num">50,000+</span><span class="label">Service Hours</span></div>
+            <div class="stat"><span class="num">17+</span><span class="label">Regions</span></div>
+            <div class="stat"><span class="num">$5,000</span><span class="label">STEM Action Grant</span></div>
+          </div>
+
+          <p>We put CurioCrate STEM kits into students&rsquo; hands, run free labs at the YMCA, and bring therapeutic art and conversation to patients at PIH Health and Miller Children&rsquo;s &amp; Women&rsquo;s Hospital.</p>
+
+          <blockquote class="pull-quote">Two published books turned what our volunteers were hearing in the field into something readers could hold.</blockquote>
+
+          <p>&ldquo;Dear World: Now We Speak&rdquo; and &ldquo;Korea: The Heart and Art&rdquo; joined a <strong>$5,000</strong> Society for Science STEM Action Grant in letting us reach further every year. This year we also directed LA wildfire disaster relief efforts and led senior outreach visits across Cerritos and Fullerton.</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/ckf-curioworkshop.jpg" alt="Volunteers running a CurioCrate STEM workshop with kids"></div>
+            <div class="cell photo-cell"><img src="images/ckf-hospital.jpg" alt="CKF volunteers outside Miller Children's & Women's Hospital"></div>
+          </div>
+
+          <div class="voice-block">
+            <p>It started on a call with friends that ran way past 1am, complaining about how repetitive most volunteering felt &mdash; showing up to do work nobody really needed help with. So we started calling elementary schools instead. I still think about one of our shyest students tugging my shirt to ask what we were doing next week, and another kid yelling &ldquo;bye, science guy!&rdquo; on his way out. That&rsquo;s the part that keeps me doing this, not the volunteer count.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="art">
+        <h2 class="post-title">Art</h2>
+        <div class="post-meta">Scholar &amp; Volunteer, Ryman Arts</div>
+        <div class="post-body">
+          <div class="split">
+            <div class="split-img"><img src="images/art.jpg" alt="Daniel&#39;s drawing exhibited in a gallery"></div>
+            <div class="split-text">
+              <p>A competitive portfolio review admitted me to Ryman Arts, where I study watercolor, graphite, acrylic, and charcoal as a <strong>three-time scholarship recipient</strong>.</p>
+              <p>The part that matters most is giving it back: <strong>every week</strong> I coordinate <strong>12+ volunteers</strong> to lead free art sessions for elderly residents, turning studio practice into something shared.</p>
+            </div>
+          </div>
+
+          <p>My work has earned <strong>3rd place</strong> in the City of Cerritos Dr. Martin Luther King Jr. Day Art Contest and been featured in the City of Norwalk&rsquo;s &ldquo;The Walk&rdquo; art exhibit.</p>
+
+          <div class="img-grid-3">
+            <div class="cell g-tall photo-cell"><img src="images/art-featured.jpg" alt="Daniel's paintings and drawings hung together in a gallery"></div>
+            <div class="cell img-placeholder"><span class="plus">+</span><span class="cap">Studio session</span></div>
+            <div class="cell photo-cell"><img src="images/art-gallery.jpg" alt="Visitors viewing paintings at a gallery show"></div>
+          </div>
+
+          <div class="voice-block">
+            <p>Winning is nice, but the weekly sessions with residents are the part I&rsquo;d keep even without a scholarship attached to it.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="research">
+        <h2 class="post-title">Research</h2>
+        <div class="post-meta">Student Researcher, Cal Poly Pomona &mdash; Dr. K. Anderson Lab</div>
+        <img class="post-img" src="images/research.jpg" alt="Daniel beside his research poster">
+        <div class="post-body">
+          <p>Under a faculty mentor at Cal Poly Pomona, I develop an optimized magnetohydrodynamic (MHD) engine geometry &mdash; running CFD simulations, applying machine learning tools, and building 3D models by hand.</p>
+
+          <div class="stat-row">
+            <div class="stat"><span class="num">2nd</span><span class="label">LACSEF Place</span></div>
+            <div class="stat"><span class="num">Silver</span><span class="label">KSEF Int&rsquo;l Prize</span></div>
+          </div>
+
+          <div class="split reverse">
+            <div class="split-img"><img src="images/research-poster2.jpg" alt="MHD engine poster with 3D-printed prototypes and CFD simulation on a laptop"></div>
+            <div class="split-text">
+              <p>My study of MHD thrusters for small-scale underwater vehicles is putting the work in front of researchers beyond my lab. More papers, posters, and project files are on the way.</p>
+            </div>
+          </div>
+
+          <div class="voice-block">
+            <p>I like this project for a different reason than the results on it &mdash; it&rsquo;s the first thing I&rsquo;ve worked on where nobody already knows the answer, including the person mentoring me.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="haegeum">
+        <h2 class="post-title">Haegeum</h2>
+        <div class="post-meta">Founder &amp; President, Korean Traditional Music Institute of America</div>
+        <img class="post-img" src="images/haegeum.jpg" alt="Daniel performing solo haegeum">
+        <div class="post-body">
+          <p>I founded the Korean Traditional Music Institute of America to share Korean traditional music with American audiences, and our ensemble has given <strong>50+ performances</strong>.</p>
+
+          <blockquote class="pull-quote">Solo haegeum at Weill Recital Hall, Carnegie Hall &mdash; then 1st Prize at the World Competition, seven years running.</blockquote>
+
+          <p>I won <strong>1st Prize</strong> at the World Competition of Korean Traditional Performing Arts every year from 2017 to 2024 &mdash; plus the American Protege International Music Talent Competition in 2024, 2025, and 2026.</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/haegeum-ensemble.jpg" alt="The full Haegeum Sarang ensemble posing together after a performance"></div>
+            <div class="cell photo-cell"><img src="images/haegeum-solo2.jpg" alt="Daniel performing a solo haegeum piece on a dark stage"></div>
+          </div>
+
+          <div class="voice-block">
+            <p>Carnegie Hall makes the highlight reel. What doesn&rsquo;t is the years of weekly lessons before that, for an instrument almost nobody outside a small community still plays.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="cap">
+        <h2 class="post-title">Civil Air Patrol</h2>
+        <div class="post-meta">Cadet Commander, U.S. Air Force Auxiliary</div>
+        <img class="post-img" src="images/cap.jpg" alt="Daniel in Civil Air Patrol dress uniform">
+        <div class="post-body">
+          <p>As Cadet Commander I lead and develop <strong>120+ cadets</strong> in one of <strong>California&rsquo;s largest squadrons</strong>. I rebuilt our administration from the ground up and I&rsquo;m driving the unit toward the Quality Unit Award.</p>
+
+          <div class="stat-row">
+            <div class="stat"><span class="num">120+</span><span class="label">Cadets Led</span></div>
+            <div class="stat"><span class="num">30+</span><span class="label">Ceremonies</span></div>
+            <div class="stat"><span class="num">300+</span><span class="label">Cadets at Encampment</span></div>
+          </div>
+
+          <p>With Color and Honor Guard I&rsquo;ve presented the colors at official ceremonies statewide, and I was selected for summer encampment leadership staff, running logistics across the California Wing.</p>
+
+          <div class="photo-cell" style="aspect-ratio:16/7; margin-bottom:6px;"><img src="images/cap-colorguard.jpg" alt="Color Guard cadets holding rifles before a ceremony"></div>
+
+          <div class="voice-block">
+            <p>Early on, everything looked fine on paper and I still felt like I was fighting the squadron instead of leading it. What actually changed things was stepping back &mdash; handing my first sergeant the lesson plans and promotion boards I used to keep for myself, and staying quiet through her shaky first inspection instead of jumping in to fix it. She runs entire training blocks without me now. That&rsquo;s the actual measure, not the ceremonies.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="scioly">
+        <h2 class="post-title">Science Olympiad</h2>
+        <div class="post-meta">Varsity Team Captain, Gretchen Whitney High School</div>
+        <img class="post-img" src="images/scioly.jpg" alt="Daniel with Science Olympiad teammates and medals">
+        <div class="post-body">
+          <p>I captain the varsity team and redesigned our cabinet system so more teammates compete prepared.</p>
+
+          <div class="stat-row">
+            <div class="stat"><span class="num">2:30</span><span class="label">Helicopter Flight Time</span></div>
+            <div class="stat"><span class="num">1st</span><span class="label">LA Regionals, &rsquo;24&ndash;&rsquo;26</span></div>
+            <div class="stat"><span class="num">2nd</span><span class="label">SoCal States, Helicopter</span></div>
+          </div>
+
+          <p>As flight specialist, that 2:30 flight time is a nationally competitive benchmark &mdash; and it&rsquo;s carried the team to first at LA Regionals three years running.</p>
+
+          <div class="img-grid-2">
+            <div class="cell img-placeholder"><span class="plus">+</span><span class="cap">Build session</span></div>
+            <div class="cell photo-cell"><img src="images/scioly-medals.jpg" alt="Science Olympiad teammates with their regional medals"></div>
+          </div>
+
+          <div class="voice-block">
+            <p>This event was where I first fell for applied physics &mdash; every variable, even a closed window or a warm projector, could actually be tracked down and fixed. It&rsquo;s part of why I still care about this team beyond the medals: it was the one place growing up where physics felt completely knowable.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="csclub">
+        <h2 class="post-title">Computer Science Club</h2>
+        <div class="post-meta">President, Gretchen Whitney High School</div>
+        <div class="post-body">
+          <div class="badge-wrap">
+            <div class="badge"><img src="images/csclub-logo.png" alt="Whitney CS Club logo"></div>
+          </div>
+
+          <p>As president I teach <strong>30+ underprivileged students</strong> Python, Java, and data structures, and guide club members preparing for hackathons, USACO, and their GitHub portfolios.</p>
+          <p>I carry hands-on lessons into <strong>partner elementary schools</strong> and local nonprofits, widening access to computer science for younger kids.</p>
+
+          <div class="voice-block">
+            <p>The comparison I keep coming back to isn&rsquo;t another CS class, it&rsquo;s card magic. Both start with the same question: what effect am I trying to create, and what&rsquo;s the simplest way there? Teaching someone their first program has the same rush as teaching someone their first sleight of hand &mdash; watching them get why it works, then wanting to go build their own.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="freeflight">
+        <h2 class="post-title">Free Flight</h2>
+        <div class="post-meta">World Champion Team, National Youth Aviation Academy</div>
+        <img class="post-img" src="images/freeflight.jpg" alt="Daniel holding an F1 free flight aircraft">
+        <div class="post-body">
+          <p>I rank <strong>3rd nationally</strong> in the F1A free flight division, and I was part of the <strong>World Champion Team</strong> at the <strong>2026 FAI Junior World Championship</strong> in North Macedonia, competing against world cup champions.</p>
+
+          <blockquote class="pull-quote">Hand-launched, hand-built, timed to the second &mdash; then it flew us to a world title.</blockquote>
+
+          <p>In 2025 I also took <strong>1st</strong> at the North America World Championship, Arizona FF Championships, and Kotuku Cup, and <strong>2nd</strong> at Maxmen International. I design, launch, and optimize hand-powered F1 aircraft for precision timed flight.</p>
+
+          <div class="stat-row">
+            <div class="stat"><span class="num">3rd</span><span class="label">National Rank, F1A</span></div>
+            <div class="stat"><span class="num">5</span><span class="label">Podium Finishes, 2025&ndash;26</span></div>
+          </div>
+
+          <div class="img-grid-3">
+            <div class="cell g-tall photo-cell"><img src="images/freeflight-launch.jpg" alt="Launching an F1 aircraft at an international free flight competition"></div>
+            <div class="cell photo-cell"><img src="images/freeflight-teamusa.jpg" alt="Team USA F1A squad holding American flags in North Macedonia"></div>
+            <div class="cell photo-cell"><img src="images/freeflight-aircraft.jpg" alt="Close-up of a hand-built F1 model aircraft"></div>
+          </div>
+
+          <div class="voice-block">
+            <p>Most of what I know about this sport came from my coach, mid-meltdown after a bad practice: &ldquo;There&rsquo;s no such thing as your day. Focus up and look at the plane.&rdquo; At Jr. Worlds the wind was some of the worst I&rsquo;ve flown in &mdash; planes exploding in the air, crashing into tents. We still caught thermals on 20 of 23 launches. That&rsquo;s the whole sport: you don&rsquo;t get a bad day, you just watch closer.</p>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- RIGHT RAIL -->
+    <aside class="rail rail-right">
+      <div class="widget">
+        <h3>About</h3>
+        <img class="about-photo" src="images/about.jpg" alt="Portrait of Daniel Son">
+        <p class="about-bio">Daniel Son is a student researcher, nonprofit founder, cadet commander, and haegeum soloist in California &mdash; happiest where engineering, service, and the arts overlap. Off the clock, he&rsquo;s relearning card magic for a slow-going Instagram, and still convinced the &ldquo;magician&rsquo;s code&rdquo; is really just a very old business model.</p>
+      </div>
+      <div class="widget">
+        <h3>Currently</h3>
+        <ul class="glance">
+          <li><b>Reading</b> &nbsp;<em>Beyond Good &amp; Evil</em>, <em>A Certain Hunger</em></li>
+          <li><b>On Repeat</b> &nbsp;Green Day</li>
+          <li><b>Favorite Musical</b> &nbsp;<em>EPIC</em></li>
+          <li><b>Watching</b> &nbsp;<em>Horimiya</em></li>
+          <li><b>Building</b> &nbsp;A P18 model plane</li>
+        </ul>
+      </div>
+      <div class="widget">
+        <h3>At a Glance</h3>
+        <ul class="glance">
+          <li><b>School</b> &nbsp;Gretchen Whitney High School</li>
+          <li><b>Focus</b> &nbsp;Aerospace &amp; mechanical engineering</li>
+          <li><b>Research</b> &nbsp;MHD propulsion, Cal Poly Pomona</li>
+          <li><b>Music</b> &nbsp;Haegeum &middot; Euphonium (1st chair)</li>
+          <li><b>Service</b> &nbsp;50,000+ hours led through CKF</li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <footer class="site-footer">
+    <span class="name">Daniel Son</span> &nbsp;&middot;&nbsp; Gretchen Whitney High School
+  </footer>
+
+  <script>
+    (function () {
+      var tabLinks = document.querySelectorAll('[data-tab]');
+      var panels = document.querySelectorAll('.tab-panel');
+
+      function activate(id, pushHash) {
+        var found = false;
+        panels.forEach(function (p) {
+          var isMatch = p.id === id;
+          p.classList.toggle('active', isMatch);
+          if (isMatch) found = true;
+        });
+        if (!found) { return activate('home', pushHash); }
+        tabLinks.forEach(function (a) {
+          a.classList.toggle('active', a.dataset.tab === id);
+        });
+        if (pushHash !== false) { history.replaceState(null, '', '#' + id); }
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+
+      tabLinks.forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          activate(a.dataset.tab);
+        });
+      });
+
+      window.addEventListener('hashchange', function () {
+        activate(location.hash.slice(1));
+      });
+
+      activate(location.hash ? location.hash.slice(1) : 'home', false);
+    })();
+  </script>
+</body>
+</html>
