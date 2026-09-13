@@ -13,67 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Update CKF section
+      - name: Apply update
+        run: python scripts/update_ckf.py
+      - name: Commit updated site
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
-
-          p = Path('index.html')
-          s = p.read_text(encoding='utf-8')
-
-          s = s.replace(
-              '<div class="hl"><b>Founder, CKF</b><span>150+ volunteers &middot; 50,000+ service hours</span></div>',
-              '<div class="hl"><b>Co-Founder &amp; Executive Director, CKF</b><span>150+ volunteers &middot; 50,000+ service hours</span></div>'
-          )
-
-          new_ckf = '''      <article class="post tab-panel" id="ckf">
-        <h2 class="post-title">Connect Key Foundation</h2>
-        <div class="post-meta">Co-Founder &amp; Executive Director, 501(c)(3) Youth Nonprofit &middot; President, CurioCrate</div>
-        <img class="post-img" src="images/ckf.jpg" alt="CKF CurioCrate outreach team">
-        <div class="post-body">
-          <p>Connect Key Foundation is the 501(c)(3) youth nonprofit I co-founded and now help lead. Today, <strong>150+ student volunteers</strong> work across <strong>five divisions</strong> &mdash; STEM, Health, Art, English, and Outreach &mdash; with <strong>17+ partner institutions</strong>. Together, CKF students have contributed <strong>more than 50,000 hours of service</strong> through science education, health programs, literacy, art, and community outreach.</p>
-
-          <div class="stat-row">
-            <div class="stat"><span class="num">150+</span><span class="label">Youth Volunteers</span></div>
-            <div class="stat"><span class="num">50,000+</span><span class="label">Service Hours</span></div>
-            <div class="stat"><span class="num">17+</span><span class="label">Partner Institutions</span></div>
-            <div class="stat"><span class="num">$30,000+</span><span class="label">Grants &amp; Support</span></div>
-          </div>
-
-          <blockquote class="pull-quote">The goal stopped being to run a good science class. It became to build a system that other students could carry forward.</blockquote>
-
-          <p><strong>CurioCrate</strong> is the part I know most closely. Every kit begins with a student who wants a lesson to work. We write the curriculum, test the experiment until it holds, organize materials, pack the kits, train student instructors, and then stand in front of the room and teach it ourselves.</p>
-
-          <p>What began as individual STEM workshops has grown into recurring programming through YMCA youth programs, schools, and community organizations. CKF students now teach hands-on physics, chemistry, engineering, coding, electronics, biology, and laboratory science through lessons designed to be practical, affordable, safe, and repeatable across different locations.</p>
-
-          <p>That growth has been backed by outside support: a <strong>$5,000 Society for Science STEM Action Grant</strong>, an <strong>additional $1,500 grant</strong>, and other grants and institutional support bringing CKF&rsquo;s total to <strong>more than $30,000</strong>. The funding pays for materials, kits, program expansion, and access. <strong>Students do the rest.</strong></p>
-
-          <div class="img-grid-2">
-            <div class="cell photo-cell"><img src="images/ckf-curioworkshop.jpg" alt="Volunteers running a CurioCrate STEM workshop with kids"></div>
-            <div class="cell photo-cell"><img src="images/ckf-hospital.jpg" alt="CKF volunteers outside Miller Children's & Women's Hospital"></div>
-          </div>
-
-          <p>As the program grew, my role changed. At first, I was writing lessons and running experiments myself. Then I had to figure out how another student could teach the same lesson without me in the room. That meant creating supply lists, safety procedures, instructor notes, training systems, and repeatable kit formats. A successful experiment was no longer enough; it had to work when someone else taught it.</p>
-
-          <div class="voice-block">
-            <p>It started on a call with friends that ran way past 1am, complaining about how repetitive most volunteering felt &mdash; showing up to do work nobody really needed help with. So we started calling elementary schools instead. I still think about one of our shyest students tugging my shirt to ask what we were doing next week, and another kid yelling &ldquo;bye, science guy!&rdquo; on his way out. That&rsquo;s the part that keeps me doing this, not the volunteer count.</p>
-          </div>
-        </div>
-      </article>'''
-
-          pattern = r'      <article class="post tab-panel" id="ckf">.*?</article>\n\n      <article class="post tab-panel" id="art">'
-          replacement = new_ckf + '\n\n      <article class="post tab-panel" id="art">'
-          s2, n = re.subn(pattern, replacement, s, count=1, flags=re.S)
-          if n != 1:
-              raise SystemExit(f'Expected one CKF section, replaced {n}')
-          p.write_text(s2, encoding='utf-8')
-          PY
-      - name: Commit updated site and remove temporary workflow
-        run: |
-          rm .github/workflows/ckf-live-update.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html .github/workflows/ckf-live-update.yml
+          git add index.html
           git commit -m "Update CKF leadership, impact, and grant details"
           git push
