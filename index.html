@@ -94,6 +94,9 @@
   .img-grid-2 img, .img-grid-3 img, .img-placeholder{ width:100%; height:100%; object-fit:cover;
     display:block; border-radius:2px; }
   .img-grid-2 .cell, .img-grid-3 .cell{ aspect-ratio:4/3; overflow:hidden; }
+  .img-grid-sq{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:6px 0 10px; }
+  .img-grid-sq .cell{ aspect-ratio:1/1; overflow:hidden; border-radius:2px; }
+  .img-grid-sq img{ width:100%; height:100%; object-fit:cover; display:block; }
   .img-grid-3 .g-tall{ aspect-ratio:auto; }
 
   /* Placeholder: marks a slot meant for another photo */
@@ -354,6 +357,7 @@
     .split{ grid-template-columns:1fr; gap:16px; }
     .split.reverse .split-img, .split.reverse .split-text{ order:initial; }
     .img-grid-3{ grid-template-columns:1fr 1fr; }
+    .img-grid-sq{ grid-template-columns:1fr 1fr; }
     .pull-quote{ font-size:20px; padding-left:16px; }
     .stat-row{ gap:20px 28px; }
     .hero .stat-row{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px 28px; }
@@ -362,6 +366,7 @@
     .hero .stat-row{ grid-template-columns:1fr 1fr; }
     .img-grid-2{ grid-template-columns:1fr; }
     .img-grid-3{ grid-template-columns:1fr; grid-template-rows:none; }
+    .img-grid-sq{ grid-template-columns:1fr 1fr; }
     .img-grid-3 .g-tall{ grid-row:auto; }
   }
 </style>
@@ -615,29 +620,15 @@
           <img class="post-img" src="images/art-exhibit-group.jpg" alt="Students outside the Cultural Arts Center at the Sounds of Colors exhibit, a CKF banner beside them">
           <p class="photo-cap">Outside the Cultural Arts Center on reception night</p>
 
-          <div class="img-grid-3">
-            <div class="cell g-tall photo-cell"><img src="images/art-work1.jpg" alt="A detailed mixed-media drawing by Daniel"></div>
-            <div class="cell photo-cell"><img src="images/art-featured.jpg" alt="Daniel&#39;s paintings and drawings hung together in a gallery"></div>
-            <div class="cell photo-cell"><img src="images/art-gallery.jpg" alt="Visitors viewing paintings at a gallery show"></div>
+          <div class="img-grid-sq">
+            <div class="cell"><img src="images/art-mw-dragons.jpg" alt="Wire-wrapped dragon figures in progress on the workbench"></div>
+            <div class="cell"><img src="images/art-mw-pendant.jpg" alt="A woven silver wire pendant"></div>
+            <div class="cell"><img src="images/art-mw-rings.jpg" alt="Three hand-wrapped rings in silver and copper"></div>
+            <div class="cell"><img src="images/art-mw-bracelet.jpg" alt="A wire-wrapped dragon bracelet worn on the wrist"></div>
+            <div class="cell"><img src="images/art-mw-necklace.jpg" alt="A wrapped stone pendant on a silver chain"></div>
+            <div class="cell"><img src="images/art-mw-feather.jpg" alt="A leather feather keychain with wrapped wire and beads"></div>
           </div>
-          <p class="photo-cap">One of my pieces, and work on the wall at a show</p>
-
-          <div class="img-grid-2">
-            <div class="cell photo-cell"><img src="images/art-works-table.jpg" alt="Several of Daniel&#39;s paintings and drawings displayed together"></div>
-            <div class="cell photo-cell"><img src="images/art-presentation.jpg" alt="Daniel presenting his artwork and artist statement at an award event"></div>
-          </div>
-          <p class="photo-cap">Work on display, and presenting a piece at the California State PTA Reflections awards</p>
-
-          <div class="img-grid-2">
-            <div class="cell photo-cell" style="aspect-ratio:3/4;"><img src="images/art-sculpture.jpg" alt="A large cardboard figure in progress on a work table in the garage"></div>
-            <div class="cell photo-cell" style="aspect-ratio:3/4;"><img src="images/art.jpg" alt="Meditating Bodies and Creator&#39;s Bed hung together at a gallery, with wall labels"></div>
-          </div>
-          <p class="photo-cap">A cardboard figure half-built in the garage, and the two finished pieces on the wall at <em>Sounds of Colors</em></p>
-
-          <div class="photo-cell" style="aspect-ratio:16/9;"><img src="images/art-show-table.jpg" alt="Student artwork lined up on a table at a school art show"></div>
-          <p class="photo-cap under-frame">A school show, pieces waiting to be hung</p>
-
-          <p>Most of the groups I belong to end up wearing something I drew. I designed the CKF logo and the volunteer shirts, the Whitney Science Olympiad team shirts, and two rounds of shirts for the CS Club. Away from the table I make jewelry and have been teaching myself leather work.</p>
+          <p class="photo-cap">Unfinished on the bench, and finished</p>
 
         </div>
       </article>
