@@ -370,6 +370,143 @@
     .img-grid-3 .g-tall{ grid-row:auto; }
   }
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+#home{
+  --bg:#f5f7fa; --ink:#333; --black:#000; --line:rgba(0,0,0,.07); --white:#fff;
+  --navy:#14234b; --navy-soft:rgba(20,35,75,.28);
+  --font:"Inter Tight",Arial,sans-serif;
+}
+#home *{box-sizing:border-box;margin:0;padding:0}
+#home{background:var(--bg)}
+#home{font-family:var(--font);font-size:16px;line-height:22.72px;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+#home a{color:inherit;text-decoration:none}
+#home .header{position:sticky;top:0;z-index:20;height:75px;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 16px}
+#home .logo{display:flex;align-items:center;gap:12px;width:176px;height:38px;color:var(--black)}
+#home .logo svg{width:28px;height:28px;flex:none}
+#home .logo span{font-weight:800;font-size:19px;letter-spacing:.04em;white-space:nowrap}
+#home .search{margin-left:66px;width:384px;height:38px;border:1px solid rgba(0,0,0,.14);border-radius:50px;display:flex;align-items:center;gap:8px;padding:0 12px;background:transparent}
+#home .search svg{width:17px;height:17px;flex:none}
+#home .search input{border:0;outline:0;background:transparent;font:400 14px/20px var(--font);color:var(--ink);width:100%}
+#home .nav{margin-left:74px;display:flex;gap:24px;align-items:center}
+#home .nav a{white-space:nowrap;font-size:18px;line-height:27px;color:var(--black);position:relative;display:inline-flex;align-items:center;gap:4px}
+#home .nav a::after{content:"";position:absolute;left:0;bottom:-2px;height:1px;width:0;background:var(--navy);transition:width .25s}
+#home .nav a:hover::after{width:100%}
+#home .count{font:500 10px/10px var(--font);color:#fff;background:var(--navy);border-radius:20px;padding:2px 5px}
+#home .pagegrid{position:fixed;inset:0;pointer-events:none;z-index:1;padding:0 16px;display:grid;grid-template-columns:repeat(4,1fr)}
+#home .pagegrid div{border-left:1px solid var(--line)}
+#home .pagegrid div:last-child{border-right:1px solid var(--line)}
+#home .hero{position:relative;z-index:2;margin:0 17px;height:836px;border-bottom:1px solid var(--line);padding:20px 24px;
+  background-image:radial-gradient(rgba(0,0,0,.035) 1px,transparent 1px);background-size:3px 3px}
+#home .hero-top{display:flex;justify-content:flex-end;height:46px}
+#home .pill{width:191px;height:46px;background:var(--white);border-left:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:14px;line-height:14px;color:#444;position:relative;overflow:hidden}
+#home .pill svg{width:16px;height:16px}
+#home .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--navy);transition:width .3s;z-index:0}
+#home .pill:hover .fill,#home .btn:hover .fill,#home .card:hover .fill{width:100%}
+#home .pill>*:not(.fill),#home .btn>*:not(.fill),#home .card>*:not(.fill){position:relative;z-index:1}
+#home .pill:hover,#home .btn:hover,#home .card:hover{color:#fff}
+#home .btn:hover svg,#home .pill:hover svg{stroke:#fff}
+#home .stage{position:relative;height:585px}
+#home #sphere{position:absolute;left:50%;top:0;width:585px;height:585px;transform:translateX(-50%)}
+#home .sq{position:absolute;width:12px;height:12px;background:var(--black)}
+#home .sq.tl{left:calc(50% - 231px);top:163px}
+#home .sq.tr{left:calc(50% + 215px);top:163px}
+#home .sq.bl{left:calc(50% - 231px);top:409px}
+#home .sq.br{left:calc(50% + 215px);top:409px}
+#home .conn{position:absolute;width:200px;height:65px;fill:none;stroke:rgba(0,0,0,.12);stroke-width:1}
+#home .conn.tl{left:calc(50% - 425px);top:104px}
+#home .conn.tr{left:calc(50% + 221px);top:104px;transform:scaleX(-1)}
+#home .conn.bl{left:calc(50% - 425px);top:415px;transform:scaleY(-1)}
+#home .conn.br{left:calc(50% + 221px);top:415px;transform:scale(-1,-1)}
+#home .callout{position:absolute;width:320px}
+#home .callout.tl{left:73px;top:83px}
+#home .callout.bl{left:73px;top:459px}
+#home .callout.tr{left:calc(50% + 421px);top:83px;width:280px}
+#home .callout.br{left:calc(50% + 421px);top:459px;width:280px}
+#home .btn{width:180px;height:42px;background:var(--white);border:1px solid var(--line);display:flex;align-items:center;gap:16px;padding:0 12px;font-size:14px;line-height:14px;color:var(--black);position:relative;overflow:hidden}
+#home .btn svg{width:16px;height:16px;fill:none;stroke:#000;stroke-width:1.3;flex:none}
+#home .callout p{font-size:14px;line-height:22.72px;color:#313131;padding-top:20px;max-width:300px}
+#home .hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:42px;height:122px}
+#home .slogan{font-size:28px;line-height:33px;color:#222;letter-spacing:-.01em}
+#home .slogan small{display:block;font-size:16px;line-height:23px;color:var(--ink);letter-spacing:0}
+#home .writing{width:717px}
+#home .writing-head{display:flex;justify-content:space-between;align-items:center;height:23px;margin-bottom:16px}
+#home .writing-title{display:flex;align-items:center;gap:16px;font-size:14px;text-transform:uppercase}
+#home .writing-title svg{width:16px;height:16px}
+#home .socials{display:flex;gap:16px;font-size:12px;line-height:12px;color:rgba(89,89,89,.86)}
+#home .socials a{text-decoration:underline}
+#home .cards{display:grid;grid-template-columns:repeat(3,1fr);height:69px}
+#home .card{background:var(--white);border-left:1px solid var(--line);padding:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;line-height:15px;color:var(--black);position:relative;overflow:hidden}
+#home .card em{font-style:normal;font-size:10px;color:#888;white-space:nowrap;align-self:flex-end}
+#home .card:hover em{color:#dfe5f2}
+#home .footer{position:relative;z-index:2;padding:64px 24px 24px}
+#home .foot-top{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:32px}
+#home .foot-mark svg{width:48px;height:48px;color:var(--black)}
+#home .foot-big a{display:block;font-size:24px;line-height:32px;margin-bottom:4px;width:fit-content;max-width:100%;overflow-wrap:anywhere}
+#home .foot-small a{display:block;font-size:16px;line-height:22px;margin-bottom:4px;width:fit-content;max-width:100%;overflow-wrap:anywhere}
+#home .foot-small .gap{height:28px}
+#home .footer a:hover{color:var(--navy)}
+#home .foot-mid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,2fr);gap:32px;margin-top:0;padding-bottom:28px;border-bottom:1px solid rgba(0,0,0,.12)}
+#home .addr p{font-size:16px;line-height:26.08px}
+#home .addr p+p{margin-top:16px}
+#home .fine{font-size:11px;line-height:14px;max-width:292px;text-align:left}
+#home .fine+.fine{margin-top:14px}
+#home .news label{display:block;font-size:16px;margin-bottom:6px;color:var(--ink)}
+#home .news input,#home .news select{height:38px;border:1px solid rgba(0,0,0,.18);border-radius:4px;background:#fff;font:400 14px var(--font);padding:0 12px;color:var(--ink)}
+#home .news input{width:292px;display:block;margin-bottom:12px}
+#home .news select{width:146px}
+#home .news button{height:41px;padding:0 15px;margin-left:12px;border:0;border-radius:4px;background:var(--navy);color:#fff;font:500 16px var(--font);cursor:pointer}
+#home .news button:hover{background:#0c1736}
+#home .foot-bottom{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr) auto;gap:24px;align-items:center;padding-top:24px}
+#home .foot-bottom .made{font-size:17.4px;line-height:32px}
+#home .foot-bottom .rights{font-size:14px}
+#home .foot-bottom .year{font-size:17.7px}
+@media (max-width:1100px){#home .search{display:none}
+#home .nav{margin-left:auto;gap:14px}
+#home .nav a{font-size:15px}
+#home .hero{height:auto;padding-bottom:24px}
+#home .stage{height:auto;display:flex;flex-direction:column;gap:20px}
+#home #sphere{position:relative;left:auto;transform:none;width:min(100%,420px);height:auto;aspect-ratio:1;margin:0 auto;order:-1}
+#home .sq,#home .conn{display:none}
+#home .callout,#home .callout.tr,#home .callout.br,#home .callout.tl,#home .callout.bl{position:static;width:100%}
+#home .hero-bottom{flex-direction:column;align-items:flex-start;gap:24px;height:auto}
+#home .writing{width:100%}
+#home .cards{grid-template-columns:1fr;height:auto}
+#home .card{min-height:60px;border-top:1px solid var(--line)}
+#home .foot-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+#home .foot-mark{grid-column:1/-1}
+#home .foot-mid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+#home .glance{grid-column:1/-1}
+#home .foot-bottom{grid-template-columns:minmax(0,1fr) auto;gap:12px}
+#home .foot-bottom .made{grid-column:1/-1}
+
+}@media (max-width:640px){#home .foot-top,#home .foot-mid{grid-template-columns:1fr}
+#home .foot-mark,#home .glance{grid-column:auto}
+#home .foot-bottom .rights{font-size:12px}
+#home .nav a:nth-child(n+4){display:none}
+#home .socials{display:none}
+#home .hero-top{justify-content:flex-start}
+#home .pill{width:50%}
+}#home .glance p{font-size:14px;line-height:22px}
+#home .glance .glance-title{font-size:16px;margin-bottom:6px}
+#home .btn{width:auto;min-width:180px;padding-right:16px;display:inline-flex}
+
+
+body.home-active{padding-top:0;background:#f5f7fa}
+body.home-active .site-header,body.home-active .site-footer{display:none}
+body.home-active .layout{max-width:none;padding:0;gap:0;display:block}
+body.home-active .center{padding:0}
+#home{position:relative;isolation:isolate;margin:0}
+#home .header{height:auto;min-height:75px;flex-wrap:wrap;gap:14px;padding:16px}
+#home .search{margin-left:auto;width:240px}
+#home .nav{margin-left:auto;flex-wrap:wrap;gap:12px 18px}
+#home .nav a{font-size:15px}
+#home .pagegrid{position:absolute}
+#home .hero{margin-bottom:0}
+@media(min-width:1101px){#home .callout.tr,#home .callout.br{left:auto;right:24px;width:240px}#home .callout.tl,#home .callout.bl{left:24px;width:240px}#home .hero-bottom{gap:24px}#home .writing{width:min(717px,65%)}}
+@media(max-width:640px){#home .header{align-items:flex-start}#home .nav{width:100%;margin:0}#home .nav a:nth-child(n+4){display:inline-flex}#home .search{display:none}}
+
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -399,123 +536,105 @@
 
     <!-- CENTER -->
     <main class="center">
-      <section class="hero tab-panel active" id="home">
-        <div class="intro">
-          <svg class="burst-mark" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 4 v12 M30 44 v12 M4 30 h12 M44 30 h12 M11 11 l8 8 M41 41 l8 8 M49 11 l-8 8 M19 41 l-8 8"/></svg>
-          <div>
-            <div class="kicker">Cerritos, California</div>
-            <h1>Daniel Son</h1>
-            <svg class="scribble" viewBox="0 0 220 16" aria-hidden="true"><path d="M3 11 C 40 4, 70 14, 104 8 S 170 3, 217 9"/></svg>
-            <p class="lede">I have built the same thruster five times. Every time I showed it to someone who knew more than I did, I left with a question I couldn&rsquo;t answer, and the next version was my answer to one of them. Five rebuilds later it is a paper with my name first on it, and the problem still is not finished.</p>
-            <p class="sub">Senior at Gretchen Whitney High School, applying in applied physics. The tabs are the rest of it.</p>
-          </div>
-          <div class="intro-frame"><img class="intro-photo" src="images/hero-build.jpg" alt="Daniel at a folding table on the flying field, building a model glider"></div>
-        </div>
+      <section class="tab-panel active" id="home">
 
-        <div class="video-embed" style="margin-bottom:10px;">
-          <video controls preload="none" playsinline poster="images/intro-poster.jpg" style="display:block; width:100%; aspect-ratio:16/9; background:#1e1e1e;">
-            <source src="media/intro.mp4" type="video/mp4">
-            Your browser does not support embedded video.
-          </video>
-        </div>
-        <p class="photo-cap under-frame" style="margin-bottom:34px;">A minute, in my own voice</p>
+<header class="header">
+  <a class="logo" href="#home" data-tab="home" aria-label="Daniel Son, home"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 15 25 4l-7 20-4-8z"/><path d="M14 16 25 4"/></svg><span>DANIEL SON</span></a>
+  <form class="search" id="search">
+    <svg viewBox="0 0 17 17" fill="none" stroke="#333" stroke-width="1.2"><circle cx="7.5" cy="7.5" r="5"/><path d="M11.5 11.5 15 15"/></svg>
+    <input type="search" placeholder="Search..." aria-label="Search this page">
+  </form>
+  <nav class="nav">
+    <a href="#home" data-tab="home">Home</a>
+    <a href="#research" data-tab="research">Research</a>
+    <a href="#ckf" data-tab="ckf">CKF</a>
+    <a href="#freeflight" data-tab="freeflight">Free Flight</a>
+    <a href="#cap" data-tab="cap">CAP</a>
+    <a href="#haegeum" data-tab="haegeum">Haegeum</a>
+    <a href="#scioly" data-tab="scioly">SciOly</a>
+    <a href="#art" data-tab="art">Art</a>
+    <a href="#csclub" data-tab="csclub">CS Club</a>
+    <a href="#yg" data-tab="yg">Youth &amp; Gov</a>
+    <a href="#church" data-tab="church">Church</a>
+  </nav>
+</header>
 
-        <div class="proof">
-          <div><b>One thruster, five rebuilds</b><span>First author &middot; submitted to IEEE J. of Oceanic Engineering</span></div>
-          <div><b>Reviewed in 5 rooms</b><span>County, state, Korea, London, Indonesia</span></div>
-          <div><b>Team USA</b><span>F1A &middot; Junior World Championships 2026</span></div>
-          <div><b>501(c)(3) co-founder</b><span>150+ volunteers &middot; YMCA STEM vendor</span></div>
-          <div><b>Carnegie Hall</b><span>Solo haegeum &middot; Weill Recital Hall</span></div>
-        </div>
+<div class="pagegrid" aria-hidden="true"><div></div><div></div><div></div><div></div></div>
 
-        <div class="section-label">Selected Work</div>
-        <div class="work-grid">
-          <a class="work-card feature" href="#research" data-tab="research">
-            <div class="shot"><div class="frame"><img src="images/research-poster2.jpg" alt="MHD engine research poster with 3D-printed prototypes and a CFD simulation"></div></div>
-            <div class="ftext"><span class="eyebrow">Research &middot; Cal Poly Pomona</span>
-            <h3>A quieter way to move underwater</h3>
-            <p>One thruster, rebuilt between every review, now an accepted abstract at a thermal engineering conference in Hawaii. <span class="more">Read more &rarr;</span></p></div>
-          </a>
-          <a class="work-card" href="#ckf" data-tab="ckf">
-            <div class="shot"><div class="frame"><img src="images/ckf-curioworkshop.jpg" alt="CurioCrate student instructors running a hands-on science session"></div></div>
-            <span class="eyebrow">Connect Key Foundation &middot; CurioCrate</span>
-            <h3>Science kits that run without me</h3>
-            <p>Co-founded a 501(c)(3); built CurioCrate into a year-round YMCA program for 500+ students. <span class="more">Read more &rarr;</span></p>
-          </a>
-          <a class="work-card" href="#freeflight" data-tab="freeflight">
-            <div class="shot"><div class="frame"><img src="images/freeflight-launch.jpg" alt="Launching an F1A glider off the towline at a competition"></div></div>
-            <span class="eyebrow">Free Flight &middot; F1A</span>
-            <h3>U.S. national team, world title in Prilep</h3>
-            <p>Selected for the U.S. national team; the United States took the F1 Challenge title at the 2026 Junior World Championships. <span class="more">Read more &rarr;</span></p>
-          </a>
-          <a class="work-card" href="#haegeum" data-tab="haegeum">
-            <div class="shot"><div class="frame"><img src="images/carnegie-hall.jpg" alt="Daniel performing haegeum on stage at Weill Recital Hall, Carnegie Hall"></div></div>
-            <span class="eyebrow">Haegeum &middot; Haegeum Sarang Orchestra</span>
-            <h3>Ten years on a two-stringed fiddle</h3>
-            <p>Solo at Weill Recital Hall, Carnegie Hall; an invited TEDx performance; ten years on the instrument. <span class="more">Read more &rarr;</span></p>
-          </a>
-          <a class="work-card" href="#cap" data-tab="cap">
-            <div class="shot"><div class="frame"><img src="images/cap-helicopter.jpg" alt="Cadets standing with aircrew in front of a military helicopter"></div></div>
-            <span class="eyebrow">Civil Air Patrol &middot; Cadet Commander</span>
-            <h3>120 cadets, and the paperwork behind them</h3>
-            <p>Top cadet of one of California&rsquo;s largest squadrons; rebuilt its training and admin from the ground up. <span class="more">Read more &rarr;</span></p>
-          </a>
-          <a class="work-card" href="#yg" data-tab="yg">
-            <div class="shot"><div class="frame"><img src="images/yg-speech.jpg" alt="Daniel at the podium giving the Year in Review at the delegate banquet"></div></div>
-            <span class="eyebrow">YMCA Youth &amp; Government &middot; Vice President</span>
-            <h3>Counting the votes before anyone speaks</h3>
-            <p>Chief Whip and Youth Governor candidate in California&rsquo;s model legislature; gave the Year in Review at the 2025 banquet and was named Outstanding Delegate. <span class="more">Read more &rarr;</span></p>
-          </a>
-          <a class="work-card" href="#church" data-tab="church">
-            <div class="shot"><div class="frame"><img src="images/church-group.jpg" alt="The church youth group in matching red shirts"></div></div>
-            <span class="eyebrow">New Church &middot; Youth Group President</span>
-            <h3>Everything with a cable in it</h3>
-            <p>Slides, sound and video for Sunday services since 2018; Bible study, fundraisers, and a mission trip to Mexico. <span class="more">Read more &rarr;</span></p>
-          </a>
-        </div>
+<div class="hero">
+  <div class="hero-top">
+    <a class="pill" href="#home" data-tab="home"><span class="fill"></span><span>Full Portfolio</span><svg viewBox="0 0 16 16" fill="none" stroke="#444" stroke-width="1.2"><path d="M1 8h13M10 4.5 14 8l-4 3.5"/></svg></a>
+    <a class="pill" href="https://connectkeyfoundation.org"><span class="fill"></span><span>CKF Website</span><svg viewBox="0 0 16 16" fill="none" stroke="#444" stroke-width="1.2"><path d="M1 8h13M10 4.5 14 8l-4 3.5"/></svg></a>
+  </div>
 
-        <div class="band band-sage">
-          <div class="band-inner">
-            <h2>CKF started on a phone call that ran past 1am, because a few of us were tired of volunteering that didn&rsquo;t help anyone.</h2>
-            <p>Most of what I know about competing came from a coach telling me to stop having a bad day and watch the plane. I tried to put some of that into each tab, past the numbers.</p>
-            <p style="margin-top:22px;"><a href="#ckf" data-tab="ckf" class="ruled" style="color:#fff; border-bottom-color:#fff;">More about CKF</a></p>
-          </div>
-        </div>
+  <div class="stage">
+    <canvas id="sphere" width="1170" height="1170" aria-label="Rotating navy wireframe sphere"></canvas>
+    <svg class="conn tl" viewBox="0 0 200 65"><path d="M0 .5h130l64 64"/></svg>
+    <svg class="conn tr" viewBox="0 0 200 65"><path d="M0 .5h130l64 64"/></svg>
+    <svg class="conn bl" viewBox="0 0 200 65"><path d="M0 .5h130l64 64"/></svg>
+    <svg class="conn br" viewBox="0 0 200 65"><path d="M0 .5h130l64 64"/></svg>
+    <i class="sq tl"></i><i class="sq tr"></i><i class="sq bl"></i><i class="sq br"></i>
 
-        <div class="band band-rust">
-          <div class="band-inner">
-            <div class="ruled" style="color:#fff; border-bottom-color:#fff; margin-bottom:26px;">Also</div>
-            <div class="also also-rust">
-              <a href="#scioly" data-tab="scioly"><b>Science Olympiad</b><span>Varsity captain, flight specialist</span></a>
-              <a href="#art" data-tab="art"><b>Art</b><span>Ryman Arts scholar, senior art sessions</span></a>
-              <a href="#csclub" data-tab="csclub"><b>CS Club</b><span>President, teaching Python and Java</span></a>
-            </div>
-          </div>
-        </div>
+    <div class="callout tl">
+      <a class="btn" href="#home" data-tab="home"><span class="fill"></span><svg viewBox="0 0 16 16"><circle cx="8" cy="5" r="3"/><path d="M2 14c1-4 11-4 12 0"/></svg><span>About Me</span></a>
+      <p>I'm a senior at Gretchen Whitney High School in Cerritos, California, applying in applied physics.</p>
+    </div>
+    <div class="callout tr">
+      <a class="btn" href="#research" data-tab="research"><span class="fill"></span><svg viewBox="0 0 16 16"><path d="M2 8h3l2-5 2 10 2-5h3"/></svg><span>MHD Research</span></a>
+      <p>I build thrusters that move seawater with electric and magnetic fields, with no moving parts. I have built the same thruster five times.</p>
+    </div>
+    <div class="callout bl">
+      <a class="btn" href="#ckf" data-tab="ckf"><span class="fill"></span><svg viewBox="0 0 16 16"><circle cx="5" cy="10" r="3"/><circle cx="11" cy="5" r="2"/></svg><span>Connect Key Foundation</span></a>
+      <p>I co-founded CKF, which has grown to 150+ volunteers, 50,000+ service hours and 17+ partners. I still test the lessons myself.</p>
+    </div>
+    <div class="callout br">
+      <a class="btn" href="#freeflight" data-tab="freeflight"><span class="fill"></span><svg viewBox="0 0 16 16"><path d="M1.5 9 14.5 2.5l-4 11.5-2.5-4.5z"/></svg><span>Free Flight, Team USA</span></a>
+      <p>I fly F1A gliders for Team USA at the 2026 FAI Junior World Championships. After I release the glider, nobody controls it.</p>
+    </div>
+  </div>
 
-        <div class="now-row">
-          <div>
-            <h4>Currently</h4>
-            <ul class="glance">
-              <li><b>Reading</b> &nbsp;<em>Beyond Good &amp; Evil</em></li>
-              <li><b>On Repeat</b> &nbsp;Green Day</li>
-              <li><b>Favorite Musical</b> &nbsp;<em>EPIC</em></li>
-              <li><b>Watching</b> &nbsp;<em>Horimiya</em></li>
-              <li><b>Building</b> &nbsp;A P18 model plane</li>
-            </ul>
-          </div>
-          <div>
-            <h4>At a Glance</h4>
-            <ul class="glance">
-              <li><b>School</b> &nbsp;Gretchen Whitney High School</li>
-              <li><b>Focus</b> &nbsp;Applied physics</li>
-              <li><b>Research</b> &nbsp;MHD propulsion, Cal Poly Pomona</li>
-              <li><b>Music</b> &nbsp;Haegeum &middot; Euphonium (1st chair)</li>
-              <li><b>Service</b> &nbsp;Co-founder, Connect Key Foundation</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+  <div class="hero-bottom">
+    <div class="slogan">Daniel Son<br>Applied Physics<small>CERRITOS, CALIFORNIA</small></div>
+    <div class="writing">
+      <div class="writing-head">
+        <div class="writing-title"><svg viewBox="0 0 16 16" fill="none" stroke="#000" stroke-width="1.2"><path d="M1 8h13M10 4.5 14 8l-4 3.5"/></svg>More</div>
+        <div class="socials"><a href="#home" data-tab="home">See all sections</a><a href="https://www.instagram.com/connectkeyfoundation">CKF on Instagram</a></div>
+      </div>
+      <div class="cards">
+        <a class="card" href="#cap" data-tab="cap"><span class="fill"></span><span>Civil Air Patrol: Cadet Commander of Squadron 56, 120+ cadets</span></a>
+        <a class="card" href="#haegeum" data-tab="haegeum"><span class="fill"></span><span>Haegeum: solo at Weill Recital Hall, Carnegie Hall</span></a>
+        <a class="card" href="#scioly" data-tab="scioly"><span class="fill"></span><span>Science Olympiad: Varsity Captain, 2:30 helicopter flight time</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="foot-mid">
+    <div class="addr">
+      <p>Daniel Son<br>Gretchen Whitney High School<br>Cerritos, California</p>
+    </div>
+    <div>
+      <p class="fine">This is my personal portfolio. It collects the things I have spent the most time on: research, flying, teaching, music and service.</p>
+    </div>
+    <div class="glance">
+      <p class="glance-title">At a Glance</p>
+      <p>Focus: Applied physics</p>
+      <p>Research: MHD propulsion, Cal Poly Pomona</p>
+      <p>Music: Haegeum, Euphonium (1st chair)</p>
+      <p>Service: Co-founder, Connect Key Foundation</p>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p class="made">made in Cerritos &#9825;</p>
+    <p class="rights">Daniel Son. All Rights Reserved.</p>
+    <p class="year">&copy; 2026</p>
+  </div>
+</footer>
+
+
+
+</section>
 
       <article class="post tab-panel" id="ckf">
         <h2 class="post-title">Connect Key Foundation</h2>
@@ -1064,5 +1183,64 @@
       activate(location.hash ? location.hash.slice(1) : 'home', false);
     })();
   </script>
+<script>
+
+(function(){
+  var c=document.getElementById('sphere'),g=c.getContext('2d');
+  var W=c.width,H=c.height,R=W*0.40,NU=72,NV=144;
+  var NAVY='20,35,75';
+  function radius(th,ph,t){
+    return 1
+      +0.085*Math.sin(3*th+ph*1.0+t*0.9)
+      +0.055*Math.sin(5*th-ph*2.0+t*0.6)
+      +0.045*Math.sin(2*ph+th*4.0-t*0.7)
+      +0.030*Math.sin(7*th+t*1.3);
+  }
+  var P=new Array((NU+1)*NV);
+  function frame(ms){
+    var t=ms/1000,ry=t*0.22,rx=0.42,cy=Math.cos(ry),sy=Math.sin(ry),cx=Math.cos(rx),sx=Math.sin(rx);
+    for(var i=0;i<=NU;i++){
+      var th=Math.PI*i/NU,st=Math.sin(th),ct=Math.cos(th);
+      for(var j=0;j<NV;j++){
+        var ph=2*Math.PI*j/NV+th*0.9; // twist
+        var r=R*radius(th,ph,t);
+        var x=r*st*Math.cos(ph),y=r*ct,z=r*st*Math.sin(ph);
+        var x1=x*cy+z*sy,z1=-x*sy+z*cy;
+        var y2=y*cx-z1*sx,z2=y*sx+z1*cx;
+        P[i*NV+j]=[W/2+x1,H/2+y2,z2];
+      }
+    }
+    g.clearRect(0,0,W,H);
+    g.lineWidth=0.8;
+    for(var pass=0;pass<2;pass++){
+      g.beginPath();
+      for(var i=0;i<NU;i++){
+        for(var j=0;j<NV;j++){
+          var a=P[i*NV+j],b=P[i*NV+(j+1)%NV],d=P[(i+1)*NV+j],e=P[(i+1)*NV+(j+1)%NV];
+          var front=(a[2]+e[2])>0;
+          if((pass===0)===front) continue;
+          g.moveTo(a[0],a[1]);g.lineTo(b[0],b[1]);
+          g.moveTo(a[0],a[1]);g.lineTo(d[0],d[1]);
+          g.moveTo(a[0],a[1]);g.lineTo(e[0],e[1]);
+        }
+      }
+      g.strokeStyle=pass===0?'rgba('+NAVY+',0.22)':'rgba('+NAVY+',0.92)';
+      g.stroke();
+    }
+    if(!reduce) requestAnimationFrame(frame);
+  }
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  requestAnimationFrame(frame);
+})();
+
+
+document.getElementById('search').addEventListener('submit',function(e){
+  e.preventDefault();
+  var q=this.querySelector('input').value.trim().toLowerCase(); if(!q) return;
+  var hit=[].slice.call(document.querySelectorAll('.callout,.card,.foot-big a,.foot-small a,.glance p')).find(function(n){return n.textContent.toLowerCase().indexOf(q)>-1});
+  if(hit){hit.scrollIntoView({behavior:'smooth',block:'center'});hit.style.outline='2px solid #14234b';setTimeout(function(){hit.style.outline=''},1600);}
+});
+
+</script>
 </body>
 </html>
