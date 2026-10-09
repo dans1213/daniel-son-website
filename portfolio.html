@@ -161,13 +161,27 @@
   @media (max-width:700px){ .lede-voice{ padding:20px 22px; } .lede-voice p{ font-size:18px; } }
 
   /* Publication list: title, venue, year, link */
-  .pubs{ list-style:none; margin:10px 0 26px; border-top:1px solid var(--hairline); }
-  .pubs li{ padding:13px 0; border-bottom:1px solid var(--hairline); }
-  .pubs .t{ font-size:17px; line-height:1.4; display:block; }
+  /* Publications: one card each, so a reader can count them at a glance */
+  .pubs{ list-style:none; margin:14px 0 26px; counter-reset:pub; }
+  .pubs li{ position:relative; counter-increment:pub; background:var(--card);
+    border:1px solid var(--hairline); border-left:3px solid var(--accent);
+    padding:15px 20px 16px 54px; margin-bottom:9px; }
+  .pubs li::before{ content:counter(pub,decimal-leading-zero); position:absolute; left:18px; top:16px;
+    font-family:'Poppins', sans-serif; font-size:12px; font-weight:600; letter-spacing:.5px;
+    color:var(--accent); }
+  .pubs .t{ font-size:17px; line-height:1.4; display:block; font-weight:600; }
   .pubs .t a{ color:var(--ink); text-decoration:none; border-bottom:1px solid var(--accent); }
   .pubs .t a:hover{ color:var(--accent); }
-  .pubs .v{ display:block; margin-top:4px; font-family:'Poppins', sans-serif; font-size:12px;
-    letter-spacing:1.1px; text-transform:uppercase; color:var(--muted); }
+  .pubs .t a::after{ content:" \2197"; border:0; font-size:12px; color:var(--accent); }
+  .pubs .v{ display:block; margin-top:6px; font-family:'Poppins', sans-serif; font-size:12px;
+    letter-spacing:1.1px; text-transform:uppercase; color:var(--muted); line-height:1.5; }
+  .pubs li > .t:first-child{ margin-top:2px; }
+  .pubs .role{ display:inline-block; margin-bottom:7px; padding:3px 9px;
+    font-family:'Poppins', sans-serif; font-size:10.5px; font-weight:600; letter-spacing:1.3px;
+    text-transform:uppercase; color:#fff; background:var(--accent); }
+  .pubs .role.sec{ background:var(--olive); }
+  .pubs-count{ font-family:'Poppins', sans-serif; font-size:12px; letter-spacing:1.6px;
+    text-transform:uppercase; color:var(--muted); margin:0 0 2px; }
 
   /* Abstract: folded away until someone wants the detail */
   .abstract{ border:1px solid var(--hairline); background:var(--card); border-radius:3px;
@@ -678,16 +692,17 @@
           </div>
 
           <h3 class="case-title">Papers</h3>
+          <p class="pubs-count">Seven papers &middot; three first-author</p>
           <p>Before this I worked on silicon wafers, endoscopy scans, soil moisture, and cyber policy. The subjects kept changing and the method didn&rsquo;t.</p>
 
           <ul class="pubs">
-            <li><span class="t">Experimental Development of Compact Seawater Magnetohydrodynamic Thrusters with Reiterative Geometric Optimization</span><span class="v">First author, with N. Bars and K. R. Anderson (Cal Poly Pomona) &middot; submitted to IEEE Journal of Oceanic Engineering, Aug 2026 &middot; extended abstract, PRTEC 2027 (Honolulu) &middot; ASME&ndash;JSME&ndash;KSME FED 2027 (Seoul) &middot; 2nd place LACSEF &middot; Silver, KSEF International &middot; Silver, International Greenwich Olympiad (Engineering), 2026 &middot; Silver, Youth International Science Fair (Engineering), Indonesia, 2026</span></li>
-            <li><span class="t"><a href="https://arxiv.org/abs/2506.18284" target="_blank" rel="noopener">Open Set Recognition for Endoscopic Image Classification: A Deep Learning Approach on the Kvasir Dataset</a></span><span class="v">arXiv &middot; 2025 &middot; co-author</span></li>
-            <li><span class="t"><a href="https://www.oxfordjss.org/aug-2026-vol-10-issue-5/the-forefront-of-warfare-governing-cyberwarfare-through-international-organizations" target="_blank" rel="noopener">The Forefront of Warfare: Governing Cyberwarfare through International Organizations</a></span><span class="v">Oxford Journal of Student Scholarship &middot; August 2026 &middot; doi.org/10.65161/recaI3NRfwYxRTltR</span></li>
-            <li><span class="t"><a href="https://emerginginvestigators.org/articles/23-100" target="_blank" rel="noopener">Converting SiO&#8322; Wafers to Hydrophobic Using Chlorotrimethylsilane</a></span><span class="v">Journal of Emerging Investigators &middot; co-author</span></li>
+            <li><span class="role">First author</span><span class="t">Experimental Development of Compact Seawater Magnetohydrodynamic Thrusters with Reiterative Geometric Optimization</span><span class="v">With N. Bars and K. R. Anderson (Cal Poly Pomona) &middot; submitted to IEEE Journal of Oceanic Engineering, Aug 2026 &middot; extended abstract, PRTEC 2027 (Honolulu) &middot; ASME&ndash;JSME&ndash;KSME FED 2027 (Seoul) &middot; 2nd place LACSEF &middot; Silver, KSEF International &middot; Silver, International Greenwich Olympiad (Engineering), 2026 &middot; Silver, Youth International Science Fair (Engineering), Indonesia, 2026</span></li>
+            <li><span class="role">Co-author</span><span class="t"><a href="https://arxiv.org/abs/2506.18284" target="_blank" rel="noopener">Open Set Recognition for Endoscopic Image Classification: A Deep Learning Approach on the Kvasir Dataset</a></span><span class="v">arXiv &middot; 2025</span></li>
+            <li><span class="role sec">Published</span><span class="t"><a href="https://www.oxfordjss.org/aug-2026-vol-10-issue-5/the-forefront-of-warfare-governing-cyberwarfare-through-international-organizations" target="_blank" rel="noopener">The Forefront of Warfare: Governing Cyberwarfare through International Organizations</a></span><span class="v">Oxford Journal of Student Scholarship &middot; August 2026 &middot; doi.org/10.65161/recaI3NRfwYxRTltR</span></li>
+            <li><span class="role">Co-author</span><span class="t"><a href="https://emerginginvestigators.org/articles/23-100" target="_blank" rel="noopener">Converting SiO&#8322; Wafers to Hydrophobic Using Chlorotrimethylsilane</a></span><span class="v">Journal of Emerging Investigators</span></li>
             <li><span class="t">Climate Change Perceptions Across Political Affiliations in California: A Sentiment Analysis</span><span class="v">Journal of Student Research</span></li>
-            <li><span class="t">Optimizing Soil Moisture Retention: Mulch Materials Under California Temperature and Humidity Conditions</span><span class="v">Silver Medal, International Greenwich Olympiad, London &middot; 2025</span></li>
-            <li><span class="t">Using Methylene Blue as a Diethyl Ether Peroxide Indicator</span><span class="v">First author &middot; under review</span></li>
+            <li><span class="role sec">Silver, Greenwich</span><span class="t">Optimizing Soil Moisture Retention: Mulch Materials Under California Temperature and Humidity Conditions</span><span class="v">International Greenwich Olympiad, London &middot; 2025</span></li>
+            <li><span class="role">First author &middot; under review</span><span class="t">Using Methylene Blue as a Diethyl Ether Peroxide Indicator</span><span class="v">Chemistry &middot; manuscript with reviewers</span></li>
           </ul>
 
           <p>The entries above are not four projects. They are one thruster, rebuilt between each of them. Judges at a county fair, a state fair, a Korean science fair, a competition in London, and one in Indonesia each got a different version: rectangular channel, then circular; different electrode spacing; a different way of measuring velocity from the video. Mostly what I took home from those rooms was a list of questions I couldn&rsquo;t answer yet, and the next build was the answer to one of them.</p>
