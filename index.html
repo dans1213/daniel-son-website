@@ -241,12 +241,111 @@
   body.home-active .layout{ grid-template-columns:minmax(0,1fr); max-width:1080px; }
   body.home-active .center{ padding-bottom:40px; }
 
+  /* ---------- Landing hero (home tab) ---------- */
+  .ds-hero{ position:relative; left:50%; transform:translateX(-50%);
+    width:min(1300px, calc(100vw - 40px)); background:#fff; border:1px solid var(--hairline);
+    padding:18px 24px 26px; margin:0 0 52px; overflow:hidden;
+    background-image:radial-gradient(rgba(30,30,30,.05) 1px, transparent 1px); background-size:3px 3px; }
+  .ds-rules{ position:absolute; inset:0; pointer-events:none; display:grid; grid-template-columns:repeat(4,1fr); }
+  .ds-rules div{ border-left:1px solid rgba(30,30,30,.055); }
+  .ds-rules div:last-child{ border-right:1px solid rgba(30,30,30,.055); }
+  .ds-hero > *:not(.ds-rules){ position:relative; z-index:2; }
+
+  .ds-top{ display:flex; justify-content:space-between; align-items:center; gap:16px; }
+  .ds-search{ display:flex; align-items:center; gap:9px; width:330px; max-width:46%; height:40px;
+    border:1px solid var(--hairline); border-radius:50px; padding:0 14px; background:#fff; }
+  .ds-search svg{ width:16px; height:16px; flex:none; stroke:var(--muted); fill:none; stroke-width:1.3; }
+  .ds-search input{ border:0; outline:0; background:transparent; width:100%; color:var(--ink);
+    font-family:'Poppins', sans-serif; font-size:13.5px; }
+  .ds-pills{ display:flex; }
+  .ds-pill{ height:44px; min-width:186px; background:#fff; border:1px solid var(--hairline);
+    border-left-width:0; display:flex; align-items:center; justify-content:space-between; gap:14px;
+    padding:0 15px; position:relative; overflow:hidden; cursor:pointer;
+    font-family:'Poppins', sans-serif; font-size:13.5px; color:var(--ink); text-decoration:none; }
+  .ds-pill:first-child{ border-left-width:1px; }
+  .ds-pill svg{ width:15px; height:15px; fill:none; stroke:var(--ink); stroke-width:1.3; flex:none; }
+
+  .ds-fill{ position:absolute; left:0; top:0; bottom:0; width:0; background:var(--ink);
+    transition:width .3s ease; z-index:0; }
+  .ds-pill > *:not(.ds-fill), .ds-btn > *:not(.ds-fill), .ds-card > *:not(.ds-fill){ position:relative; z-index:1; }
+  .ds-pill:hover .ds-fill, .ds-btn:hover .ds-fill, .ds-card:hover .ds-fill{ width:100%; }
+  .ds-pill, .ds-btn, .ds-card{ transition:color .3s ease; }
+  .ds-pill svg, .ds-btn svg{ transition:stroke .3s ease; }
+  .ds-pill:hover, .ds-btn:hover, .ds-card:hover{ color:#fff; }
+  .ds-pill:hover svg, .ds-btn:hover svg{ stroke:#fff; }
+
+  .ds-stage{ position:relative; display:grid; grid-template-columns:302px minmax(0,1fr) 302px;
+    gap:30px; align-items:stretch; margin:16px 0 4px; min-height:540px; }
+  .ds-col{ display:flex; flex-direction:column; justify-content:space-between; padding:22px 0 26px; }
+  .ds-orb{ position:relative; display:flex; align-items:center; justify-content:center; }
+  #ds-sphere{ width:100%; max-width:560px; height:auto; aspect-ratio:1; display:block; }
+  .ds-mark{ position:absolute; width:11px; height:11px; background:var(--ink); z-index:3; }
+  .ds-mark.tl{ left:311px; top:22%; } .ds-mark.tr{ right:311px; top:22%; }
+  .ds-mark.bl{ left:311px; bottom:22%; } .ds-mark.br{ right:311px; bottom:22%; }
+  .ds-wire{ position:absolute; height:1px; width:30px; background:rgba(30,30,30,.16); z-index:2; }
+  .ds-wire.tl{ left:302px; top:calc(22% + 5px); } .ds-wire.tr{ right:302px; top:calc(22% + 5px); }
+  .ds-wire.bl{ left:302px; bottom:calc(22% + 5px); } .ds-wire.br{ right:302px; bottom:calc(22% + 5px); }
+
+  .ds-btn{ display:inline-flex; align-items:center; gap:14px; min-width:184px; height:44px;
+    padding:0 16px 0 13px; background:#fff; border:1px solid var(--hairline); position:relative;
+    overflow:hidden; text-decoration:none; color:var(--ink); cursor:pointer;
+    font-family:'Poppins', sans-serif; font-size:13.5px; font-weight:500; }
+  .ds-btn svg{ width:16px; height:16px; fill:none; stroke:var(--ink); stroke-width:1.3; flex:none; }
+  .ds-callout p{ font-family:'Poppins', sans-serif; font-size:13.5px; line-height:1.62;
+    color:#43403b; padding-top:17px; }
+
+  .ds-bottom{ display:flex; justify-content:space-between; align-items:flex-end; gap:40px; margin-top:34px; }
+  .ds-slogan{ font-family:'Source Serif 4', Lora, Georgia, serif; font-size:29px; line-height:1.14;
+    color:var(--ink); flex:none; }
+  .ds-slogan small{ display:block; margin-top:9px; font-family:'Poppins', sans-serif; font-size:11.5px;
+    letter-spacing:2px; text-transform:uppercase; color:var(--muted); }
+  .ds-more{ flex:1; min-width:0; max-width:760px; }
+  .ds-more-head{ display:flex; justify-content:space-between; align-items:center; gap:20px; margin-bottom:14px;
+    font-family:'Poppins', sans-serif; font-size:12px; letter-spacing:1.6px; text-transform:uppercase; }
+  .ds-more-head b{ display:flex; align-items:center; gap:12px; font-weight:500; color:var(--ink); }
+  .ds-more-head svg{ width:15px; height:15px; fill:none; stroke:var(--ink); stroke-width:1.3; }
+  .ds-more-head a{ color:var(--muted); text-decoration:underline; letter-spacing:.3px; text-transform:none;
+    font-size:12px; }
+  .ds-more-head a:hover{ color:var(--accent); }
+  .ds-also{ display:flex; flex-wrap:wrap; gap:16px; }
+  .ds-cards{ display:grid; grid-template-columns:repeat(3,1fr); }
+  .ds-card{ background:#fff; border:1px solid var(--hairline); border-left-width:0; padding:13px 14px;
+    min-height:74px; display:flex; align-items:center; position:relative; overflow:hidden;
+    text-decoration:none; color:var(--ink); cursor:pointer;
+    font-family:'Poppins', sans-serif; font-size:12.5px; line-height:1.42; }
+  .ds-card:first-child{ border-left-width:1px; }
+
+  @media (max-width:1180px){
+    .ds-stage{ grid-template-columns:1fr; gap:4px; min-height:0; }
+    .ds-orb{ order:-1; }
+    #ds-sphere{ max-width:420px; margin:0 auto; }
+    .ds-col{ display:grid; grid-template-columns:1fr 1fr; gap:26px 30px; padding:18px 0; }
+    .ds-mark, .ds-wire{ display:none; }
+    .ds-bottom{ flex-direction:column; align-items:flex-start; gap:26px; }
+    .ds-more{ max-width:none; width:100%; }
+  }
+  @media (max-width:760px){
+    .ds-hero{ width:calc(100vw - 24px); padding:16px 16px 22px; }
+    .ds-search{ display:none; }
+    .ds-top{ justify-content:stretch; }
+    .ds-pills{ width:100%; }
+    .ds-pill{ flex:1; min-width:0; }
+    .ds-col{ grid-template-columns:1fr; gap:24px; }
+    .ds-cards{ grid-template-columns:1fr; }
+    .ds-card{ border-left-width:1px; border-top-width:0; }
+    .ds-card:first-child{ border-top-width:1px; }
+    .ds-slogan{ font-size:25px; }
+    .ds-more-head{ flex-direction:column; align-items:flex-start; gap:12px; }
+  }
+
   .intro{ display:grid; grid-template-columns:1.25fr 1fr; gap:46px; align-items:center;
     padding:18px 0 46px; border-bottom:1px solid var(--hairline); margin-bottom:46px; }
   .intro h1{ font-family:'Source Serif 4', Lora, Georgia, serif; font-weight:600; font-size:clamp(40px,5vw,64px);
     line-height:1.02; letter-spacing:.5px; margin-bottom:18px; }
   .intro .lede{ font-size:20px; line-height:1.55; margin-bottom:16px; }
   .intro .sub{ font-size:16.5px; color:var(--muted); line-height:1.55; }
+  .intro .sub a{ color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); }
+  .intro .sub a:hover{ color:var(--accent-dark); border-bottom-color:var(--accent-dark); }
     .intro-frame{ position:relative; background:#fff; padding:12px; border-radius:2px; transform:rotate(1.8deg);
     box-shadow:0 14px 34px rgba(30,30,30,.18); }
   .intro-frame::before, .intro-frame::after{ content:""; position:absolute; width:104px; height:30px;
@@ -400,14 +499,74 @@
     <!-- CENTER -->
     <main class="center">
       <section class="hero tab-panel active" id="home">
+        <div class="ds-hero">
+          <div class="ds-rules" aria-hidden="true"><div></div><div></div><div></div><div></div></div>
+
+          <div class="ds-top">
+            <form class="ds-search" id="ds-search" role="search">
+              <svg viewBox="0 0 17 17" aria-hidden="true"><circle cx="7.5" cy="7.5" r="5"/><path d="M11.5 11.5 15 15"/></svg>
+              <input type="search" placeholder="Search this site&hellip;" aria-label="Search this site">
+            </form>
+            <div class="ds-pills">
+              <a class="ds-pill" href="https://connectkeyfoundation.org" target="_blank" rel="noopener"><span class="ds-fill"></span><span>CKF Website</span><svg viewBox="0 0 16 16"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+              <a class="ds-pill" href="https://www.youtube.com/@danielson9007" target="_blank" rel="noopener"><span class="ds-fill"></span><span>YouTube</span><svg viewBox="0 0 16 16"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+            </div>
+          </div>
+
+          <div class="ds-stage">
+            <i class="ds-mark tl" aria-hidden="true"></i><i class="ds-mark tr" aria-hidden="true"></i>
+            <i class="ds-mark bl" aria-hidden="true"></i><i class="ds-mark br" aria-hidden="true"></i>
+            <i class="ds-wire tl" aria-hidden="true"></i><i class="ds-wire tr" aria-hidden="true"></i>
+            <i class="ds-wire bl" aria-hidden="true"></i><i class="ds-wire br" aria-hidden="true"></i>
+
+            <div class="ds-col">
+              <div class="ds-callout">
+                <a class="ds-btn ds-scroll" href="#home" data-scroll=".intro"><span class="ds-fill"></span><svg viewBox="0 0 16 16"><circle cx="8" cy="5" r="3"/><path d="M2 14c1-4 11-4 12 0"/></svg><span>About Me</span></a>
+                <p>I&rsquo;m a senior at Gretchen Whitney High School in Cerritos, California, applying in physics.</p>
+              </div>
+              <div class="ds-callout">
+                <a class="ds-btn" href="#ckf" data-tab="ckf"><span class="ds-fill"></span><svg viewBox="0 0 16 16"><circle cx="5" cy="10" r="3"/><circle cx="11" cy="5" r="2"/></svg><span>Connect Key Foundation</span></a>
+                <p>I co-founded CKF, which has grown to 150+ volunteers, 50,000+ service hours and 17+ partners. I still test the lessons myself.</p>
+              </div>
+            </div>
+
+            <div class="ds-orb">
+              <canvas id="ds-sphere" width="1120" height="1120" aria-label="Rotating wireframe sphere"></canvas>
+            </div>
+
+            <div class="ds-col">
+              <div class="ds-callout">
+                <a class="ds-btn" href="#research" data-tab="research"><span class="ds-fill"></span><svg viewBox="0 0 16 16"><path d="M2 8h3l2-5 2 10 2-5h3"/></svg><span>MHD Research</span></a>
+                <p>I build thrusters that move seawater with electric and magnetic fields, with no moving parts. I have built the same thruster five times.</p>
+              </div>
+              <div class="ds-callout">
+                <a class="ds-btn" href="#freeflight" data-tab="freeflight"><span class="ds-fill"></span><svg viewBox="0 0 16 16"><path d="M1.5 9 14.5 2.5l-4 11.5-2.5-4.5z"/></svg><span>Free Flight, Team USA</span></a>
+                <p>I fly F1A gliders for the United States at the 2026 FAI Junior World Championships. After I release the glider, nobody controls it.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="ds-bottom">
+            <div class="ds-slogan">Daniel Son<br>Physics<small>Cerritos, California</small></div>
+            <div class="ds-more">
+              <div class="ds-more-head">
+                <b><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M10 4.5 14 8l-4 3.5"/></svg>More</b>
+                <span class="ds-also"><a href="#art" data-tab="art">Art</a> <a href="#csclub" data-tab="csclub">CS Club</a> <a href="#yg" data-tab="yg">Youth &amp; Gov</a> <a href="#church" data-tab="church">Church</a></span>
+              </div>
+              <div class="ds-cards">
+                <a class="ds-card" href="#cap" data-tab="cap"><span class="ds-fill"></span><span>Civil Air Patrol: Cadet Commander of Squadron 56, 120+ cadets</span></a>
+                <a class="ds-card" href="#haegeum" data-tab="haegeum"><span class="ds-fill"></span><span>Haegeum: solo at Weill Recital Hall, Carnegie Hall</span></a>
+                <a class="ds-card" href="#scioly" data-tab="scioly"><span class="ds-fill"></span><span>Science Olympiad: Varsity Captain, 2:30 helicopter flight time</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="intro">
           <svg class="burst-mark" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 4 v12 M30 44 v12 M4 30 h12 M44 30 h12 M11 11 l8 8 M41 41 l8 8 M49 11 l-8 8 M19 41 l-8 8"/></svg>
           <div>
-            <div class="kicker">Cerritos, California</div>
-            <h1>Daniel Son</h1>
-            <svg class="scribble" viewBox="0 0 220 16" aria-hidden="true"><path d="M3 11 C 40 4, 70 14, 104 8 S 170 3, 217 9"/></svg>
             <p class="lede">I have built the same thruster five times. Every time I showed it to someone who knew more than I did, I left with a question I couldn&rsquo;t answer, and the next version was my answer to one of them. Five rebuilds later it is a paper with my name first on it, and the problem still is not finished.</p>
-            <p class="sub">Senior at Gretchen Whitney High School, applying in physics. The tabs are the rest of it.</p>
+            <p class="sub">Senior at Gretchen Whitney High School, applying in physics. The tabs are the rest of it. The foundation we built is at <a href="https://connectkeyfoundation.org" target="_blank" rel="noopener">connectkeyfoundation.org</a>.</p>
           </div>
           <div class="intro-frame"><img class="intro-photo" src="images/hero-build.jpg" alt="Daniel at a folding table on the flying field, building a model glider"></div>
         </div>
@@ -424,7 +583,7 @@
           <div><b>One thruster, five rebuilds</b><span>First author &middot; submitted to IEEE J. of Oceanic Engineering</span></div>
           <div><b>Reviewed in 5 rooms</b><span>County, state, Korea, London, Indonesia</span></div>
           <div><b>Team USA</b><span>F1A &middot; Junior World Championships 2026</span></div>
-          <div><b>501(c)(3) co-founder</b><span>150+ volunteers &middot; YMCA STEM vendor</span></div>
+          <div><b>501(c)(3) co-founder</b><span>150+ volunteers &middot; 50,000+ service hours &middot; YMCA vendor</span></div>
           <div><b>Carnegie Hall</b><span>Solo haegeum &middot; Weill Recital Hall</span></div>
         </div>
 
@@ -1066,6 +1225,110 @@
       });
 
       activate(location.hash ? location.hash.slice(1) : 'home', false);
+    })();
+  </script>
+
+  <!-- Landing hero: wireframe sphere -->
+  <script>
+    (function () {
+      var c = document.getElementById('ds-sphere');
+      if (!c || !c.getContext) return;
+      var g = c.getContext('2d');
+      var W = c.width, H = c.height, R = W * 0.40, NU = 64, NV = 128;
+      var RGB = '231,117,0';
+      var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var P = new Array((NU + 1) * NV);
+
+      function radius(th, ph, t) {
+        return 1
+          + 0.085 * Math.sin(3 * th + ph + t * 0.9)
+          + 0.055 * Math.sin(5 * th - ph * 2 + t * 0.6)
+          + 0.045 * Math.sin(2 * ph + th * 4 - t * 0.7)
+          + 0.030 * Math.sin(7 * th + t * 1.3);
+      }
+
+      function frame(ms) {
+        var t = ms / 1000, ry = t * 0.22, rx = 0.42;
+        var cy = Math.cos(ry), sy = Math.sin(ry), cx = Math.cos(rx), sx = Math.sin(rx);
+        for (var i = 0; i <= NU; i++) {
+          var th = Math.PI * i / NU, st = Math.sin(th), ct = Math.cos(th);
+          for (var j = 0; j < NV; j++) {
+            var ph = 2 * Math.PI * j / NV + th * 0.9;
+            var r = R * radius(th, ph, t);
+            var x = r * st * Math.cos(ph), y = r * ct, z = r * st * Math.sin(ph);
+            var x1 = x * cy + z * sy, z1 = -x * sy + z * cy;
+            P[i * NV + j] = [W / 2 + x1, H / 2 + (y * cx - z1 * sx), y * sx + z1 * cx];
+          }
+        }
+        g.clearRect(0, 0, W, H);
+        g.lineWidth = 1.1;
+        for (var pass = 0; pass < 2; pass++) {
+          g.beginPath();
+          for (var a1 = 0; a1 < NU; a1++) {
+            for (var b1 = 0; b1 < NV; b1++) {
+              var a = P[a1 * NV + b1], b = P[a1 * NV + (b1 + 1) % NV];
+              var d = P[(a1 + 1) * NV + b1], e = P[(a1 + 1) * NV + (b1 + 1) % NV];
+              if ((pass === 0) === ((a[2] + e[2]) > 0)) continue;
+              g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]);
+              g.moveTo(a[0], a[1]); g.lineTo(d[0], d[1]);
+            }
+          }
+          g.strokeStyle = 'rgba(' + RGB + ',' + (pass === 0 ? 0.20 : 0.85) + ')';
+          g.stroke();
+        }
+        if (!reduce) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    })();
+  </script>
+
+  <!-- Landing hero: in-page scroll links -->
+  <script>
+    (function () {
+      document.querySelectorAll('.ds-scroll').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          var t = document.querySelector(a.dataset.scroll);
+          if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    })();
+  </script>
+
+  <!-- Landing hero: search across every tab -->
+  <script>
+    (function () {
+      var form = document.getElementById('ds-search');
+      if (!form) return;
+      var box = form.querySelector('input');
+
+      box.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); run(); }
+      });
+      form.addEventListener('submit', function (e) { e.preventDefault(); run(); });
+
+      function run() {
+        var q = box.value.trim().toLowerCase();
+        if (!q) return;
+        // Search the subject tabs first; the home page only summarises them.
+        var panels = [].slice.call(document.querySelectorAll('.tab-panel'))
+          .sort(function (a, b) { return (a.id === 'home') - (b.id === 'home'); });
+        var hit = null, owner = null;
+        for (var i = 0; i < panels.length && !hit; i++) {
+          var nodes = panels[i].querySelectorAll('p, h1, h2, h3, h4, li, .ds-callout, .ds-card, .hl, .glance li');
+          for (var j = 0; j < nodes.length; j++) {
+            if (nodes[j].textContent.toLowerCase().indexOf(q) > -1) { hit = nodes[j]; owner = panels[i]; break; }
+          }
+        }
+        if (!hit) { box.blur(); return; }
+        if (!owner.classList.contains('active')) { location.hash = owner.id; }
+        setTimeout(function () {
+          hit.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          hit.style.outline = '2px solid var(--accent)';
+          hit.style.outlineOffset = '4px';
+          setTimeout(function () { hit.style.outline = ''; hit.style.outlineOffset = ''; }, 1800);
+        }, 80);
+      }
     })();
   </script>
 </body>
