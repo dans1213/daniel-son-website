@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Son</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --accent:#E77500; --accent-dark:#B35C00; --ink:#1e1e1e; --muted:#6b6459; --hairline:#d8ccbd;
+         --paper:#ebe1d6; --card:#f6f1ea; --sage:#8aa1a3; --olive:#667469; --header:#1e1e1e;
+         --col:660px; --left:170px; --right:250px; --gap:40px; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{ font-family:'Source Serif 4', Lora, Georgia, serif; font-size:18px; line-height:1.625;
+    color:var(--ink); background-color:var(--paper); padding-top:65px; -webkit-font-smoothing:antialiased;
+    background-image:
+      linear-gradient(to right, rgba(102,116,105,.10) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(102,116,105,.10) 1px, transparent 1px);
+    background-size:26px 26px; }
+
+  /* ---------- Header ---------- */
+  .site-header{ position:fixed; top:0; left:0; right:0; height:65px; background:var(--header); z-index:200;
+    display:flex; align-items:center; justify-content:space-between; padding:0 40px; }
+  .logo{ font-family:'Poppins', sans-serif; font-weight:600; color:#f3ece2; font-size:20px; line-height:1;
+    letter-spacing:3px; text-transform:uppercase; text-decoration:none; white-space:nowrap; }
+  .main-nav{ display:flex; flex-wrap:wrap; gap:20px; align-items:center; }
+  .main-nav a{ font-family:'Poppins', sans-serif; font-size:14px; font-weight:400; text-transform:uppercase;
+    letter-spacing:1px; color:#e7d9c6; text-decoration:none; transition:color .15s ease; cursor:pointer; }
+  .main-nav a:hover, .main-nav a.active{ color:var(--accent); }
+
+  /* ---------- 3-column layout ---------- */
+  .layout{ max-width:calc(var(--left) + var(--col) + var(--right) + var(--gap)*2 + 40px);
+    margin:0 auto; padding:54px 20px 0; display:grid;
+    grid-template-columns:var(--left) var(--col) var(--right); gap:var(--gap);
+    justify-content:center; align-items:start; }
+  .center{ min-width:0; padding-bottom:80px; }
+
+  /* ---------- Rails / widgets ---------- */
+  .rail{ font-size:15px; }
+  .widget{ margin-bottom:34px; }
+  .widget h3{ font-family:'Poppins', sans-serif; text-transform:uppercase; letter-spacing:1.5px;
+    font-size:13px; font-weight:600; color:var(--ink); margin-bottom:14px;
+    padding-bottom:7px; border-bottom:2px solid var(--ink); }
+  .rail-left{ position:sticky; top:90px; }
+  .rail-right{ position:sticky; top:90px; }
+
+  .hl{ margin-bottom:16px; line-height:1.35; }
+  .hl b{ font-family:'Poppins', sans-serif; font-weight:500; font-size:15px; letter-spacing:.3px;
+    display:block; color:var(--ink); }
+  .hl span{ font-size:13px; color:var(--muted); }
+
+  .about-photo{ width:130px; height:130px; border-radius:50%; object-fit:cover;
+    object-position:50% 30%; display:block; margin-bottom:14px; }
+  .about-bio{ font-size:15px; line-height:1.55; }
+  .about-bio a{ color:var(--accent); text-decoration:none; }
+  .glance li{ list-style:none; font-size:14px; line-height:1.5; padding:4px 0;
+    border-bottom:1px solid var(--hairline); }
+  .glance li b{ font-family:'Oswald',sans-serif; font-weight:500; }
+
+  /* ---------- Tabs ---------- */
+  .tab-panel{ display:none; }
+  .tab-panel.active{ display:block; animation:fade .25s ease; }
+  @keyframes fade{ from{ opacity:0; transform:translateY(4px);} to{ opacity:1; transform:translateY(0);} }
+
+  /* ---------- Center content ---------- */
+  .post{ margin-bottom:0; }
+  .post-title{ font-family:'Source Serif 4', Lora, Georgia, serif; font-weight:600; font-size:38px; line-height:1.06;
+    color:var(--ink); margin-bottom:7px; }
+  .post-meta{ font-family:'Source Serif 4', Lora, serif; font-size:16px; color:var(--muted); margin-bottom:18px; }
+  .post-img{ display:block; max-width:100%; max-height:520px; width:auto; height:auto; margin:4px auto 22px; }
+  .post-body p{ margin-bottom:15px; } .post-body p:last-child{ margin-bottom:0; }
+  .post-body a{ color:var(--accent); text-decoration:none; } .post-body a:hover{ text-decoration:underline; }
+
+  /* ---------- Composition components ---------- */
+  /* Stat row: a band of callout numbers */
+  .stat-row{ display:flex; flex-wrap:wrap; gap:28px 36px; margin:26px 0 30px;
+    padding:20px 0; border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline); }
+  .stat-row .stat{ min-width:90px; }
+  .stat-row .num{ display:block; font-family:'Source Serif 4', Lora, Georgia, serif; font-weight:700; font-size:30px;
+    color:var(--accent); line-height:1.1; }
+  .stat-row .label{ font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); }
+
+  /* Pull quote: a large standout line pulled from the text */
+  .pull-quote{ font-family:'Source Serif 4', Lora, serif; font-style:italic; font-size:24px; line-height:1.42;
+    color:var(--ink); border-left:3px solid var(--accent); padding:2px 0 2px 22px; margin:30px 0; }
+
+  /* Image grids: room for more photos, laid out unevenly on purpose */
+  .img-grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:6px 0 26px; }
+  .img-grid-3{ display:grid; grid-template-columns:1.3fr 1fr; grid-template-rows:1fr 1fr; gap:14px;
+    margin:6px 0 26px; }
+  .img-grid-3 .g-tall{ grid-row:1 / 3; }
+  .img-grid-2 img, .img-grid-3 img, .img-placeholder{ width:100%; height:100%; object-fit:cover;
+    display:block; border-radius:2px; }
+  .img-grid-2 .cell, .img-grid-3 .cell{ aspect-ratio:4/3; overflow:hidden; }
+  .img-grid-sq{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:6px 0 10px; }
+  .img-grid-sq .cell{ aspect-ratio:1/1; overflow:hidden; border-radius:2px; }
+  .img-grid-sq img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .img-grid-3 .g-tall{ aspect-ratio:auto; }
+
+  /* Placeholder: marks a slot meant for another photo */
+  .img-placeholder{ height:100%; min-height:120px; border:1.5px dashed #c9bbaa; border-radius:2px;
+    background:var(--card); display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:4px; color:#a9906f; text-align:center; padding:10px; }
+  .img-placeholder .plus{ font-family:'Poppins', sans-serif; font-size:22px; line-height:1; }
+  .img-placeholder .cap{ font-family:'Poppins', sans-serif; font-size:10px; text-transform:uppercase;
+    letter-spacing:1px; max-width:140px; }
+
+  /* Filled photo cell: same footprint as a placeholder, once a real photo is in */
+  .photo-cell{ overflow:hidden; border-radius:2px; }
+  .photo-cell img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* Split: asymmetric two-column pairing of image and text */
+  .split{ display:grid; grid-template-columns:1.1fr 1fr; gap:34px; align-items:center; margin:8px 0 30px; }
+  .split img{ width:100%; display:block; border-radius:2px; }
+  .split.reverse .split-img{ order:2; }
+  .split.reverse .split-text{ order:1; }
+  .split-text p{ margin-bottom:12px; } .split-text p:last-child{ margin-bottom:0; }
+
+  /* Voice block: a personal, off-the-resume aside */
+  .voice-block{ margin:26px 0 8px; padding:22px 26px; background:rgba(138,161,163,.22); border-radius:3px; border-left:3px solid var(--sage); }
+  .voice-block p{ font-size:16.5px; line-height:1.62; color:var(--ink); margin-bottom:0; }
+
+  .fillme{ color:var(--muted); font-style:italic; }
+
+  /* Case study: a boxed, step-by-step account of one build */
+  .case-title{ font-family:'Source Serif 4', Lora, Georgia, serif; font-weight:600; font-size:22px; letter-spacing:.3px;
+    margin:32px 0 12px; }
+  .case-study{ border:1px solid var(--hairline); background:var(--card); border-radius:3px; padding:22px 26px; margin-bottom:8px; }
+  .case-study p{ font-size:16.5px; line-height:1.6; margin-bottom:12px; }
+  .case-study p:last-child{ margin-bottom:0; }
+  .case-study b{ font-family:'Poppins', sans-serif; font-weight:500; letter-spacing:.3px; }
+
+  /* Award list: year on the right, one honor per line */
+  .award-list{ list-style:none; margin:6px 0 26px; border-top:1px solid var(--hairline); }
+  .award-list li{ display:flex; justify-content:space-between; gap:16px; padding:8px 0; font-size:16px;
+    line-height:1.4; border-bottom:1px solid var(--hairline); }
+  .award-list .yr{ font-family:'Poppins', sans-serif; font-size:14px; color:var(--muted); white-space:nowrap; }
+
+  /* Badge: a small centered emblem/logo, framed as a patch rather than a banner photo */
+  .badge-wrap{ display:flex; justify-content:center; margin:4px 0 28px; }
+  .badge{ width:190px; height:190px; border-radius:14px; overflow:hidden; box-shadow:0 8px 20px rgba(43,33,24,.2); }
+  .badge img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* Hand-drawn marks: a scribbled underline and a small burst */
+  .scribble{ display:block; width:220px; max-width:60%; height:16px; margin:-6px 0 16px; color:var(--accent); }
+  .scribble path{ fill:none; stroke:currentColor; stroke-width:3.4; stroke-linecap:round; }
+  .burst-mark{ position:absolute; width:58px; height:58px; color:var(--accent); opacity:.9; }
+  .burst-mark path{ stroke:currentColor; stroke-width:3; stroke-linecap:round; fill:none; }
+  .intro{ position:relative; }
+  .intro .burst-mark{ right:-6px; top:-22px; }
+  @media (max-width:860px){ .intro .burst-mark{ display:none; } }
+
+  /* The reflection, set as the opening of a tab rather than a footnote */
+  .lede-voice{ margin:4px 0 30px; padding:26px 30px 28px; background:rgba(138,161,163,.20);
+    border-left:4px solid var(--accent); border-radius:3px; position:relative; }
+  .lede-voice p{ font-family:'Source Serif 4', Lora, Georgia, serif; font-size:20.5px; line-height:1.56;
+    color:var(--ink); margin-bottom:0; }
+  .lede-voice p::first-letter{ font-size:30px; font-weight:600; }
+  @media (max-width:700px){ .lede-voice{ padding:20px 22px; } .lede-voice p{ font-size:18px; } }
+
+  /* Publication list: title, venue, year, link */
+  .pubs{ list-style:none; margin:10px 0 26px; border-top:1px solid var(--hairline); }
+  .pubs li{ padding:13px 0; border-bottom:1px solid var(--hairline); }
+  .pubs .t{ font-size:17px; line-height:1.4; display:block; }
+  .pubs .t a{ color:var(--ink); text-decoration:none; border-bottom:1px solid var(--accent); }
+  .pubs .t a:hover{ color:var(--accent); }
+  .pubs .v{ display:block; margin-top:4px; font-family:'Poppins', sans-serif; font-size:12px;
+    letter-spacing:1.1px; text-transform:uppercase; color:var(--muted); }
+
+  /* Abstract: folded away until someone wants the detail */
+  .abstract{ border:1px solid var(--hairline); background:var(--card); border-radius:3px;
+    padding:0 22px; margin:26px 0 8px; }
+  .abstract summary{ cursor:pointer; list-style:none; padding:16px 0;
+    font-family:'Poppins', sans-serif; font-weight:500; font-size:13px; letter-spacing:1.6px;
+    text-transform:uppercase; color:var(--accent); }
+  .abstract summary::-webkit-details-marker{ display:none; }
+  .abstract summary::after{ content:" +"; }
+  .abstract[open] summary::after{ content:" \2212"; }
+  .abstract .body{ padding:2px 0 20px; }
+  .abstract h4{ font-family:'Source Serif 4', Lora, Georgia, serif; font-weight:600; font-size:19px;
+    line-height:1.3; margin-bottom:12px; }
+  .abstract p{ font-size:16.5px; line-height:1.62; margin-bottom:13px; }
+  .abstract .keywords{ font-family:'Poppins', sans-serif; font-size:12.5px; letter-spacing:.4px;
+    color:var(--muted); margin-bottom:0; }
+
+  /* Link-out block: the place to send someone off the page */
+  .linkout{ margin:34px 0 8px; padding:26px 28px; background:var(--card);
+    border:1px solid var(--hairline); border-left:4px solid var(--accent); border-radius:3px; }
+  .linkout p{ font-size:17px; line-height:1.65; margin-bottom:14px; }
+  .linkout p:last-child{ margin-bottom:0; }
+  .linkout .site-link{ display:inline-block; font-family:'Poppins', sans-serif; font-weight:600;
+    font-size:17px; letter-spacing:.3px; color:var(--accent); text-decoration:none;
+    border-bottom:2px solid var(--accent); padding-bottom:3px; margin-top:4px; }
+  .linkout .site-link:hover{ color:var(--accent-dark); border-bottom-color:var(--accent-dark); }
+  .linkout .handles{ margin-top:16px; font-family:'Poppins', sans-serif; font-size:13.5px;
+    letter-spacing:.3px; color:var(--muted); }
+  .linkout .handles a{ color:var(--olive); text-decoration:none; border-bottom:1px solid rgba(102,116,105,.45); }
+  .linkout .handles a:hover{ color:var(--accent); border-bottom-color:var(--accent); }
+
+  /* Embedded video, framed like the photos */
+  .video-embed{ background:#fff; padding:10px; border-radius:2px; margin:6px 0 10px;
+    box-shadow:0 10px 26px rgba(30,30,30,.16); }
+  .video-embed iframe{ display:block; width:100%; aspect-ratio:16/9; border:0; }
+
+  /* Caption under a photo: small, uppercase, like a filed print */
+  .photo-cap{ font-family:'Poppins', sans-serif; font-size:11.5px; letter-spacing:1.4px;
+    text-transform:uppercase; color:var(--muted); margin:-14px 0 26px; }
+  .photo-cap.under-frame{ margin-top:10px; }
+
+  /* ---------- Scrapbook treatment: taped-in photos, color bands ---------- */
+  /* Full-bleed color band that escapes the page grid */
+  .band{ width:100vw; margin-left:calc(50% - 50vw); padding:62px 24px; position:relative; }
+  .band-inner{ max-width:1000px; margin:0 auto; }
+  .band-sage{ background:var(--sage); color:#fff; }
+  .band-rust{ background:var(--accent); color:#fff; }
+  .band h2{ font-family:'Source Serif 4', Lora, Georgia, serif; font-weight:400;
+    font-size:clamp(26px,3.4vw,40px); line-height:1.25; margin-bottom:18px; }
+  .band p{ font-size:17.5px; line-height:1.7; }
+  .band .rule{ display:inline-block; border-bottom:3px solid var(--accent); padding-bottom:3px; }
+  .band-rust .rule{ border-bottom-color:#fff; }
+
+  /* Uppercase label with the hand-drawn-looking underline */
+  .ruled{ display:inline-block; font-family:'Poppins', sans-serif; font-weight:500;
+    text-transform:uppercase; letter-spacing:2.4px; font-size:13px;
+    border-bottom:2px solid var(--accent); padding-bottom:5px; }
+
+  /* Photos pinned into the page, very slightly off-square */
+  .taped{ background:#fff; padding:10px 10px 10px; border-radius:2px;
+    box-shadow:0 10px 26px rgba(30,30,30,.16); transition:transform .35s ease; }
+  .taped img{ display:block; width:100%; }
+  .tilt-l{ transform:rotate(-1.4deg); } .tilt-r{ transform:rotate(1.2deg); }
+  .work-card:hover .taped, .taped:hover{ transform:rotate(0deg); }
+
+  /* Little burst mark, like the marks drawn beside photos */
+  .burst{ position:absolute; width:62px; height:62px; opacity:.85; pointer-events:none; }
+
+  /* ---------- v2 home: full-width, work-first ---------- */
+  body.home-active .rail{ display:none; }
+  body.home-active .layout{ grid-template-columns:minmax(0,1fr); max-width:1080px; }
+  body.home-active .center{ padding-bottom:40px; }
+
+  .intro{ display:grid; grid-template-columns:1.25fr 1fr; gap:46px; align-items:center;
+    padding:18px 0 46px; border-bottom:1px solid var(--hairline); margin-bottom:46px; }
+  .intro h1{ font-family:'Source Serif 4', Lora, Georgia, serif; font-weight:600; font-size:clamp(40px,5vw,64px);
+    line-height:1.02; letter-spacing:.5px; margin-bottom:18px; }
+  .intro .lede{ font-size:20px; line-height:1.55; margin-bottom:16px; }
+  .intro .sub{ font-size:16.5px; color:var(--muted); line-height:1.55; }
+  .intro .sub a{ color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); }
+  .intro .sub a:hover{ color:var(--accent-dark); border-bottom-color:var(--accent-dark); }
+    .intro-frame{ position:relative; background:#fff; padding:12px; border-radius:2px; transform:rotate(1.8deg);
+    box-shadow:0 14px 34px rgba(30,30,30,.18); }
+  .intro-frame::before, .intro-frame::after{ content:""; position:absolute; width:104px; height:30px;
+    background:rgba(214,196,170,.62); box-shadow:0 1px 2px rgba(30,30,30,.12); z-index:2; }
+  .intro-frame::before{ top:-14px; left:-20px; transform:rotate(-30deg); }
+  .intro-frame::after{ bottom:-14px; right:-20px; transform:rotate(-30deg); }
+  .intro-photo{ width:100%; aspect-ratio:4/5; object-fit:cover; object-position:55% 42%; display:block; }
+
+  .section-label{ display:inline-block; font-family:'Poppins', sans-serif; font-weight:500;
+    text-transform:uppercase; letter-spacing:2.4px; font-size:13px; color:var(--accent);
+    border-bottom:2px solid var(--accent); padding-bottom:5px; margin-bottom:26px; }
+
+  .work-grid{ display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-bottom:52px; }
+  /* The first card is the one an admissions reader should land on */
+  .work-card.feature{ grid-column:1 / -1; display:grid; grid-template-columns:1.25fr 1fr; gap:30px; align-items:center; }
+  .work-card.feature h3{ font-size:30px; }
+  .work-card.feature p{ font-size:17.5px; }
+  .work-card.feature .shot{ margin-bottom:0; }
+  .work-card.feature .ftext{ min-width:0; }
+
+  /* Proof strip: the five facts worth checking, in five seconds */
+  .proof{ display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:16px 22px;
+    border-top:2px solid var(--ink); border-bottom:1px solid var(--hairline);
+    padding:18px 0 20px; margin:0 0 42px; }
+  .proof div b{ display:block; font-family:'Source Serif 4', Lora, Georgia, serif; font-weight:700;
+    font-size:17px; line-height:1.25; color:var(--accent); margin-bottom:5px; }
+  .proof div span{ font-family:'Poppins', sans-serif; font-size:11.5px; letter-spacing:1.1px;
+    text-transform:uppercase; color:var(--muted); line-height:1.4; display:block; }
+  @media (max-width:860px){ .work-card.feature{ grid-template-columns:1fr; gap:16px; }
+    .work-card.feature h3{ font-size:25px; } }
+
+  .work-card{ display:block; text-decoration:none; color:inherit; cursor:pointer; }
+  .work-card .shot{ position:relative; background:#fff; padding:10px; border-radius:2px; margin-bottom:16px;
+    box-shadow:0 10px 26px rgba(30,30,30,.16); transition:transform .35s ease; }
+  .work-card .shot::before, .work-card .shot::after{ content:""; position:absolute; width:86px; height:26px;
+    background:rgba(214,196,170,.62); box-shadow:0 1px 2px rgba(30,30,30,.12); z-index:2; }
+  .work-card .shot::before{ top:-12px; left:-16px; transform:rotate(-32deg); }
+  .work-card .shot::after{ bottom:-12px; right:-16px; transform:rotate(-32deg); }
+  .work-card:nth-child(odd) .shot{ transform:rotate(-1.7deg); }
+  .work-card:nth-child(even) .shot{ transform:rotate(1.5deg); }
+  .work-card:hover .shot{ transform:rotate(0deg); }
+  .work-card .shot .frame{ aspect-ratio:3/2; overflow:hidden; }
+  .work-card .shot img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .work-card:hover .shot img{ transform:scale(1.04); }
+  .work-card .eyebrow{ font-family:'Poppins', sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:1.6px;
+    font-size:11px; color:var(--olive); display:block; margin-bottom:5px; }
+  .work-card h3{ font-family:'Source Serif 4', Lora, Georgia, serif; font-weight:600; font-size:24px; line-height:1.15;
+    margin-bottom:6px; }
+  .work-card p{ font-size:16px; line-height:1.5; color:var(--ink); }
+  .work-card .more{ color:var(--accent); font-size:15px; }
+
+  .also{ display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:18px 20px; margin-bottom:48px; }
+  .also a{ display:block; text-decoration:none; color:inherit; border-top:2px solid var(--ink);
+    padding-top:10px; cursor:pointer; }
+  .also-rust{ margin-bottom:0; }
+  .also-rust a{ border-top-color:rgba(255,255,255,.55); color:#fff; }
+  .also-rust span{ color:rgba(255,255,255,.85); }
+  .also-rust a:hover b{ color:#1e1e1e; }
+  .also b{ font-family:'Poppins', sans-serif; font-weight:500; font-size:16px; display:block;
+    margin-bottom:4px; }
+  .also span{ font-size:14px; color:var(--muted); line-height:1.45; display:block; }
+  .also a:hover b{ color:var(--accent); }
+
+  .now-row{ display:grid; grid-template-columns:1fr 1fr; gap:34px; align-items:start;
+    border-top:1px solid var(--hairline); padding-top:34px; }
+  .now-row .glance li{ font-size:15px; }
+  .now-row h4{ font-family:'Poppins', sans-serif; text-transform:uppercase; letter-spacing:1.5px;
+    font-size:13px; font-weight:600; margin-bottom:12px; padding-bottom:7px;
+    border-bottom:2px solid var(--ink); }
+
+  @media (max-width:860px){
+    .intro{ grid-template-columns:1fr; gap:26px; }
+    .intro-photo{ aspect-ratio:3/2; }
+    .work-grid{ grid-template-columns:1fr; gap:30px; }
+    .also{ grid-template-columns:1fr 1fr; }
+    .now-row{ grid-template-columns:1fr; gap:26px; }
+  }
+
+  .hero{ margin-bottom:60px; }
+  .hero-img{ display:block; width:100%; max-height:520px; object-fit:cover; object-position:50% 38%; margin:0 0 22px; filter:brightness(1.18) contrast(.98); }
+  .hero .kicker{ font-family:'Poppins', sans-serif; text-transform:uppercase; letter-spacing:2px;
+    font-size:13px; color:var(--accent); margin-bottom:12px; }
+  .hero h1{ font-family:'Source Serif 4', Lora, Georgia, serif; font-weight:600; font-size:50px; line-height:1.02;
+    letter-spacing:.5px; margin-bottom:14px; }
+  .hero p{ font-size:19px; }
+  .hero .stat-row{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; }
+  .hero .stat-row .stat{ min-width:0; }
+
+  .site-footer{ border-top:1px solid var(--hairline); padding:30px 20px 60px; text-align:center;
+    font-family:'Poppins', sans-serif; text-transform:uppercase; letter-spacing:1.5px;
+    font-size:13px; color:var(--muted); }
+  .site-footer .name{ color:var(--ink); font-weight:600; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1080px){
+    .layout{ display:block; max-width:660px; padding-top:46px; }
+    .rail-left{ display:none; }
+    .rail-right{ position:static; margin-top:20px; padding-top:26px; border-top:2px solid var(--ink); }
+    .center{ padding-bottom:40px; }
+  }
+  @media (max-width:700px){
+    body{ padding-top:0; }
+    .site-header{ position:static; height:auto; flex-direction:column; align-items:flex-start;
+      gap:12px; padding:16px 20px; }
+    .main-nav{ gap:12px 16px; }
+    .hero h1{ font-size:38px; } .post-title{ font-size:30px; }
+    .hero-img{ max-height:340px; }
+    .split{ grid-template-columns:1fr; gap:16px; }
+    .split.reverse .split-img, .split.reverse .split-text{ order:initial; }
+    .img-grid-3{ grid-template-columns:1fr 1fr; }
+    .img-grid-sq{ grid-template-columns:1fr 1fr; }
+    .pull-quote{ font-size:20px; padding-left:16px; }
+    .stat-row{ gap:20px 28px; }
+    .hero .stat-row{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px 28px; }
+  }
+  @media (max-width:480px){
+    .hero .stat-row{ grid-template-columns:1fr 1fr; }
+    .img-grid-2{ grid-template-columns:1fr; }
+    .img-grid-3{ grid-template-columns:1fr; grid-template-rows:none; }
+    .img-grid-sq{ grid-template-columns:1fr 1fr; }
+    .img-grid-3 .g-tall{ grid-row:auto; }
+  }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="#home" class="logo" data-tab="home">Daniel Son</a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="#home" data-tab="home">Home</a>
+      <a href="#ckf" data-tab="ckf">CKF</a><a href="#art" data-tab="art">Art</a><a href="#research" data-tab="research">Research</a>
+      <a href="#haegeum" data-tab="haegeum">Haegeum</a><a href="#cap" data-tab="cap">CAP</a><a href="#scioly" data-tab="scioly">SciOly</a>
+      <a href="#csclub" data-tab="csclub">CS Club</a><a href="#freeflight" data-tab="freeflight">Free Flight</a>
+      <a href="#yg" data-tab="yg">Youth &amp; Gov</a><a href="#church" data-tab="church">Church</a>
+    </nav>
+  </header>
+
+  <div class="layout">
+
+    <!-- LEFT RAIL -->
+    <aside class="rail rail-left">
+      <div class="widget">
+        <h3>Highlights</h3>
+        <div class="hl"><b>Team USA, Junior Worlds</b><span>F1A &middot; U.S. won the 2026 F1 Challenge</span></div>
+        <div class="hl"><b>Co-Founder, CKF</b><span>President, STEM Division &middot; YMCA STEM vendor</span></div>
+        <div class="hl"><b>MHD Research</b><span>Cal Poly Pomona &middot; Anderson Lab</span></div>
+        <div class="hl"><b>Cadet Commander</b><span>Civil Air Patrol &middot; 120+ cadets</span></div>
+        <div class="hl"><b>Solo Haegeum</b><span>Weill Recital Hall, Carnegie Hall</span></div>
+      </div>
+    </aside>
+
+    <!-- CENTER -->
+    <main class="center">
+      <section class="hero tab-panel active" id="home">
+        <div class="intro">
+          <svg class="burst-mark" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 4 v12 M30 44 v12 M4 30 h12 M44 30 h12 M11 11 l8 8 M41 41 l8 8 M49 11 l-8 8 M19 41 l-8 8"/></svg>
+          <div>
+            <div class="kicker">Cerritos, California</div>
+            <h1>Daniel Son</h1>
+            <svg class="scribble" viewBox="0 0 220 16" aria-hidden="true"><path d="M3 11 C 40 4, 70 14, 104 8 S 170 3, 217 9"/></svg>
+            <p class="lede">I have built the same thruster five times. Every time I showed it to someone who knew more than I did, I left with a question I couldn&rsquo;t answer, and the next version was my answer to one of them. Five rebuilds later it is a paper with my name first on it, and the problem still is not finished.</p>
+            <p class="sub">Senior at Gretchen Whitney High School, applying in physics. The tabs are the rest of it. The foundation we built is at <a href="https://connectkeyfoundation.org" target="_blank" rel="noopener">connectkeyfoundation.org</a>.</p>
+          </div>
+          <div class="intro-frame"><img class="intro-photo" src="images/hero-build.jpg" alt="Daniel at a folding table on the flying field, building a model glider"></div>
+        </div>
+
+        <div class="video-embed" style="margin-bottom:10px;">
+          <video controls preload="none" playsinline poster="images/intro-poster.jpg" style="display:block; width:100%; aspect-ratio:16/9; background:#1e1e1e;">
+            <source src="media/intro.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+        </div>
+        <p class="photo-cap under-frame" style="margin-bottom:34px;">A minute, in my own voice</p>
+
+        <div class="proof">
+          <div><b>One thruster, five rebuilds</b><span>First author &middot; submitted to IEEE J. of Oceanic Engineering</span></div>
+          <div><b>Reviewed in 5 rooms</b><span>County, state, Korea, London, Indonesia</span></div>
+          <div><b>Team USA</b><span>F1A &middot; Junior World Championships 2026</span></div>
+          <div><b>501(c)(3) co-founder</b><span>150+ volunteers &middot; 50,000+ service hours &middot; YMCA vendor</span></div>
+          <div><b>Carnegie Hall</b><span>Solo haegeum &middot; Weill Recital Hall</span></div>
+        </div>
+
+        <div class="section-label">Selected Work</div>
+        <div class="work-grid">
+          <a class="work-card feature" href="#research" data-tab="research">
+            <div class="shot"><div class="frame"><img src="images/research-poster2.jpg" alt="MHD engine research poster with 3D-printed prototypes and a CFD simulation"></div></div>
+            <div class="ftext"><span class="eyebrow">Research &middot; Cal Poly Pomona</span>
+            <h3>A quieter way to move underwater</h3>
+            <p>One thruster, rebuilt between every review, now an accepted abstract at a thermal engineering conference in Hawaii. <span class="more">Read more &rarr;</span></p></div>
+          </a>
+          <a class="work-card" href="#ckf" data-tab="ckf">
+            <div class="shot"><div class="frame"><img src="images/ckf-curioworkshop.jpg" alt="CurioCrate student instructors running a hands-on science session"></div></div>
+            <span class="eyebrow">Connect Key Foundation &middot; CurioCrate</span>
+            <h3>Science kits that run without me</h3>
+            <p>Co-founded a 501(c)(3); built CurioCrate into a year-round YMCA program for 500+ students. <span class="more">Read more &rarr;</span></p>
+          </a>
+          <a class="work-card" href="#freeflight" data-tab="freeflight">
+            <div class="shot"><div class="frame"><img src="images/freeflight-launch.jpg" alt="Launching an F1A glider off the towline at a competition"></div></div>
+            <span class="eyebrow">Free Flight &middot; F1A</span>
+            <h3>U.S. national team, world title in Prilep</h3>
+            <p>Selected for the U.S. national team; the United States took the F1 Challenge title at the 2026 Junior World Championships. <span class="more">Read more &rarr;</span></p>
+          </a>
+          <a class="work-card" href="#haegeum" data-tab="haegeum">
+            <div class="shot"><div class="frame"><img src="images/carnegie-hall.jpg" alt="Daniel performing haegeum on stage at Weill Recital Hall, Carnegie Hall"></div></div>
+            <span class="eyebrow">Haegeum &middot; Haegeum Sarang Orchestra</span>
+            <h3>Ten years on a two-stringed fiddle</h3>
+            <p>Solo at Weill Recital Hall, Carnegie Hall; an invited TEDx performance; ten years on the instrument. <span class="more">Read more &rarr;</span></p>
+          </a>
+          <a class="work-card" href="#cap" data-tab="cap">
+            <div class="shot"><div class="frame"><img src="images/cap-helicopter.jpg" alt="Cadets standing with aircrew in front of a military helicopter"></div></div>
+            <span class="eyebrow">Civil Air Patrol &middot; Cadet Commander</span>
+            <h3>120 cadets, and the paperwork behind them</h3>
+            <p>Top cadet of one of California&rsquo;s largest squadrons; rebuilt its training and admin from the ground up. <span class="more">Read more &rarr;</span></p>
+          </a>
+          <a class="work-card" href="#yg" data-tab="yg">
+            <div class="shot"><div class="frame"><img src="images/yg-speech.jpg" alt="Daniel at the podium giving the Year in Review at the delegate banquet"></div></div>
+            <span class="eyebrow">YMCA Youth &amp; Government &middot; Vice President</span>
+            <h3>Counting the votes before anyone speaks</h3>
+            <p>Chief Whip and Youth Governor candidate in California&rsquo;s model legislature; gave the Year in Review at the 2025 banquet and was named Outstanding Delegate. <span class="more">Read more &rarr;</span></p>
+          </a>
+          <a class="work-card" href="#church" data-tab="church">
+            <div class="shot"><div class="frame"><img src="images/church-group.jpg" alt="The church youth group in matching red shirts"></div></div>
+            <span class="eyebrow">New Church &middot; Youth Group President</span>
+            <h3>Everything with a cable in it</h3>
+            <p>Slides, sound and video for Sunday services since 2018; Bible study, fundraisers, and a mission trip to Mexico. <span class="more">Read more &rarr;</span></p>
+          </a>
+        </div>
+
+        <div class="band band-sage">
+          <div class="band-inner">
+            <h2>CKF started on a phone call that ran past 1am, because a few of us were tired of volunteering that didn&rsquo;t help anyone.</h2>
+            <p>Most of what I know about competing came from a coach telling me to stop having a bad day and watch the plane. I tried to put some of that into each tab, past the numbers.</p>
+            <p style="margin-top:22px;"><a href="#ckf" data-tab="ckf" class="ruled" style="color:#fff; border-bottom-color:#fff;">More about CKF</a></p>
+          </div>
+        </div>
+
+        <div class="band band-rust">
+          <div class="band-inner">
+            <div class="ruled" style="color:#fff; border-bottom-color:#fff; margin-bottom:26px;">Also</div>
+            <div class="also also-rust">
+              <a href="#scioly" data-tab="scioly"><b>Science Olympiad</b><span>Varsity captain, flight specialist</span></a>
+              <a href="#art" data-tab="art"><b>Art</b><span>Ryman Arts scholar, senior art sessions</span></a>
+              <a href="#csclub" data-tab="csclub"><b>CS Club</b><span>President, teaching Python and Java</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="now-row">
+          <div>
+            <h4>Currently</h4>
+            <ul class="glance">
+              <li><b>Reading</b> &nbsp;<em>Beyond Good &amp; Evil</em></li>
+              <li><b>On Repeat</b> &nbsp;Green Day</li>
+              <li><b>Favorite Musical</b> &nbsp;<em>EPIC</em></li>
+              <li><b>Watching</b> &nbsp;<em>Horimiya</em></li>
+              <li><b>Building</b> &nbsp;A P18 model plane</li>
+            </ul>
+          </div>
+          <div>
+            <h4>At a Glance</h4>
+            <ul class="glance">
+              <li><b>School</b> &nbsp;Gretchen Whitney High School</li>
+              <li><b>Focus</b> &nbsp;Physics</li>
+              <li><b>Math</b> &nbsp;Multivariable calculus &middot; linear algebra</li>
+              <li><b>Research</b> &nbsp;MHD propulsion, Cal Poly Pomona</li>
+              <li><b>Music</b> &nbsp;Haegeum &middot; Euphonium (1st chair)</li>
+              <li><b>Service</b> &nbsp;Co-founder, Connect Key Foundation</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <article class="post tab-panel" id="ckf">
+        <h2 class="post-title">Connect Key Foundation</h2>
+        <div class="post-meta">Co-Founder &middot; Executive Director (2026&ndash;Present) &middot; Co-President (2025) &middot; STEM Division President (2023&ndash;2024, 2026&ndash;Present)</div>
+        <img class="post-img" src="images/ckf.jpg" alt="CKF CurioCrate outreach team">
+        <div class="post-body">
+          <div class="lede-voice">
+            <p>I still test the lessons myself. One of our shyest kids once tugged on my shirt to ask what we were doing next week, and another one yelled &ldquo;bye, science guy!&rdquo; on his way out the door. I think about those two a lot more than I think about the hour count.</p>
+          </div>
+
+          <div class="linkout">
+            <p>CKF is much bigger than my part of it. While I am packing kits, our Health Division is running blood pressure checks at a county health fair, the Art Division is tying handmade bracelets onto the wrists of kids in cancer treatment, and the English Division is teaching parents the language their children already speak. Most of it happens in rooms I am never in, run by students I recruited and then got out of the way of.</p>
+            <img class="post-img" src="images/ckf-hospital.jpg" alt="The Art Division outside Miller Children&#39;s &amp; Women&#39;s Hospital" style="margin-top:8px;">
+            <p class="photo-cap">One of those rooms: the Art Division at Miller Children&rsquo;s &amp; Women&rsquo;s Hospital</p>
+            <a class="site-link" href="https://connectkeyfoundation.org/curiocrate" target="_blank" rel="noopener">See the CurioCrate program on the CKF site &nearr;</a>
+            <p class="handles"><a href="https://connectkeyfoundation.org" target="_blank" rel="noopener">connectkeyfoundation.org</a> &middot; Instagram <a href="https://www.instagram.com/connectkeyfoundation/" target="_blank" rel="noopener">@connectkeyfoundation</a> &middot; <a href="https://www.instagram.com/ckf.curiocrate/" target="_blank" rel="noopener">@ckf.curiocrate</a></p>
+          </div>
+
+
+          <p>In 2023 a few friends and I were on a call that went well past 1am, mostly complaining. A lot of the volunteering we&rsquo;d done was showing up to jobs nobody needed us for. By the end of the call we&rsquo;d decided to start our own group and let students design the programs. That became Connect Key Foundation. We had already been volunteering together before there was a name for it; CKF was incorporated as a 501(c)(3) in Cerritos in November 2023.</p>
+
+          <p>CKF now has five divisions (STEM, Health, Art, English, and Outreach), about 150 student volunteers, and 17+ partners including the YMCA, Discovery Cube, Miller Children&rsquo;s Hospital, and the Government of El Salvador. Across all divisions, our volunteers have logged more than 50,000 service hours.</p>
+
+          <div class="stat-row">
+            <div class="stat"><span class="num">150+</span><span class="label">Volunteers</span></div>
+            <div class="stat"><span class="num">50,000+</span><span class="label">Service Hours</span></div>
+            <div class="stat"><span class="num">17+</span><span class="label">Partners</span></div>
+            <div class="stat"><span class="num">$30,000+</span><span class="label">Grants &amp; Support</span></div>
+          </div>
+
+          <p><strong>CurioCrate</strong> is the STEM Division&rsquo;s hands-on science program, and it&rsquo;s where most of my time goes. When I became STEM Division president it was a curriculum on paper, without a regular place or schedule to teach it.</p>
+
+          <p>I built our partnership with the YMCA, which gave CKF its first permanent STEM lab at the Fairfield Family YMCA. In 2026 CurioCrate became an official YMCA STEM vendor, with sessions running through the summer, fall break, and winter at Fairfield and the Wrigley Youth Center in Long Beach. More than 500 students have now come through CurioCrate, at the YMCA, in weekly after-school sessions at Leal Elementary, at a science camp at Burbank Elementary, and at Discovery Cube.</p>
+
+          <p>This year CurioCrate kits started going to classrooms in El Salvador through an official partnership with the Salvadoran government. I put together the student team for that proposal, and we wrote it together.</p>
+
+          <img class="post-img" src="images/ckf-curioworkshop.jpg" alt="Volunteers running a CurioCrate STEM workshop with kids">
+          <p class="photo-cap">A CurioCrate session</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/ckf-heart.jpg" alt="Children holding the heart pump models they built at a CurioCrate session"></div>
+            <div class="cell photo-cell"><img src="images/ckf-wind.jpg" alt="Children holding up the pinwheels they built in the wind energy lesson"></div>
+          </div>
+          <p class="photo-cap">Two lessons from summer 2026: heart pump models, and catching wind</p>
+
+          <p>None of that works if I have to be in the room. So most of my job turned into making lessons that survive a first-time instructor: testing each experiment until it works every time, then writing the supply list, safety steps, and instructor notes that go in the box. I recruit and train the student instructors, now more than 50, who teach from our 40+ original curriculum modules.</p>
+
+          <p>The first students I trained teach their own sessions now. Some are Whitney classmates, some are younger siblings who had never cared about science before they had to explain it to a seven-year-old.</p>
+
+          <p>The money comes from outside. Society for Science gave CurioCrate a $5,000 STEM Action Grant in 2024, and the Vasant and Prabha Rathi Foundation added $1,500 in 2026. For both, I organized the team and we wrote the applications as a group. Across all divisions, CKF has received more than $30,000 in grants and support, and the office of U.S. Congressman Derek Tran has formally recognized our work.</p>
+
+          <h3 class="case-title">Case Study: The Lesson That Failed on the Way to Class</h3>
+
+          <div class="case-study">
+            <p><b>The problem.</b> A lesson only counts if a volunteer who has never taught it can run it in a room of 25 kids. Most of my testing happens at my house, with me as the first student to get it wrong.</p>
+            <p><b>Failures.</b> Choosing materials took more tries than I want to admit. Wrong quantities, wrong timing, a reaction that works once and never again. I demoed one experiment for the whole team over Zoom from my backyard, and it finally worked. It also left our patio furniture covered in the evidence. My mom has opinions about that week.</p>
+            <p><b>The day of.</b> The lesson called for a solution mixed ahead of time. The volunteer bringing the materials brought the raw powder instead. Twenty minutes before class, we had the wrong version of the experiment.</p>
+            <p><b>The fix.</b> We taught slime instead. The kids were louder and happier than they would have been with the lesson we planned, which was a strange thing to be relieved about.</p>
+            <p><b>What I took from it.</b> The experiment was never the fragile part. The prep was. Anything a person has to remember on the drive over will eventually be forgotten, so it has to be in the box or in the instructor notes. That is the standard I build kits to now.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="art">
+        <h2 class="post-title">Art</h2>
+        <div class="post-meta">Ryman Arts Scholar &middot; Volunteer Coordinator, Weekly Art Sessions for Seniors</div>
+        <div class="post-body">
+          <div class="lede-voice">
+            <p>If I had to give up either the contests or the weekly sessions with residents, I&rsquo;d give up the contests. I&rsquo;d keep doing the sessions with or without a scholarship.</p>
+          </div>
+
+          <div class="split">
+            <div class="split-img"><img src="images/art-daniel-show.jpg" alt="Daniel at the Sounds of Colors exhibit, standing beside two of his pieces on the wall"><p class="photo-cap">Opening night at <em>Sounds of Colors</em>, April 2026</p></div>
+            <div class="split-text">
+              <p>I was admitted to Ryman Arts through a portfolio review and have been a Ryman Arts scholar for three semesters (2024&ndash;2025), studying watercolor, graphite, acrylic, and charcoal.</p>
+              <p>Every week I also coordinate 12+ volunteers who run free art sessions for elderly residents at local retirement homes.</p>
+            </div>
+          </div>
+
+          <p>A session is mostly one volunteer sitting across from one resident with a color-by-number sheet and a box of pencils between them. We run them at Fullerton Villa, a senior care home in Fullerton.</p>
+
+          <img class="post-img" src="images/art-seniors-group.jpg" alt="The volunteer team outside Fullerton Villa before a session">
+          <p class="photo-cap">Our volunteers outside Fullerton Villa</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/art-seniors-session.jpg" alt="A volunteer sitting across the table from a resident, coloring sheets and a bingo card between them"></div>
+            <div class="cell photo-cell"><img src="images/art-seniors-sheets.jpg" alt="Finished color-by-number sheets, colored pencils and a bingo card on the table"></div>
+          </div>
+          <p class="photo-cap">One volunteer, one resident, and what&rsquo;s on the table at the end</p>
+
+          <ul class="award-list">
+            <li><span>Ryman Arts Scholarship (three semesters)</span><span class="yr">2024&ndash;25</span></li>
+            <li><span>Scholastic Art &amp; Writing Awards, Honorable Mention (&times;2)</span><span class="yr">2025</span></li>
+            <li><span>PTA Reflections, Award of Merit, California State PTA</span><span class="yr">2024</span></li>
+            <li><span>PTA Reflections, Award of Excellence, Whitney High School</span><span class="yr">2023, 2024</span></li>
+            <li><span>City of Cerritos MLK Jr. Day Art Contest, 3rd Place</span><span class="yr">2024</span></li>
+            <li><span>City of Norwalk &ldquo;The Walk&rdquo; Art Exhibit, featured artist</span><span class="yr"></span></li>
+          </ul>
+
+          <p>In April 2026 I showed two pieces, <em>Meditating Bodies</em> and <em>Creator&rsquo;s Bed</em>, in <em>Sounds of Colors</em>, a group exhibit that ran for three weeks at the Cultural Arts Center.</p>
+
+          <img class="post-img" src="images/art-exhibit-group.jpg" alt="Students outside the Cultural Arts Center at the Sounds of Colors exhibit, a CKF banner beside them">
+          <p class="photo-cap">Outside the Cultural Arts Center on reception night</p>
+
+          <div class="img-grid-sq">
+            <div class="cell"><img src="images/art-mw-dragons.jpg" alt="Wire-wrapped dragon figures in progress on the workbench"></div>
+            <div class="cell"><img src="images/art-mw-pendant.jpg" alt="A woven silver wire pendant"></div>
+            <div class="cell"><img src="images/art-mw-rings.jpg" alt="Three hand-wrapped rings in silver and copper"></div>
+            <div class="cell"><img src="images/art-mw-bracelet.jpg" alt="A wire-wrapped dragon bracelet worn on the wrist"></div>
+            <div class="cell"><img src="images/art-mw-necklace.jpg" alt="A wrapped stone pendant on a silver chain"></div>
+            <div class="cell"><img src="images/art-mw-feather.jpg" alt="A leather feather keychain with wrapped wire and beads"></div>
+          </div>
+          <p class="photo-cap">Unfinished on the bench, and finished</p>
+
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="research">
+        <h2 class="post-title">Research</h2>
+        <div class="post-meta">Independent Researcher, Cal Poly Pomona &middot; Mentor: Dr. K. Anderson &middot; 2025&ndash;Present</div>
+        <img class="post-img" src="images/research.jpg" alt="Daniel beside his research poster">
+        <div class="post-body">
+          <div class="lede-voice">
+            <p>This is the first problem I&rsquo;ve worked on that nobody has finished yet, including my mentor. Most of what I do is build a model, take it to something real, and find out where it was wrong. I started in the summer of 2025 and I&rsquo;m still at it.</p>
+          </div>
+
+          <p>An MHD thruster moves seawater with electric and magnetic fields instead of a propeller, so it has no moving parts. The catch is that it&rsquo;s inefficient. My project at Cal Poly Pomona, with Dr. K. Anderson as my mentor, is about finding a better engine geometry for MHD thrusters on small underwater vehicles.</p>
+
+          <p>I run CFD simulations on different geometries, use machine learning tools in the optimization, and build 3D models and printed prototypes of the designs.</p>
+
+          <p>This is the project I keep going back to. I&rsquo;m still working on it with Dr. Anderson, and once a week I drive to Citrus College to take his Mechanics of Materials course, because the project kept needing things I hadn&rsquo;t been taught yet.</p>
+
+          <p>School ran out of math and physics for me a while ago. AP Physics C was tenth grade, and I sat the Calculus BC exam on material I studied on my own, two years ahead of where Whitney teaches it. All of my math is college math now: multivariable calculus at West Texas A&amp;M and linear algebra at the University of North Dakota, both in progress, carried alongside the research.</p>
+
+          <details class="abstract">
+            <summary>Read the abstract</summary>
+            <div class="body">
+              <h4>Prototyping Magnetohydrodynamic Drive Submarines: A Cleaner, Quieter, and Longer-lasting Alternative</h4>
+              <p>Magnetohydrodynamic (MHD) propulsion accelerates electrically conductive fluids through the Lorentz force generated by orthogonal electric and magnetic fields, offering a silent, mechanically simple alternative to propeller-based underwater propulsion. Although MHD pumps have been extensively studied, experimental investigations of compact MHD thrusters suitable for small-scale underwater vehicles remain limited. In this study, we designed, fabricated, and tested low-voltage seawater MHD thrusters using 3D-printed housings, neodymium magnets, and copper electrodes. Both rectangular and circular thruster geometries were developed and iteratively refined to evaluate the effects of channel geometry, electrode configuration, voltage, and power on propulsion performance.</p>
+              <p>Experiments were conducted in seawater-salinity solutions, and propulsion speeds were quantified using video-based motion analysis and flow visualization. Measured velocities were compared with theoretical predictions derived from an acceleration model based on Lorentz-force-driven fluid motion. Results show that propulsion speed increases with applied voltage and electrical power, following the square-root scaling predicted by theory.</p>
+              <p>Among the tested designs, the optimized circular thruster demonstrated superior structural stability, more uniform force distribution, and higher propulsion efficiency than the rectangular configurations and previous attempts. These results confirm the feasibility of compact, low-voltage MHD propulsion for small underwater vehicles and identify key performance-limiting factors. The findings provide practical design insights for advancing quiet, low-maintenance underwater propulsion technologies at a higher efficiency than previous experiments through geometry optimizations.</p>
+              <p class="keywords">Keywords &mdash; magnetohydrodynamic drive &middot; fluid dynamics &middot; thrust &middot; submarine &middot; zero-emission</p>
+            </div>
+          </details>
+
+          <div class="stat-row">
+            <div class="stat"><span class="num">2nd</span><span class="label">Place, LACSEF</span></div>
+            <div class="stat"><span class="num">CSEF</span><span class="label">State Qualifier, 2026</span></div>
+            <div class="stat"><span class="num">Silver</span><span class="label">Int&rsquo;l Prize, KSEF</span></div>
+          </div>
+
+          <div class="split reverse">
+            <div class="split-img"><img src="images/research-poster2.jpg" alt="MHD engine poster with 3D-printed prototypes and a CFD simulation on the laptop"><p class="photo-cap under-frame">The build and the board &mdash; LACSEF and CSEF, 2026</p></div>
+            <div class="split-text">
+              <p>The project, <em>MHD Thrusters for Small-Scale Underwater Vehicles: Silent Propulsion Using Magnetohydrodynamics</em>, placed 2nd at the Los Angeles County Science &amp; Engineering Fair (LACSEF), advanced to the 2026 California Science &amp; Engineering Fair (CSEF), and won a Silver Prize at the Korea Science and Engineering Fair (KSEF) International in 2026.</p>
+            </div>
+          </div>
+
+          <h3 class="case-title">Papers</h3>
+          <p>Before this I worked on silicon wafers, endoscopy scans, soil moisture, and cyber policy. The subjects kept changing and the method didn&rsquo;t.</p>
+
+          <ul class="pubs">
+            <li><span class="t">Experimental Development of Compact Seawater Magnetohydrodynamic Thrusters with Reiterative Geometric Optimization</span><span class="v">First author, with N. Bars and K. R. Anderson (Cal Poly Pomona) &middot; submitted to IEEE Journal of Oceanic Engineering, Aug 2026 &middot; extended abstract, PRTEC 2027 (Honolulu) &middot; ASME&ndash;JSME&ndash;KSME FED 2027 (Seoul) &middot; 2nd place LACSEF &middot; Silver, KSEF International &middot; Silver, International Greenwich Olympiad (Engineering), 2026 &middot; Silver, Youth International Science Fair (Engineering), Indonesia, 2026</span></li>
+            <li><span class="t"><a href="https://arxiv.org/abs/2506.18284" target="_blank" rel="noopener">Open Set Recognition for Endoscopic Image Classification: A Deep Learning Approach on the Kvasir Dataset</a></span><span class="v">arXiv &middot; 2025 &middot; co-author</span></li>
+            <li><span class="t"><a href="https://www.oxfordjss.org/aug-2026-vol-10-issue-5/the-forefront-of-warfare-governing-cyberwarfare-through-international-organizations" target="_blank" rel="noopener">The Forefront of Warfare: Governing Cyberwarfare through International Organizations</a></span><span class="v">Oxford Journal of Student Scholarship &middot; August 2026 &middot; doi.org/10.65161/recaI3NRfwYxRTltR</span></li>
+            <li><span class="t"><a href="https://emerginginvestigators.org/articles/23-100" target="_blank" rel="noopener">Converting SiO&#8322; Wafers to Hydrophobic Using Chlorotrimethylsilane</a></span><span class="v">Journal of Emerging Investigators &middot; co-author</span></li>
+            <li><span class="t">Climate Change Perceptions Across Political Affiliations in California: A Sentiment Analysis</span><span class="v">Journal of Student Research</span></li>
+            <li><span class="t">Optimizing Soil Moisture Retention: Mulch Materials Under California Temperature and Humidity Conditions</span><span class="v">Silver Medal, International Greenwich Olympiad, London &middot; 2025</span></li>
+            <li><span class="t">Using Methylene Blue as a Diethyl Ether Peroxide Indicator</span><span class="v">First author &middot; under review</span></li>
+          </ul>
+
+          <p>The entries above are not four projects. They are one thruster, rebuilt between each of them. Judges at a county fair, a state fair, a Korean science fair, a competition in London, and one in Indonesia each got a different version: rectangular channel, then circular; different electrode spacing; a different way of measuring velocity from the video. Mostly what I took home from those rooms was a list of questions I couldn&rsquo;t answer yet, and the next build was the answer to one of them.</p>
+
+          <p>The work has now left the science-fair circuit. The paper is written with Natalia Bars and Dr. Anderson at Cal Poly Pomona, and I&rsquo;m the first author: I write the drafts, build the figures, and do the literature review. Dr. Anderson sends it back with notes like &ldquo;add tick marks to the y axis in Figure 8b&rdquo; and &ldquo;say why theory over-predicts the power.&rdquo; The manuscript went to the IEEE Journal of Oceanic Engineering in August 2026. An extended abstract is in for PRTEC 2027, a thermal engineering conference in Honolulu next March, and a second one is being written for the ASME&ndash;JSME&ndash;KSME fluids engineering meeting in Seoul that July.</p>
+
+          <p>What I&rsquo;m doing right now is the next question the thruster raised: a CFD model that couples the electromagnetics to the electrochemistry, to see how ion transport, gas bubbles on the electrodes, corrosion, and falling conductivity eat the efficiency.</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/research-explaining.jpg" alt="Daniel pointing at his poster while explaining the project to a group of students"></div>
+            <div class="cell photo-cell"><img src="images/research-poster3.jpg" alt="Daniel standing beside an earlier research poster"></div>
+          </div>
+          <p class="photo-cap">Walking a group through the poster, 2025, and an earlier board</p>
+
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="haegeum">
+        <h2 class="post-title">Haegeum</h2>
+        <div class="post-meta">Co-Founder &middot; President (2026), Haegeum Sarang Orchestra</div>
+        <img class="post-img" src="images/carnegie-playing.jpg" alt="Daniel performing a haegeum solo at Weill Recital Hall, Carnegie Hall">
+        <p class="photo-cap">Weill Recital Hall, Carnegie Hall &middot; June 2024</p>
+        <div class="post-body">
+          <div class="lede-voice">
+            <p>Carnegie Hall is the line people remember. Before it came almost ten years of weekly lessons on an instrument that very few people outside the Korean community still play.</p>
+          </div>
+
+          <p>The haegeum is a two-stringed Korean fiddle with no fingerboard. You get pitch by pressing on the strings in midair, so every note depends on your hand. I started in third grade, so this is my tenth year playing. In June 2024 I played it solo at Weill Recital Hall in Carnegie Hall, at the American Prot&eacute;g&eacute; winners&rsquo; recital.</p>
+
+          <p>I co-founded the Haegeum Sarang Orchestra, a student ensemble within the Korean Traditional Music Institute of America, so more people here would hear this music live. We&rsquo;ve given 50+ performances at city hall ceremonies, consulate events, and cultural festivals, along with music programs for seniors and underserved communities.</p>
+
+          <p>I also play at our church, where the ensemble pieces give way to hymns.</p>
+
+          <p>Competitions: award winner at the World Competition of Korean Traditional Performing Arts since 2020. At the American Protégé International Music Talent Competition, Third Place in Fall 2025 and Honorable Mention in Fall 2023.</p>
+
+          <ul class="award-list">
+            <li><span>Haegeum Sarang Orchestra, Annual Concert (1st&ndash;4th)</span><span class="yr">2022&ndash;25</span></li>
+            <li><span>World Competition of Korean Traditional Performing Arts, KTMIA</span><span class="yr">2018&ndash;24</span></li>
+            <li><span>Weill Recital Hall, Carnegie Hall &mdash; American Prot&eacute;g&eacute; recital</span><span class="yr">June 22, 2024</span></li>
+            <li><span>KTMIA 50th Anniversary Concert, &ldquo;Sounds of Korea&rdquo;</span><span class="yr">2023</span></li>
+            <li><span>TEDxWhitneyHigh, invited performance with my sister</span><span class="yr">2025</span></li>
+            <li><span>Whitney High School Talent Show, haegeum sanjo</span><span class="yr">2025</span></li>
+            <li><span>Ebell + LA Festival, with the Korean Cultural Center Los Angeles</span><span class="yr">2026</span></li>
+            <li><span>Mid-Wilshire Health Care Center and the Korean-American Dementia Center</span><span class="yr">2026</span></li>
+            <li><span>Irvine Korean Cultural Festival, KX Fest at Levitt Pavilion</span><span class="yr">2018&ndash;19</span></li>
+          </ul>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/carnegie-wide.jpg" alt="The stage at Weill Recital Hall during Daniel's haegeum solo"></div>
+            <div class="cell photo-cell"><img src="images/carnegie-closeup.jpg" alt="Close view of Daniel bowing the haegeum on stage"></div>
+          </div>
+          <p class="photo-cap">American Prot&eacute;g&eacute; winners&rsquo; recital, Weill Recital Hall, Carnegie Hall &middot; June 22, 2024</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/haegeum-sarang.jpg" alt="The Haegeum Sarang Orchestra on stage with their haegeums"></div>
+            <div class="cell photo-cell"><img src="images/haegeum-playing.jpg" alt="Ensemble members bowing haegeums during a performance"></div>
+          </div>
+          <p class="photo-cap">Haegeum Sarang Orchestra &middot; Korean Traditional Music Institute of America</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/haegeum-young.jpg" alt="A young Daniel in hanbok holding his haegeum"></div>
+            <div class="cell photo-cell"><img src="images/haegeum.jpg" alt="Daniel performing solo haegeum on a dark stage"></div>
+          </div>
+          <p class="photo-cap">Where it started, and where it goes now</p>
+
+          <img class="post-img" src="images/haegeum-tedx.jpg" alt="Daniel performing haegeum beside the TEDx letters at a TEDxWhitneyHigh event">
+          <p class="photo-cap">TEDxWhitneyHigh, invited performance &middot; 2025</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/haegeum-festival.jpg" alt="Young ensemble members in hanbok with their instruments at an outdoor community festival"></div>
+            <div class="cell photo-cell"><img src="images/haegeum-solo2.jpg" alt="Daniel performing a solo haegeum piece on a dark stage"></div>
+          </div>
+          <p class="photo-cap">Playing a community festival, and a solo set closer to home</p>
+
+          <div class="img-grid-3">
+            <div class="cell g-tall photo-cell"><img src="images/haegeum-concert.jpg" alt="The full ensemble on stage at an annual concert"></div>
+            <div class="cell photo-cell"><img src="images/haegeum-competition.jpg" alt="Young performers holding their awards after the World Competition of Korean Traditional Performing Arts"></div>
+            <div class="cell photo-cell"><img src="images/haegeum-community.jpg" alt="The ensemble performing for an audience in a community hall"></div>
+          </div>
+          <p class="photo-cap">Annual concert, the World Competition of Korean Traditional Performing Arts, and a community hall</p>
+
+          <div class="photo-cell" style="aspect-ratio:16/9;"><img src="images/haegeum-outdoor.jpg" alt="The ensemble in hanbok outdoors before a performance"></div>
+          <p class="photo-cap under-frame">Before an outdoor performance</p>
+
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="cap">
+        <h2 class="post-title">Civil Air Patrol</h2>
+        <div class="post-meta">Cadet Commander, Fullerton Composite Squadron 56 &middot; U.S. Air Force Auxiliary</div>
+        <img class="post-img" src="images/cap.jpg" alt="Daniel in Civil Air Patrol dress uniform">
+        <div class="post-body">
+          <div class="lede-voice">
+            <p>My first months as commander looked fine on paper, but it felt like I was fighting the squadron. Things got better when I started handing work off. I gave my first sergeant the lesson plans and promotion boards I&rsquo;d been keeping to myself, and during her first inspection, which was rough, I made myself stay quiet. She runs whole training blocks without me now, and I&rsquo;m prouder of that than of any ceremony.</p>
+          </div>
+
+          <p>I joined Civil Air Patrol in 2021. I&rsquo;m now Cadet Commander of Fullerton Composite Squadron 56, one of the largest squadrons in California with 120+ cadets. As the top cadet, I&rsquo;m responsible for the whole cadet corps and I&rsquo;m the main link between the cadets and the adult senior members who run the squadron.</p>
+
+          <p>I rebuilt our squadron&rsquo;s administrative systems and wrote year-long training plans, and we&rsquo;re working toward the CAP Quality Unit Award. Along the way I&rsquo;ve taught a lot of the squadron&rsquo;s classes myself.</p>
+
+          <div class="stat-row">
+            <div class="stat"><span class="num">120+</span><span class="label">Cadets Led</span></div>
+            <div class="stat"><span class="num">30+</span><span class="label">Ceremonies</span></div>
+            <div class="stat"><span class="num">300+</span><span class="label">Cadets at Encampment</span></div>
+          </div>
+
+          <p>On Color and Honor Guard I&rsquo;ve presented the colors at 30+ official ceremonies, including my school&rsquo;s graduation at Gretchen Whitney High School, Coast Guard Auxiliary events, Boy Scout ceremonies, and parades. I was also selected for the leadership staff at California Wing&rsquo;s summer encampment, where I managed schedules, curfews, logistics, and training tracks for 300+ cadets.</p>
+
+          <p>This year I&rsquo;m taking the squadron into a rocketry competition, which is new for us.</p>
+
+          <div class="photo-cell" style="aspect-ratio:16/7; margin-bottom:6px;"><img src="images/cap-colorguard.jpg" alt="Color Guard cadets holding rifles before a ceremony"></div>
+          <p class="photo-cap under-frame">Color Guard, before presenting the colors</p>
+
+          <img class="post-img" src="images/cap-helicopter.jpg" alt="Cadets standing with aircrew in front of a military helicopter at encampment">
+          <p class="photo-cap">Aerospace education at CAP cadet encampment</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/cap-formation.jpg" alt="Cadets in formation inside a hangar"></div>
+            <div class="cell photo-cell"><img src="images/cap-aircraft.jpg" alt="Cadets strapped into the cargo bay of a military aircraft"></div>
+          </div>
+          <p class="photo-cap">Formation at encampment, and a ride in the back of an aircraft</p>
+
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="scioly">
+        <h2 class="post-title">Science Olympiad</h2>
+        <div class="post-meta">Varsity Team Captain, Gretchen Whitney High School</div>
+        <img class="post-img" src="images/scioly-team-trophy.jpg" alt="The Whitney Science Olympiad team holding their trophy and medals in the gym">
+        <div class="post-body">
+          <div class="lede-voice">
+            <p>Science Olympiad gives you a table of events &mdash; anatomy, astronomy, chemistry, codebusters &mdash; and you try them one by one until something stops feeling like homework. Mine was Helicopter. A flight could be ruined by a closed window or a warm projector in the room, and I could actually find the cause and fix it. Growing up, it was the one place where physics felt completely knowable. My research went the same way later: keep trying subjects until one stops feeling like a detour.</p>
+          </div>
+
+          <p>I joined Science Olympiad in 8th grade, and it&rsquo;s been one of the things I&rsquo;ve put the most into at Whitney. Five seasons later I&rsquo;m captain of the varsity team. I redesigned our cabinet system so fewer teammates show up to a competition underprepared.</p>
+
+          <div class="stat-row">
+            <div class="stat"><span class="num">2:30</span><span class="label">Helicopter Flight Time</span></div>
+            <div class="stat"><span class="num">1st</span><span class="label">LA Regionals, &rsquo;24 &amp; &rsquo;25</span></div>
+            <div class="stat"><span class="num">2nd</span><span class="label">SoCal States, Helicopter</span></div>
+          </div>
+
+          <p>I&rsquo;m the team&rsquo;s flight specialist. I design, build, and trim rubber-powered helicopters and fixed-wing aircraft, and the goal in both is to stay in the air as long as possible. My best helicopter flight is 2:30, and the event placed 2nd at SoCal States in 2026. Whitney won LA Regionals in 2024 and 2025. Through CKF, we also donated airplane kits to the team&rsquo;s summer Science Olympiad camp.</p>
+
+          <img class="post-img" src="images/scioly-regional.jpg" alt="Daniel at the Science Olympiad regional tournament, with event tents behind him">
+          <p class="photo-cap">Between events at a regional tournament</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/scioly-helicopter.jpg" alt="A rubber-powered competition helicopter hovering at the classroom ceiling during a timed practice flight"></div>
+            <div class="cell photo-cell"><img src="images/scioly-medals.jpg" alt="Science Olympiad teammates with their regional medals"></div>
+          </div>
+          <p class="photo-cap">A practice flight pinned to the ceiling, and the team after regionals</p>
+
+          <div class="img-grid-3">
+            <div class="cell g-tall photo-cell"><img src="images/scioly-plane-flight.jpg" alt="Launching a model plane inside a court during a flight event"></div>
+            <div class="cell photo-cell"><img src="images/scioly-daniel-medals.jpg" alt="Daniel wearing his medals after a tournament"></div>
+            <div class="cell photo-cell"><img src="images/scioly.jpg" alt="Daniel with Science Olympiad teammates and their medals"></div>
+          </div>
+          <p class="photo-cap">Flight event, and the walk back with medals</p>
+
+          <div class="photo-cell" style="aspect-ratio:16/9;"><img src="images/scioly-trophy.jpg" alt="Hands holding up the team trophy at night"></div>
+          <p class="photo-cap under-frame">The trophy, on the way home</p>
+
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="csclub">
+        <h2 class="post-title">Computer Science Club</h2>
+        <div class="post-meta">President, Gretchen Whitney High School</div>
+        <div class="post-body">
+          <div class="lede-voice">
+            <p>Teaching someone their first program reminds me of teaching card magic. In both, you start by asking what effect you want and what the simplest way to get there is. The best part is the same too: the moment they figure out why it works and want to go make their own.</p>
+          </div>
+
+
+          <p>As president of Whitney&rsquo;s CS Club, I teach Python, Java, and data structures to 30+ students from under-resourced backgrounds. I also help club members get ready for hackathons and USACO, and set up their GitHub portfolios.</p>
+          <p>Outside school, I bring hands-on coding lessons to partner elementary schools and local nonprofits. Those sessions run in partnership with CKF, which supplies the kits and the volunteer instructors, so a club of thirty can reach a classroom of a hundred.</p>
+
+          <img class="post-img" src="images/csclub.jpg" alt="Daniel running a hands-on lesson in front of a class with a slide behind him">
+          <p class="photo-cap">Teaching a lesson built with CKF</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/csclub-kits-leal.jpg" alt="Kit bags lined up on a bench under the Leal School sign"></div>
+            <div class="cell photo-cell"><img src="images/csclub-leal-team.jpg" alt="The volunteer team outside Leal Elementary before a session"></div>
+          </div>
+          <p class="photo-cap">Kits lined up at Leal Elementary, and the volunteers who taught that day</p>
+
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="yg">
+        <h2 class="post-title">Youth &amp; Government</h2>
+        <div class="post-meta">Vice President, YMCA Youth &amp; Government &middot; 2024&ndash;Present</div>
+        <div class="post-body">
+          <div class="lede-voice">
+            <p>In committee you learn fast that writing a good rule and getting a rule passed are two different jobs. I spent a year on the second one.</p>
+          </div>
+
+          <p>Youth &amp; Government is the YMCA&rsquo;s model legislature: more than 1,300 students from about 60 delegations across California, two statewide conferences a year, and bills debated in the real chambers in Sacramento. I&rsquo;m vice president of the Greater Long Beach delegation.</p>
+
+          <p>I draft bills, sit on committees, and organize the service projects our delegation runs between sessions. I ran as a Youth Governor candidate and served as Chief Whip on the senate floor, which is the job of counting where the votes actually are before anyone stands up to speak. The two bills I wrote were on prison reform through firefighter camp programs and on expanding civic education in public schools.</p>
+
+          <p>At the end of the 2025 session the delegation asked me to give the Year in Review at the Delegate Recognition Banquet. The room was delegates, their families, YMCA staff, and that night&rsquo;s guest speakers, including the mayor of Long Beach and a California assemblymember. I stood at the podium and talked through the year our delegation had had. Then they named me Outstanding Delegate, and the award came as a Certificate of Recognition from the City of Long Beach.</p>
+
+          <p>The Y put a photo of me at the podium on the cover of its 2026&ndash;27 registration packet.</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/yg-speech.jpg" alt="Daniel at the podium giving the Year in Review, the delegation's Capitol photo projected behind him"></div>
+            <div class="cell photo-cell"><img src="images/yg-award-podium.jpg" alt="Daniel at the podium holding the City of Long Beach Certificate of Recognition"></div>
+          </div>
+          <p class="photo-cap">The Year in Review, and the Outstanding Delegate certificate, 29 May 2025</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/yg-citation.jpg" alt="The City of Long Beach Certificate of Recognition presented to Daniel Son for the Outstanding Delegate Award"></div>
+            <div class="cell photo-cell"><img src="images/yg-capitol.jpg" alt="Daniel and three delegates on the steps of the California State Capitol in Sacramento"></div>
+          </div>
+          <p class="photo-cap">The citation, signed by Long Beach City Council District 8, and the Capitol steps in Sacramento</p>
+
+          <img class="post-img" src="images/yg-delegates.jpg" alt="The Youth and Government delegation in suits at a session">
+          <p class="photo-cap">Our delegation, year in review</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/yg-certificate.jpg" alt="Daniel at the far left on stage, holding the City of Long Beach Certificate of Recognition"></div>
+            <div class="cell photo-cell"><img src="images/yg-poster.jpg" alt="The 2026-27 Youth and Government registration packet, with a photo of Daniel at the podium on the cover"></div>
+          </div>
+          <p class="photo-cap">Certificates on stage, and the 2026&ndash;27 registration packet</p>
+
+          <p>This is also where my policy research started. The paper I published on governing cyberwarfare through the UN, NATO, and the OSCE came out of the same habit: read what an institution is actually allowed to do, then ask whether it could handle the thing nobody planned for.</p>
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="church">
+        <h2 class="post-title">Church Youth Group</h2>
+        <div class="post-meta">Youth Group President, New Church &middot; 2023&ndash;Present</div>
+        <div class="post-body">
+          <div class="lede-voice">
+            <p>The slides are the thing. Zone out for two seconds and the congregation loses its place in the responsive reading. Click to the next verse a beat late and the singing goes sideways. I used to sit through service half asleep, doing nothing. Now I can&rsquo;t, and I didn&rsquo;t expect to like that.</p>
+          </div>
+
+          <p>Our church is small, so everybody does more than one thing. My mom cooks the meal and the snacks after service. My sister does outreach and sings on the praise team. Whoever can play ends up on keyboard or whatever instrument is short that week.</p>
+
+          <p>I&rsquo;ve been there since 2018. My part is the stuff with cables: slides, mics, sound, video. I also write the bulletin and keep the schedule of who is doing what. Since 2023 I&rsquo;ve led the middle and high school group, which mostly means Bible study on top of all that.</p>
+
+          <p>We also raise money for families in the neighborhood who need it.</p>
+
+          <p>We serve across our church&rsquo;s Long Beach, Carson, and Los Angeles services. Our group also joined several other small churches for a mission trip to Mexico, where we built houses, cleaned up neighborhoods, visited families at home, ran programs for the kids, and helped at a medical clinic.</p>
+
+          <p>Sometimes I play haegeum for the offering or special music, usually with the pastor&rsquo;s wife on keyboard. A Korean fiddle on an American hymn, for a congregation that knows both.</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/church-youth.jpg" alt="Our youth group standing in a circle outside before a day of service"></div>
+            <div class="cell photo-cell"><img src="images/church-service.jpg" alt="A Sunday service in progress with the band and screens running"></div>
+          </div>
+          <p class="photo-cap">Our youth group, and a Sunday morning at New Church</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/church-sanctuary.jpg" alt="The sanctuary before a service, cameras set up at the back"></div>
+            <div class="cell photo-cell"><img src="images/church-service2.jpg" alt="The congregation during a Sunday service"></div>
+          </div>
+          <p class="photo-cap">The room before the service, and the room during it</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/church-group.jpg" alt="The combined youth group in matching red shirts, sitting together outside"></div>
+            <div class="cell photo-cell"><img src="images/church-meal.jpg" alt="Our group crowded around a table of food after a long day"></div>
+          </div>
+          <p class="photo-cap">The whole group in red, and dinner afterward</p>
+
+        </div>
+      </article>
+
+      <article class="post tab-panel" id="freeflight">
+        <h2 class="post-title">Free Flight</h2>
+        <div class="post-meta">Team USA, 2026 FAI F1 Junior World Championships &middot; National Youth Aviation Academy</div>
+        <img class="post-img" src="images/freeflight.jpg" alt="Daniel holding an F1 free flight aircraft">
+        <div class="post-body">
+          <div class="lede-voice">
+            <p>After one bad practice I was melting down, and my coach said, &ldquo;There&rsquo;s no such thing as your day. Focus up and look at the plane.&rdquo; At Junior Worlds the wind was some of the worst I&rsquo;ve flown in. Planes broke apart in the air and a few crashed into tents. We still caught thermals on 20 of 23 launches.</p>
+          </div>
+
+          <p>F1A is a free flight glider class. You tow the glider up on a line, release it, and after that nobody controls it. Your score is how long it stays up, so most of the work is trimming the plane and reading the air for thermals before you launch.</p>
+
+          <p>I was selected for the United States national team and flew F1A at the 2026 <a href="https://www.freeflightnews.org.uk/champs/ch26/ff26.htm" target="_blank" rel="noopener">FAI Junior World Championships</a> in Prilep, North Macedonia. The United States took first in the F1 Challenge, the championship&rsquo;s team event, ahead of China and Estonia. In the FAI&rsquo;s <a href="https://www.freeflightnews.org.uk/wcup/WC25/WCP25F1AJ.HTM" target="_blank" rel="noopener">2025 World Cup standings</a> I was the third-ranked American junior in F1A.</p>
+
+          <p>In 2025 I placed 1st at the North America World Championship, the Arizona FF Championships, and the Kotuku Cup, and 2nd at MaxMen International.</p>
+
+          <p>The National Youth Aviation Academy filmed our launches in Prilep: <a href="https://www.facebook.com/61562841193203/videos/1089872533599831/" target="_blank" rel="noopener">F1A launch for a max at the 2026 Junior World Championships</a>.</p>
+
+          <div class="stat-row">
+            <div class="stat"><span class="num">3rd</span><span class="label">U.S. junior, 2025 F1A World Cup</span></div>
+            <div class="stat"><span class="num">5</span><span class="label">Podium Finishes, 2025&ndash;26</span></div>
+          </div>
+
+          <img class="post-img" src="images/freeflight-handheld.jpg" alt="Daniel holding a small balsa glider in an open field">
+          <p class="photo-cap">Trimming a small glider before a flight, June 2025</p>
+
+          <div class="img-grid-2">
+            <div class="cell photo-cell"><img src="images/freeflight-award.jpg" alt="Daniel holding a plaque with other flyers at a free flight meet"></div>
+            <div class="cell photo-cell"><img src="images/freeflight-field.jpg" alt="Daniel carrying a glider wing back across the flying field"></div>
+          </div>
+          <p class="photo-cap">First place at the Arizona FF Championships, 2025, and carrying a wing back across the field</p>
+
+          <div class="img-grid-3">
+            <div class="cell g-tall photo-cell"><img src="images/freeflight-launch.jpg" alt="Launching an F1 aircraft at an international free flight competition"></div>
+            <div class="cell photo-cell"><img src="images/freeflight-teamusa.jpg" alt="Team USA F1A squad holding American flags in North Macedonia"></div>
+            <div class="cell photo-cell"><img src="images/freeflight-aircraft.jpg" alt="Close-up of a hand-built F1 model aircraft"></div>
+          </div>
+
+        </div>
+      </article>
+    </main>
+
+    <!-- RIGHT RAIL -->
+    <aside class="rail rail-right">
+      <div class="widget">
+        <h3>About</h3>
+        <img class="about-photo" src="images/about.jpg" alt="Portrait of Daniel Son">
+        <p class="about-bio">I&rsquo;m a student researcher, nonprofit founder, cadet commander, and haegeum soloist in California &mdash; happiest where engineering, service, and the arts overlap. Off the clock, I&rsquo;m an amateur magician, small jewelry business owner, and art enthusiast, ready to try anything that I haven&rsquo;t yet.</p>
+      </div>
+      <div class="widget">
+        <h3>Currently</h3>
+        <ul class="glance">
+          <li><b>Reading</b> &nbsp;<em>Beyond Good &amp; Evil</em></li>
+          <li><b>On Repeat</b> &nbsp;Green Day</li>
+          <li><b>Favorite Musical</b> &nbsp;<em>EPIC</em></li>
+          <li><b>Watching</b> &nbsp;<em>Horimiya</em></li>
+          <li><b>Building</b> &nbsp;A P18 model plane</li>
+        </ul>
+      </div>
+      <div class="widget">
+        <h3>At a Glance</h3>
+        <ul class="glance">
+          <li><b>School</b> &nbsp;Gretchen Whitney High School</li>
+          <li><b>Focus</b> &nbsp;Physics</li>
+              <li><b>Math</b> &nbsp;Multivariable calculus &middot; linear algebra</li>
+          <li><b>Research</b> &nbsp;MHD propulsion, Cal Poly Pomona</li>
+          <li><b>Music</b> &nbsp;Haegeum &middot; Euphonium (1st chair)</li>
+          <li><b>Service</b> &nbsp;Co-founder, Connect Key Foundation</li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <footer class="site-footer">
+    <span class="name">Daniel Son</span> &nbsp;&middot;&nbsp; Gretchen Whitney High School
+  </footer>
+
+  <script>
+    (function () {
+      var tabLinks = document.querySelectorAll('[data-tab]');
+      var panels = document.querySelectorAll('.tab-panel');
+
+      function activate(id, pushHash) {
+        var found = false;
+        panels.forEach(function (p) {
+          var isMatch = p.id === id;
+          p.classList.toggle('active', isMatch);
+          if (isMatch) found = true;
+        });
+        if (!found) { return activate('home', pushHash); }
+        tabLinks.forEach(function (a) {
+          a.classList.toggle('active', a.dataset.tab === id);
+        });
+        document.body.classList.toggle('home-active', id === 'home');
+        if (pushHash !== false) { history.replaceState(null, '', '#' + id); }
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+
+      tabLinks.forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          activate(a.dataset.tab);
+        });
+      });
+
+      window.addEventListener('hashchange', function () {
+        activate(location.hash.slice(1));
+      });
+
+      activate(location.hash ? location.hash.slice(1) : 'home', false);
+    })();
+  </script>
+</body>
+</html>
