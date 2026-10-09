@@ -241,31 +241,39 @@
   body.home-active .layout{ grid-template-columns:minmax(0,1fr); max-width:1080px; }
   body.home-active .center{ padding-bottom:40px; }
 
-  /* ---------- Landing hero (home tab) ---------- */
-  .ds-hero{ position:relative; left:50%; transform:translateX(-50%);
-    width:min(1300px, calc(100vw - 40px)); background:#fff; border:1px solid var(--hairline);
-    padding:18px 24px 26px; margin:0 0 52px; overflow:hidden;
-    background-image:radial-gradient(rgba(30,30,30,.05) 1px, transparent 1px); background-size:3px 3px; }
+  /* ---------- Landing hero (home tab) ----------
+     Palette is the consultant's: navy on cool grey, kept separate from
+     the warm paper the rest of the site uses. */
+  .ds-hero{ --navy:#14234b; --ds-line:rgba(0,0,0,.08); --ds-ink:#333;
+    position:relative; left:50%; transform:translateX(-50%);
+    width:min(1300px, calc(100vw - 40px)); background:#f5f7fa; border:1px solid var(--ds-line);
+    padding:18px 24px 26px; margin:0 0 52px; overflow:hidden; color:var(--ds-ink);
+    background-image:radial-gradient(rgba(0,0,0,.035) 1px, transparent 1px); background-size:3px 3px; }
   .ds-rules{ position:absolute; inset:0; pointer-events:none; display:grid; grid-template-columns:repeat(4,1fr); }
-  .ds-rules div{ border-left:1px solid rgba(30,30,30,.055); }
-  .ds-rules div:last-child{ border-right:1px solid rgba(30,30,30,.055); }
+  .ds-rules div{ border-left:1px solid var(--ds-line); }
+  .ds-rules div:last-child{ border-right:1px solid var(--ds-line); }
   .ds-hero > *:not(.ds-rules){ position:relative; z-index:2; }
 
-  .ds-top{ display:flex; justify-content:space-between; align-items:center; gap:16px; }
-  .ds-search{ display:flex; align-items:center; gap:9px; width:330px; max-width:46%; height:40px;
-    border:1px solid var(--hairline); border-radius:50px; padding:0 14px; background:#fff; }
-  .ds-search svg{ width:16px; height:16px; flex:none; stroke:var(--muted); fill:none; stroke-width:1.3; }
-  .ds-search input{ border:0; outline:0; background:transparent; width:100%; color:var(--ink);
+  .ds-top{ display:flex; justify-content:space-between; align-items:center; gap:18px; }
+  .ds-search{ display:flex; align-items:center; gap:9px; width:290px; max-width:34%; height:40px;
+    border:1px solid var(--ds-line); border-radius:50px; padding:0 14px; background:#fff; }
+  .ds-search svg{ width:16px; height:16px; flex:none; stroke:#777; fill:none; stroke-width:1.3; }
+  .ds-search input{ border:0; outline:0; background:transparent; width:100%; color:var(--ds-ink);
     font-family:'Poppins', sans-serif; font-size:13.5px; }
-  .ds-pills{ display:flex; }
-  .ds-pill{ height:44px; min-width:186px; background:#fff; border:1px solid var(--hairline);
-    border-left-width:0; display:flex; align-items:center; justify-content:space-between; gap:14px;
-    padding:0 15px; position:relative; overflow:hidden; cursor:pointer;
-    font-family:'Poppins', sans-serif; font-size:13.5px; color:var(--ink); text-decoration:none; }
-  .ds-pill:first-child{ border-left-width:1px; }
-  .ds-pill svg{ width:15px; height:15px; fill:none; stroke:var(--ink); stroke-width:1.3; flex:none; }
 
-  .ds-fill{ position:absolute; left:0; top:0; bottom:0; width:0; background:var(--ink);
+  /* The three ways out of the cover page */
+  .ds-pills{ display:flex; gap:10px; }
+  .ds-pill{ height:54px; min-width:206px; background:#fff; border:1.5px solid var(--navy);
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:0 18px; position:relative; overflow:hidden; cursor:pointer;
+    font-family:'Poppins', sans-serif; font-size:14.5px; font-weight:500;
+    color:var(--navy); text-decoration:none; }
+  .ds-pill b{ display:block; font-weight:600; letter-spacing:.2px; }
+  .ds-pill em{ display:block; font-style:normal; font-size:11px; letter-spacing:.9px;
+    text-transform:uppercase; opacity:.62; margin-top:2px; }
+  .ds-pill svg{ width:17px; height:17px; fill:none; stroke:var(--navy); stroke-width:1.5; flex:none; }
+
+  .ds-fill{ position:absolute; left:0; top:0; bottom:0; width:0; background:var(--navy);
     transition:width .3s ease; z-index:0; }
   .ds-pill > *:not(.ds-fill), .ds-btn > *:not(.ds-fill), .ds-card > *:not(.ds-fill){ position:relative; z-index:1; }
   .ds-pill:hover .ds-fill, .ds-btn:hover .ds-fill, .ds-card:hover .ds-fill{ width:100%; }
@@ -273,45 +281,46 @@
   .ds-pill svg, .ds-btn svg{ transition:stroke .3s ease; }
   .ds-pill:hover, .ds-btn:hover, .ds-card:hover{ color:#fff; }
   .ds-pill:hover svg, .ds-btn:hover svg{ stroke:#fff; }
+  .ds-pill:hover em{ opacity:.8; }
 
   .ds-stage{ position:relative; display:grid; grid-template-columns:302px minmax(0,1fr) 302px;
     gap:30px; align-items:stretch; margin:16px 0 4px; min-height:540px; }
   .ds-col{ display:flex; flex-direction:column; justify-content:space-between; padding:22px 0 26px; }
   .ds-orb{ position:relative; display:flex; align-items:center; justify-content:center; }
   #ds-sphere{ width:100%; max-width:560px; height:auto; aspect-ratio:1; display:block; }
-  .ds-mark{ position:absolute; width:11px; height:11px; background:var(--ink); z-index:3; }
+  .ds-mark{ position:absolute; width:11px; height:11px; background:#000; z-index:3; }
   .ds-mark.tl{ left:311px; top:22%; } .ds-mark.tr{ right:311px; top:22%; }
   .ds-mark.bl{ left:311px; bottom:22%; } .ds-mark.br{ right:311px; bottom:22%; }
-  .ds-wire{ position:absolute; height:1px; width:30px; background:rgba(30,30,30,.16); z-index:2; }
+  .ds-wire{ position:absolute; height:1px; width:30px; background:rgba(0,0,0,.14); z-index:2; }
   .ds-wire.tl{ left:302px; top:calc(22% + 5px); } .ds-wire.tr{ right:302px; top:calc(22% + 5px); }
   .ds-wire.bl{ left:302px; bottom:calc(22% + 5px); } .ds-wire.br{ right:302px; bottom:calc(22% + 5px); }
 
   .ds-btn{ display:inline-flex; align-items:center; gap:14px; min-width:184px; height:44px;
-    padding:0 16px 0 13px; background:#fff; border:1px solid var(--hairline); position:relative;
-    overflow:hidden; text-decoration:none; color:var(--ink); cursor:pointer;
+    padding:0 16px 0 13px; background:#fff; border:1px solid var(--ds-line); position:relative;
+    overflow:hidden; text-decoration:none; color:#000; cursor:pointer;
     font-family:'Poppins', sans-serif; font-size:13.5px; font-weight:500; }
-  .ds-btn svg{ width:16px; height:16px; fill:none; stroke:var(--ink); stroke-width:1.3; flex:none; }
+  .ds-btn svg{ width:16px; height:16px; fill:none; stroke:#000; stroke-width:1.3; flex:none; }
   .ds-callout p{ font-family:'Poppins', sans-serif; font-size:13.5px; line-height:1.62;
-    color:#43403b; padding-top:17px; }
+    color:#313131; padding-top:17px; }
 
   .ds-bottom{ display:flex; justify-content:space-between; align-items:flex-end; gap:40px; margin-top:34px; }
   .ds-slogan{ font-family:'Source Serif 4', Lora, Georgia, serif; font-size:29px; line-height:1.14;
-    color:var(--ink); flex:none; }
+    color:#222; flex:none; }
   .ds-slogan small{ display:block; margin-top:9px; font-family:'Poppins', sans-serif; font-size:11.5px;
-    letter-spacing:2px; text-transform:uppercase; color:var(--muted); }
+    letter-spacing:2px; text-transform:uppercase; color:#6d7280; }
   .ds-more{ flex:1; min-width:0; max-width:760px; }
   .ds-more-head{ display:flex; justify-content:space-between; align-items:center; gap:20px; margin-bottom:14px;
     font-family:'Poppins', sans-serif; font-size:12px; letter-spacing:1.6px; text-transform:uppercase; }
-  .ds-more-head b{ display:flex; align-items:center; gap:12px; font-weight:500; color:var(--ink); }
-  .ds-more-head svg{ width:15px; height:15px; fill:none; stroke:var(--ink); stroke-width:1.3; }
-  .ds-more-head a{ color:var(--muted); text-decoration:underline; letter-spacing:.3px; text-transform:none;
+  .ds-more-head b{ display:flex; align-items:center; gap:12px; font-weight:500; color:#000; }
+  .ds-more-head svg{ width:15px; height:15px; fill:none; stroke:#000; stroke-width:1.3; }
+  .ds-more-head a{ color:rgba(89,89,89,.92); text-decoration:underline; letter-spacing:.3px; text-transform:none;
     font-size:12px; }
-  .ds-more-head a:hover{ color:var(--accent); }
+  .ds-more-head a:hover{ color:var(--navy); }
   .ds-also{ display:flex; flex-wrap:wrap; gap:16px; }
   .ds-cards{ display:grid; grid-template-columns:repeat(3,1fr); }
-  .ds-card{ background:#fff; border:1px solid var(--hairline); border-left-width:0; padding:13px 14px;
+  .ds-card{ background:#fff; border:1px solid var(--ds-line); border-left-width:0; padding:13px 14px;
     min-height:74px; display:flex; align-items:center; position:relative; overflow:hidden;
-    text-decoration:none; color:var(--ink); cursor:pointer;
+    text-decoration:none; color:#000; cursor:pointer;
     font-family:'Poppins', sans-serif; font-size:12.5px; line-height:1.42; }
   .ds-card:first-child{ border-left-width:1px; }
 
@@ -323,13 +332,17 @@
     .ds-mark, .ds-wire{ display:none; }
     .ds-bottom{ flex-direction:column; align-items:flex-start; gap:26px; }
     .ds-more{ max-width:none; width:100%; }
+    .ds-top{ flex-wrap:wrap; gap:12px; }
+    .ds-search{ order:2; width:100%; max-width:none; }
+    .ds-pills{ order:1; width:100%; }
+    .ds-pill{ flex:1; min-width:0; }
   }
   @media (max-width:760px){
     .ds-hero{ width:calc(100vw - 24px); padding:16px 16px 22px; }
     .ds-search{ display:none; }
     .ds-top{ justify-content:stretch; }
-    .ds-pills{ width:100%; }
-    .ds-pill{ flex:1; min-width:0; }
+    .ds-pills{ width:100%; flex-direction:column; gap:8px; }
+    .ds-pill{ width:100%; flex:none; min-width:0; height:50px; }
     .ds-col{ grid-template-columns:1fr; gap:24px; }
     .ds-cards{ grid-template-columns:1fr; }
     .ds-card{ border-left-width:1px; border-top-width:0; }
@@ -508,8 +521,9 @@
               <input type="search" placeholder="Search this site&hellip;" aria-label="Search this site">
             </form>
             <div class="ds-pills">
-              <a class="ds-pill" href="https://connectkeyfoundation.org" target="_blank" rel="noopener"><span class="ds-fill"></span><span>CKF Website</span><svg viewBox="0 0 16 16"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
-              <a class="ds-pill" href="https://www.youtube.com/@danielson9007" target="_blank" rel="noopener"><span class="ds-fill"></span><span>YouTube</span><svg viewBox="0 0 16 16"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+              <a class="ds-pill ds-scroll" href="#home" data-scroll=".intro"><span class="ds-fill"></span><span><b>Full Portfolio</b><em>This site &middot; 10 sections</em></span><svg viewBox="0 0 16 16"><path d="M8 2v11M4 9.5 8 13.5l4-4"/></svg></a>
+              <a class="ds-pill" href="https://connectkeyfoundation.org" target="_blank" rel="noopener"><span class="ds-fill"></span><span><b>CKF Website</b><em>connectkeyfoundation.org</em></span><svg viewBox="0 0 16 16"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+              <a class="ds-pill" href="https://www.youtube.com/@danielson9007" target="_blank" rel="noopener"><span class="ds-fill"></span><span><b>YouTube</b><em>Haegeum &middot; Research</em></span><svg viewBox="0 0 16 16"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
             </div>
           </div>
 
@@ -808,7 +822,7 @@
 
           <p>This is the project I keep going back to. I&rsquo;m still working on it with Dr. Anderson, and once a week I drive to Citrus College to take his Mechanics of Materials course, because the project kept needing things I hadn&rsquo;t been taught yet.</p>
 
-          <p>School ran out of math and physics for me a while ago. AP Physics C was tenth grade, and I took the Calculus BC exam on my own, so this year the math is college math too: multivariable now at West Texas A&amp;M, linear algebra at North Dakota starting in November.</p>
+          <p>School ran out of math and physics for me a while ago. AP Physics C was tenth grade, and I sat the Calculus BC exam on material I studied on my own, two years ahead of where Whitney teaches it. All of my math is college math now: multivariable calculus at West Texas A&amp;M and linear algebra at the University of North Dakota, both in progress, carried alongside the research.</p>
 
           <details class="abstract">
             <summary>Read the abstract</summary>
@@ -1235,7 +1249,7 @@
       if (!c || !c.getContext) return;
       var g = c.getContext('2d');
       var W = c.width, H = c.height, R = W * 0.40, NU = 64, NV = 128;
-      var RGB = '231,117,0';
+      var RGB = '20,35,75';
       var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
       var P = new Array((NU + 1) * NV);
 
