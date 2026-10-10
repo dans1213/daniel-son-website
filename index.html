@@ -20,7 +20,9 @@ body{font-family:var(--font);font-size:16px;line-height:22.72px;color:var(--ink)
 a{color:inherit;text-decoration:none}
 
 /* header */
-.header{position:sticky;top:0;z-index:20;height:75px;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 16px}
+.header{position:sticky;top:0;z-index:20;height:75px;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px}
+.toportfolio{font-size:14px;color:var(--navy);border-bottom:1.5px solid var(--navy);padding-bottom:2px;white-space:nowrap}
+.toportfolio:hover{opacity:.6}
 .logo{display:flex;align-items:center;gap:12px;width:176px;height:38px;color:var(--black)}
 .logo svg{width:28px;height:28px;flex:none}
 .logo span{font-weight:800;font-size:19px;letter-spacing:.04em;white-space:nowrap}
@@ -39,7 +41,7 @@ a{color:inherit;text-decoration:none}
 .pagegrid div:last-child{border-right:1px solid var(--line)}
 
 /* hero */
-.hero{position:relative;z-index:2;margin:0 17px;height:836px;border-bottom:1px solid var(--line);padding:20px 24px;
+.hero{position:relative;z-index:2;margin:0 17px;min-height:760px;border-bottom:1px solid var(--line);padding:52px 24px 24px;
   background-image:radial-gradient(rgba(0,0,0,.035) 1px,transparent 1px);background-size:3px 3px}
 .hero-top{display:flex;justify-content:flex-end;gap:12px;height:58px;flex-wrap:wrap}
 .pill{min-width:232px;height:58px;background:var(--white);border:1.5px solid var(--navy);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 18px;font-size:14px;line-height:1.2;color:var(--navy);position:relative;overflow:hidden;transition:color .3s}
@@ -62,12 +64,20 @@ a{color:inherit;text-decoration:none}
 .conn{position:absolute;width:200px;height:65px;fill:none;stroke:rgba(0,0,0,.12);stroke-width:1}
 .conn.tl{left:calc(50% - 425px);top:104px}.conn.tr{left:calc(50% + 221px);top:104px;transform:scaleX(-1)}
 .conn.bl{left:calc(50% - 425px);top:415px;transform:scaleY(-1)}.conn.br{left:calc(50% + 221px);top:415px;transform:scale(-1,-1)}
-.callout{position:absolute;width:320px}
+.callout{position:absolute;width:300px}
 .callout.tl{left:73px;top:83px}.callout.bl{left:73px;top:459px}
-.callout.tr{left:calc(50% + 421px);top:83px;width:280px}.callout.br{left:calc(50% + 421px);top:459px;width:280px}
-.btn{width:180px;height:42px;background:var(--white);border:1px solid var(--line);display:flex;align-items:center;gap:16px;padding:0 12px;font-size:14px;line-height:14px;color:var(--black);position:relative;overflow:hidden}
-.btn svg{width:16px;height:16px;fill:none;stroke:#000;stroke-width:1.3;flex:none}
-.callout p{font-size:14px;line-height:22.72px;color:#313131;padding-top:20px;max-width:300px}
+.callout.tr{left:calc(50% + 421px);top:83px;width:300px}.callout.br{left:calc(50% + 421px);top:459px;width:300px}
+.btn{width:100%;min-width:0;height:60px;background:var(--white);border:1.5px solid var(--navy);display:flex;align-items:center;gap:15px;padding:0 20px;font-size:14px;line-height:1.2;color:var(--navy);position:relative;overflow:hidden;transition:color .3s;box-shadow:0 1px 2px rgba(20,35,75,.06)}
+.btn svg{width:19px;height:19px;fill:none;stroke:var(--navy);stroke-width:1.5;flex:none;transition:stroke .3s}
+.callout p{font-size:14px;line-height:1.62;color:#313131;padding-top:16px;max-width:310px}
+.btn span:last-child{font-weight:600;font-size:16.5px;letter-spacing:.2px}
+.btn::after{content:"\2192";margin-left:auto;font-size:17px;opacity:.5}
+.btn:hover::after{opacity:1}
+.alsoline{max-width:720px}
+.alsoline p{font-size:13.5px;line-height:1.75;color:#5c6270}
+.alsoline p+p{margin-top:8px}
+.alsoline a{color:var(--navy);text-decoration:underline;text-underline-offset:2px}
+.alsoline a:hover{opacity:.6}
 
 .hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:42px;height:122px}
 .slogan{font-size:28px;line-height:33px;color:#222;letter-spacing:-.01em}
@@ -121,112 +131,95 @@ a{color:inherit;text-decoration:none}
 @media (max-width:980px){.hero-top{justify-content:stretch;height:auto;margin-bottom:8px}.pill{flex:1;min-width:0}}
 @media (max-width:640px){.nav a:nth-child(n+4){display:none}.socials{display:none}.hero-top{flex-direction:column;gap:8px}.pill{width:100%;flex:none}}
 .glance p{font-size:14px;line-height:22px}.glance .glance-title{font-size:16px;margin-bottom:6px}
-.btn{width:auto;min-width:180px;padding-right:16px;display:inline-flex}
+.btn{display:flex}
+
+/* Four doors. Each whole block is the link. */
+.callout{display:block;background:#fff;border:1.5px solid var(--line);border-radius:10px;
+  padding:18px 18px 16px;text-decoration:none;color:inherit;cursor:pointer;
+  box-shadow:0 1px 2px rgba(20,35,75,.05);transition:border-color .2s,box-shadow .2s,transform .2s}
+.callout:hover{border-color:var(--navy);transform:translateY(-3px);
+  box-shadow:0 10px 30px rgba(20,35,75,.16)}
+.btn{width:100%;height:54px;background:var(--navy);border:0;border-radius:7px;
+  display:flex;align-items:center;gap:13px;padding:0 16px;color:#fff;position:relative;overflow:hidden}
+.btn svg{width:19px;height:19px;fill:none;stroke:#fff;stroke-width:1.6;flex:none}
+.btn span:last-child{font-weight:600;font-size:16.5px;letter-spacing:.2px;line-height:1.15}
+.btn::after{content:"\2192";margin-left:auto;font-size:19px;transition:transform .2s}
+.callout:hover .btn::after{transform:translateX(5px)}
+.callout p{font-size:14px;line-height:1.62;color:#3b4253;padding-top:14px;max-width:none}
+.go{display:block;margin-top:13px;font-size:12px;letter-spacing:1.3px;text-transform:uppercase;
+  color:var(--navy);opacity:.55;transition:opacity .2s}
+.go b{font-weight:600}
+.callout:hover .go{opacity:1}
+
+.stage{display:grid;grid-template-columns:330px minmax(0,1fr) 330px;gap:34px;
+  align-items:center;height:auto;min-height:0;margin-bottom:8px}
+.col{display:flex;flex-direction:column;gap:46px}
+.orb{display:flex;align-items:center;justify-content:center;min-width:0}
+#sphere{position:static;left:auto;top:auto;transform:none;width:100%;max-width:560px;height:auto;aspect-ratio:1}
+.sq,.conn{display:none}
+.callout,.callout.tl,.callout.tr,.callout.bl,.callout.br{position:static;width:auto;left:auto;top:auto}
+.hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;
+  margin-top:30px;height:auto}
+@media (max-width:1180px){
+  .stage{grid-template-columns:1fr;gap:16px}
+  .orb{order:-1}
+  #sphere{max-width:380px}
+  .col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .hero-bottom{flex-direction:column;align-items:flex-start;gap:22px}
+}
+@media (max-width:760px){ .col{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
 
 <header class="header">
-  <a class="logo" href="#" aria-label="Daniel Son, home"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 15 25 4l-7 20-4-8z"/><path d="M14 16 25 4"/></svg><span>DANIEL SON</span></a>
-  <form class="search" id="search">
-    <svg viewBox="0 0 17 17" fill="none" stroke="#333" stroke-width="1.2"><circle cx="7.5" cy="7.5" r="5"/><path d="M11.5 11.5 15 15"/></svg>
-    <input type="search" placeholder="Search..." aria-label="Search this page">
-  </form>
-  <nav class="nav">
-    <a href="portfolio.html#research">Research</a>
-    <a href="portfolio.html#ckf">CKF</a>
-    <a href="portfolio.html#freeflight">Free Flight</a>
-    <a href="portfolio.html#cap">CAP</a>
-    <a href="portfolio.html#haegeum">Haegeum</a>
-    <a href="portfolio.html#scioly">SciOly</a>
-  </nav>
+  <a class="logo" href="#" aria-label="Daniel Son"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 15 25 4l-7 20-4-8z"/><path d="M14 16 25 4"/></svg><span>DANIEL SON</span></a>
+  <a class="toportfolio" href="portfolio.html">Full portfolio <span aria-hidden="true">&rarr;</span></a>
 </header>
 
 <div class="pagegrid" aria-hidden="true"><div></div><div></div><div></div><div></div></div>
 
 <main class="hero">
-  <div class="hero-top">
-    <a class="pill" href="portfolio.html#research"><span class="fill"></span><span><b>Research &amp; Papers</b><em>Seven papers &middot; MHD propulsion</em></span><svg viewBox="0 0 16 16" fill="none" stroke="#444" stroke-width="1.4"><path d="M1 8h13M10 4.5 14 8l-4 3.5"/></svg></a>
-    <a class="pill" href="https://connectkeyfoundation.org/curiocrate"><span class="fill"></span><span><b>CKF &middot; CurioCrate</b><em>connectkeyfoundation.org</em></span><svg viewBox="0 0 16 16" fill="none" stroke="#444" stroke-width="1.4"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
-    <a class="pill" href="https://www.youtube.com/@danielson9007"><span class="fill"></span><span><b>YouTube</b><em>Haegeum &middot; Research</em></span><svg viewBox="0 0 16 16" fill="none" stroke="#444" stroke-width="1.4"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
-  </div>
+  
 
   <div class="stage">
-    <canvas id="sphere" width="1170" height="1170" aria-label="Rotating navy wireframe sphere"></canvas>
-    <svg class="conn tl" viewBox="0 0 200 65"><path d="M0 .5h130l64 64"/></svg>
-    <svg class="conn tr" viewBox="0 0 200 65"><path d="M0 .5h130l64 64"/></svg>
-    <svg class="conn bl" viewBox="0 0 200 65"><path d="M0 .5h130l64 64"/></svg>
-    <svg class="conn br" viewBox="0 0 200 65"><path d="M0 .5h130l64 64"/></svg>
-    <i class="sq tl"></i><i class="sq tr"></i><i class="sq bl"></i><i class="sq br"></i>
-
-    <div class="callout tl">
-      <a class="btn" href="portfolio.html"><span class="fill"></span><svg viewBox="0 0 16 16"><circle cx="8" cy="5" r="3"/><path d="M2 14c1-4 11-4 12 0"/></svg><span>About Me</span></a>
-      <p>I'm a senior at Gretchen Whitney High School in Cerritos, California, applying in physics.</p>
-    </div>
-    <div class="callout tr">
-      <a class="btn" href="portfolio.html#research"><span class="fill"></span><svg viewBox="0 0 16 16"><path d="M2 8h3l2-5 2 10 2-5h3"/></svg><span>MHD Research</span></a>
+    <div class="col">
+      <a class="callout tl" href="portfolio.html#research">
+      <span class="btn"><span class="fill"></span><svg viewBox="0 0 16 16"><path d="M2 8h3l2-5 2 10 2-5h3"/></svg><span>Research</span></span>
       <p>I build thrusters that move seawater with electric and magnetic fields, with no moving parts. I have built the same thruster five times.</p>
+      <span class="go">Open this section <b>&rarr;</b></span>
+    </a>
+      <a class="callout bl" href="portfolio.html#haegeum">
+      <span class="btn"><span class="fill"></span><svg viewBox="0 0 16 16"><path d="M4 3v10M9 2v12M13 6v5"/></svg><span>Haegeum</span></span>
+      <p>Ten years on a two-stringed Korean fiddle with no fingerboard, including a solo at Weill Recital Hall. I co-founded the student ensemble I play in.</p>
+      <span class="go">Open this section <b>&rarr;</b></span>
+    </a>
     </div>
-    <div class="callout bl">
-      <a class="btn" href="portfolio.html#ckf"><span class="fill"></span><svg viewBox="0 0 16 16"><circle cx="5" cy="10" r="3"/><circle cx="11" cy="5" r="2"/></svg><span>Connect Key Foundation</span></a>
+    <div class="orb"><canvas id="sphere" width="1170" height="1170" aria-label="Rotating wireframe sphere"></canvas></div>
+    <div class="col">
+      <a class="callout tr" href="portfolio.html#ckf">
+      <span class="btn"><span class="fill"></span><svg viewBox="0 0 16 16"><circle cx="5" cy="10" r="3"/><circle cx="11" cy="5" r="2"/></svg><span>Connect Key Foundation</span></span>
       <p>I co-founded CKF, which has grown to 150+ volunteers, 50,000+ service hours and 17+ partners. I still test the lessons myself.</p>
-    </div>
-    <div class="callout br">
-      <a class="btn" href="portfolio.html#freeflight"><span class="fill"></span><svg viewBox="0 0 16 16"><path d="M1.5 9 14.5 2.5l-4 11.5-2.5-4.5z"/></svg><span>Free Flight, Team USA</span></a>
+      <span class="go">Open this section <b>&rarr;</b></span>
+    </a>
+      <a class="callout br" href="portfolio.html#freeflight">
+      <span class="btn"><span class="fill"></span><svg viewBox="0 0 16 16"><path d="M1.5 9 14.5 2.5l-4 11.5-2.5-4.5z"/></svg><span>Free Flight, Team USA</span></span>
       <p>I fly F1A gliders for the United States at the 2026 FAI Junior World Championships. After I release the glider, nobody controls it.</p>
+      <span class="go">Open this section <b>&rarr;</b></span>
+    </a>
     </div>
   </div>
 
   <div class="hero-bottom">
-    <div class="slogan">Daniel Son<br>Physics<small>CERRITOS, CALIFORNIA</small></div>
-    <div class="writing">
-      <div class="writing-head">
-        <div class="writing-title"><svg viewBox="0 0 16 16" fill="none" stroke="#000" stroke-width="1.2"><path d="M1 8h13M10 4.5 14 8l-4 3.5"/></svg>More</div>
-        <div class="socials"><a href="portfolio.html">See all sections</a><a href="https://www.youtube.com/@danielson9007">YouTube</a><a href="https://www.instagram.com/connectkeyfoundation">CKF on Instagram</a></div>
-      </div>
-      <div class="cards">
-        <a class="card" href="portfolio.html#cap"><span class="fill"></span><span>Civil Air Patrol: Cadet Commander of Squadron 56, 120+ cadets</span></a>
-        <a class="card" href="portfolio.html#haegeum"><span class="fill"></span><span>Haegeum: solo at Weill Recital Hall, Carnegie Hall</span></a>
-        <a class="card" href="portfolio.html#scioly"><span class="fill"></span><span>Science Olympiad: Varsity Captain, 2:30 helicopter flight time</span></a>
-      </div>
+    <div class="slogan">Daniel Son<br>Physics<small>Cerritos, California</small></div>
+    <div class="alsoline">
+      <p>Also on the <a href="portfolio.html">full portfolio</a>: <a href="portfolio.html#cap">Civil Air Patrol</a>, <a href="portfolio.html#scioly">Science Olympiad</a>, <a href="portfolio.html#art">Art</a>, <a href="portfolio.html#csclub">CS Club</a>, <a href="portfolio.html#yg">Youth &amp; Government</a> and <a href="portfolio.html#church">church</a>.</p>
+      <p><a href="https://connectkeyfoundation.org/curiocrate">connectkeyfoundation.org</a> &nbsp;&middot;&nbsp; <a href="https://www.youtube.com/@danielson9007">youtube.com/@danielson9007</a></p>
     </div>
   </div>
 </main>
 
-<footer class="footer">
-  <div class="foot-top">
-    <div class="foot-mark"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 15 25 4l-7 20-4-8z"/><path d="M14 16 25 4"/></svg></div>
-    <div class="foot-big">
-      <a href="portfolio.html#ckf">CKF</a><a href="portfolio.html#art">Art</a><a href="portfolio.html#research">Research</a><a href="portfolio.html#haegeum">Haegeum</a><a href="portfolio.html#cap">CAP</a><a href="portfolio.html#scioly">SciOly</a><a href="portfolio.html#csclub">CS Club</a><a href="portfolio.html#freeflight">Free Flight</a>
-    </div>
-    <div class="foot-small">
-      <a href="portfolio.html#yg">Youth &amp; Gov</a><a href="portfolio.html#church">Church</a>
-      <div class="gap"></div>
-      <a href="https://connectkeyfoundation.org">connectkeyfoundation.org</a><a href="https://www.youtube.com/@danielson9007">youtube.com/@danielson9007</a><a href="https://www.instagram.com/connectkeyfoundation">@connectkeyfoundation</a><a href="https://www.instagram.com/ckf.curiocrate">@ckf.curiocrate</a>
-    </div>
-  </div>
-  <div class="foot-mid">
-    <div class="addr">
-      <p>Daniel Son<br>Gretchen Whitney High School<br>Cerritos, California</p>
-    </div>
-    <div>
-      <p class="fine">This is my personal portfolio. It collects the things I have spent the most time on: research, flying, teaching, music and service.</p>
-    </div>
-    <div class="glance">
-      <p class="glance-title">At a Glance</p>
-      <p>Focus: Physics</p>
-      <p>Research: MHD propulsion, Cal Poly Pomona</p>
-      <p>Music: Haegeum, Euphonium (1st chair)</p>
-      <p>Service: Co-founder, Connect Key Foundation</p>
-    </div>
-    <div></div>
-  </div>
-  <div class="foot-bottom">
-    <p class="made">made in Cerritos &#9825;</p>
-    <p class="rights">Daniel Son. All Rights Reserved.</p>
-    <p class="year">&copy; 2026</p>
-  </div>
-</footer>
+
 <script>
 (function(){
   var c=document.getElementById('sphere'),g=c.getContext('2d');
@@ -277,13 +270,6 @@ a{color:inherit;text-decoration:none}
 })();
 </script>
 
-<script>
-document.getElementById('search').addEventListener('submit',function(e){
-  e.preventDefault();
-  var q=this.querySelector('input').value.trim().toLowerCase(); if(!q) return;
-  var hit=[].slice.call(document.querySelectorAll('.callout,.card,.foot-big a,.foot-small a,.glance p')).find(function(n){return n.textContent.toLowerCase().indexOf(q)>-1});
-  if(hit){hit.scrollIntoView({behavior:'smooth',block:'center'});hit.style.outline='2px solid #14234b';setTimeout(function(){hit.style.outline=''},1600);}
-});
-</script>
+
 </body>
 </html>
