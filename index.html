@@ -179,6 +179,30 @@ a{color:inherit;text-decoration:none}
 .bigbtn:hover b{transform:translateX(6px)}
 .gotoall p{margin-top:12px;font-size:12.5px;letter-spacing:1.2px;text-transform:uppercase;color:#737b8c}
 @media (max-width:760px){ .bigbtn{width:100%;justify-content:center;padding:0 20px;font-size:17px} }
+
+/* Cards carry a photograph, the institution, and one unfinished thought */
+.callout{padding:0;overflow:hidden}
+.callout .shot{display:block;aspect-ratio:16/10;overflow:hidden;background:#e9edf3}
+.callout .shot img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .5s ease}
+.callout:hover .shot img{transform:scale(1.045)}
+.callout .chip{display:block;margin:16px 18px 0;font-size:10.5px;font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;color:#c2410c}
+.callout .ctitle{display:block;margin:7px 18px 0;font-size:21px;font-weight:600;
+  letter-spacing:-.01em;color:var(--navy);line-height:1.2}
+.callout p{margin:9px 18px 0;padding-top:0;font-size:14px;line-height:1.55;color:#3b4253}
+.callout .go{display:flex;align-items:center;justify-content:space-between;
+  margin:15px 0 0;padding:12px 18px 14px;border-top:1px solid var(--ds-line);
+  font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--navy);opacity:.75}
+.callout .go b{font-size:16px;transition:transform .2s}
+.callout:hover .go{opacity:1}
+.callout:hover .go b{transform:translateX(5px)}
+.stage{grid-template-columns:372px minmax(0,1fr) 372px;gap:28px;align-items:stretch}
+.col{gap:28px;justify-content:space-between}
+#sphere{max-width:470px;opacity:.85}
+.orb{align-self:center}
+@media (max-width:1180px){ .stage{grid-template-columns:1fr} #sphere{max-width:260px} }
+@media (max-width:760px){ #sphere{max-width:150px;opacity:.6} .orb{margin-bottom:-8px} }
 </style>
 </head>
 <body>
@@ -195,26 +219,34 @@ a{color:inherit;text-decoration:none}
   <div class="stage">
     <div class="col">
       <a class="callout tl" href="portfolio.html#research">
-      <span class="btn"><span class="fill"></span><svg viewBox="0 0 16 16"><path d="M2 8h3l2-5 2 10 2-5h3"/></svg><span>Research</span></span>
-      <p>I build thrusters that move seawater with electric and magnetic fields, with no moving parts. I have built the same thruster five times.</p>
+      <span class="shot"><img src="images/research.jpg" alt="Daniel beside the MHD thruster board at the science fair" loading="lazy"></span>
+      <span class="chip">First author &middot; IEEE submission</span>
+      <span class="ctitle">Research</span>
+      <p>I have built the same thruster five times.</p>
       <span class="go">Open this section <b>&rarr;</b></span>
     </a>
       <a class="callout bl" href="portfolio.html#haegeum">
-      <span class="btn"><span class="fill"></span><svg viewBox="0 0 16 16"><path d="M4 3v10M9 2v12M13 6v5"/></svg><span>Haegeum</span></span>
-      <p>Ten years on a two-stringed Korean fiddle with no fingerboard, including a solo at Weill Recital Hall. I co-founded the student ensemble I play in.</p>
+      <span class="shot"><img src="images/carnegie-hall.jpg" alt="Daniel performing haegeum on stage at Weill Recital Hall, Carnegie Hall" loading="lazy"></span>
+      <span class="chip">Solo at Carnegie Hall</span>
+      <span class="ctitle">Haegeum</span>
+      <p>Two strings, no fingerboard. Every note is my hand finding the pitch in midair.</p>
       <span class="go">Open this section <b>&rarr;</b></span>
     </a>
     </div>
     <div class="orb"><canvas id="sphere" width="1170" height="1170" aria-label="Rotating wireframe sphere"></canvas></div>
     <div class="col">
       <a class="callout tr" href="https://connectkeyfoundation.org/curiocrate" target="_blank" rel="noopener">
-      <span class="btn"><span class="fill"></span><svg viewBox="0 0 16 16"><circle cx="5" cy="10" r="3"/><circle cx="11" cy="5" r="2"/></svg><span>Connect Key Foundation</span></span>
-      <p>I co-founded CKF, which has grown to 150+ volunteers, 50,000+ service hours and 17+ partners. I still test the lessons myself.</p>
+      <span class="shot"><img src="images/ckf-curioworkshop.jpg" alt="CurioCrate student instructors running a hands-on science session" loading="lazy"></span>
+      <span class="chip">Co-founder &middot; 501(c)(3)</span>
+      <span class="ctitle">Connect Key Foundation</span>
+      <p>150+ volunteers, 50,000+ service hours. I still test the lessons myself.</p>
       <span class="go">Open the CKF site <b>&nearr;</b></span>
     </a>
       <a class="callout br" href="portfolio.html#freeflight">
-      <span class="btn"><span class="fill"></span><svg viewBox="0 0 16 16"><path d="M1.5 9 14.5 2.5l-4 11.5-2.5-4.5z"/></svg><span>Free Flight, Team USA</span></span>
-      <p>I fly F1A gliders for the United States at the 2026 FAI Junior World Championships. After I release the glider, nobody controls it.</p>
+      <span class="shot"><img src="images/freeflight-launch.jpg" alt="Launching an F1A glider off the towline at a competition" loading="lazy"></span>
+      <span class="chip">Team USA &middot; FAI Junior Worlds</span>
+      <span class="ctitle">Free Flight</span>
+      <p>After I release the glider, nobody controls it.</p>
       <span class="go">Open this section <b>&rarr;</b></span>
     </a>
     </div>
