@@ -224,6 +224,50 @@ a{color:inherit;text-decoration:none}
   .callout,.callout .shot img,.callout .go b{transition:none}
   .callout:hover{transform:none}
 }
+
+/* Resting: the photographs are navy, the same ink as the sphere.
+   Hover: colour floods in and the card springs forward and wobbles. */
+.callout{border-radius:20px}
+.callout .shot{position:relative;border-radius:0}
+.callout .shot img{filter:grayscale(1) contrast(1.06);
+  transition:filter .42s ease, transform .55s ease}
+.callout .shot::after{content:"";position:absolute;inset:0;background:#14234b;
+  mix-blend-mode:color;opacity:1;transition:opacity .42s ease;pointer-events:none}
+.callout .chip{color:#8e97a8;transition:color .35s ease}
+.callout .ctitle{transition:color .35s ease}
+
+.callout .go b{display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:50%;background:rgba(20,35,75,.07);
+  font-size:15px;transition:background .25s ease,color .25s ease,transform .25s ease}
+
+@keyframes springwobble{
+   0%  {transform:translate(0,0) scale(1) rotate(0deg)}
+  32%  {transform:translate(-7px,-18px) scale(1.14) rotate(-1.8deg)}
+  52%  {transform:translate(7px,-15px)  scale(1.10) rotate(1.6deg)}
+  70%  {transform:translate(-4px,-17px) scale(1.125) rotate(-.9deg)}
+  86%  {transform:translate(2px,-16px)  scale(1.115) rotate(.4deg)}
+ 100%  {transform:translate(0,-16px)    scale(1.12) rotate(0deg)}
+}
+.callout:hover,.callout:focus-visible{
+  animation:springwobble .72s cubic-bezier(.34,1.56,.64,1) forwards;
+  z-index:9;border-color:var(--navy);
+  box-shadow:0 34px 70px rgba(20,35,75,.32), 0 6px 14px rgba(20,35,75,.14);
+  outline:none}
+.callout:hover .shot::after,.callout:focus-visible .shot::after{opacity:0}
+.callout:hover .shot img,.callout:focus-visible .shot img{filter:none;transform:scale(1.06)}
+.callout:hover .chip,.callout:focus-visible .chip{color:#c2410c}
+.callout:hover .go b{background:#fff;color:var(--navy);transform:translateX(4px) scale(1.1)}
+
+/* A phone has no hover, so the photographs arrive in colour there */
+@media (hover:none){
+  .callout .shot::after{opacity:0}
+  .callout .shot img{filter:none}
+  .callout .chip{color:#c2410c}
+}
+@media (prefers-reduced-motion:reduce){
+  .callout:hover,.callout:focus-visible{animation:none;transform:translateY(-4px)}
+  .callout .shot img{transition:filter .3s ease}
+}
 </style>
 </head>
 <body>
