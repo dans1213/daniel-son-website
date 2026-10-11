@@ -168,6 +168,17 @@ a{color:inherit;text-decoration:none}
   .hero-bottom{flex-direction:column;align-items:flex-start;gap:22px}
 }
 @media (max-width:760px){ .col{grid-template-columns:1fr} }
+
+.gotoall{text-align:center;margin:34px 0 10px}
+.bigbtn{display:inline-flex;align-items:center;gap:18px;height:66px;padding:0 42px;
+  background:var(--navy);color:#fff;border-radius:8px;font-size:19px;font-weight:600;
+  letter-spacing:.3px;box-shadow:0 6px 22px rgba(20,35,75,.22);
+  transition:transform .2s,box-shadow .2s}
+.bigbtn b{font-weight:400;font-size:22px;transition:transform .2s}
+.bigbtn:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(20,35,75,.3);color:#fff}
+.bigbtn:hover b{transform:translateX(6px)}
+.gotoall p{margin-top:12px;font-size:12.5px;letter-spacing:1.2px;text-transform:uppercase;color:#737b8c}
+@media (max-width:760px){ .bigbtn{width:100%;justify-content:center;padding:0 20px;font-size:17px} }
 </style>
 </head>
 <body>
@@ -197,10 +208,10 @@ a{color:inherit;text-decoration:none}
     </div>
     <div class="orb"><canvas id="sphere" width="1170" height="1170" aria-label="Rotating wireframe sphere"></canvas></div>
     <div class="col">
-      <a class="callout tr" href="portfolio.html#ckf">
+      <a class="callout tr" href="https://connectkeyfoundation.org/curiocrate" target="_blank" rel="noopener">
       <span class="btn"><span class="fill"></span><svg viewBox="0 0 16 16"><circle cx="5" cy="10" r="3"/><circle cx="11" cy="5" r="2"/></svg><span>Connect Key Foundation</span></span>
       <p>I co-founded CKF, which has grown to 150+ volunteers, 50,000+ service hours and 17+ partners. I still test the lessons myself.</p>
-      <span class="go">Open this section <b>&rarr;</b></span>
+      <span class="go">Open the CKF site <b>&nearr;</b></span>
     </a>
       <a class="callout br" href="portfolio.html#freeflight">
       <span class="btn"><span class="fill"></span><svg viewBox="0 0 16 16"><path d="M1.5 9 14.5 2.5l-4 11.5-2.5-4.5z"/></svg><span>Free Flight, Team USA</span></span>
@@ -210,10 +221,15 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
 
+  <div class="gotoall">
+    <a class="bigbtn" href="portfolio.html"><span>Full Portfolio</span><b>&rarr;</b></a>
+    <p>Research, CKF, flying, music, art, service &mdash; ten sections</p>
+  </div>
+
   <div class="hero-bottom">
     <div class="slogan">Daniel Son<br>Physics<small>Cerritos, California</small></div>
     <div class="alsoline">
-      <p>Also on the <a href="portfolio.html">full portfolio</a>: <a href="portfolio.html#cap">Civil Air Patrol</a>, <a href="portfolio.html#scioly">Science Olympiad</a>, <a href="portfolio.html#art">Art</a>, <a href="portfolio.html#csclub">CS Club</a>, <a href="portfolio.html#yg">Youth &amp; Government</a> and <a href="portfolio.html#church">church</a>.</p>
+      <p>Also on the <a href="portfolio.html">full portfolio</a>: <a href="portfolio.html#ckf">CKF</a>, <a href="portfolio.html#cap">Civil Air Patrol</a>, <a href="portfolio.html#scioly">Science Olympiad</a>, <a href="portfolio.html#art">Art</a>, <a href="portfolio.html#csclub">CS Club</a>, <a href="portfolio.html#yg">Youth &amp; Government</a> and <a href="portfolio.html#church">church</a>.</p>
       <p><a href="https://connectkeyfoundation.org/curiocrate">connectkeyfoundation.org</a> &nbsp;&middot;&nbsp; <a href="https://www.youtube.com/@danielson9007">youtube.com/@danielson9007</a></p>
     </div>
   </div>
