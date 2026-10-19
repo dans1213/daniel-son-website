@@ -199,6 +199,15 @@
     letter-spacing:1.1px; text-transform:uppercase; color:var(--accent); text-decoration:none;
     border-bottom:1px solid var(--accent); padding-bottom:2px; }
   .vidlink:hover{ color:var(--accent-dark); border-bottom-color:var(--accent-dark); }
+  .vid-cue{ font-family:'Poppins', sans-serif; font-size:11px; font-weight:600; letter-spacing:1.6px;
+    text-transform:uppercase; color:var(--accent); margin:26px 0 9px; }
+  .vid-embed{ position:relative; aspect-ratio:16/9; margin:0 0 9px; border-radius:6px;
+    overflow:hidden; background:#000; box-shadow:0 10px 28px rgba(20,35,75,.18); }
+  .vid-embed iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; display:block; }
+  .award-list .vid{ font-family:'Poppins', sans-serif; font-size:10.5px; letter-spacing:1px;
+    text-transform:uppercase; color:var(--accent); text-decoration:none; margin-left:9px;
+    white-space:nowrap; }
+  .award-list .vid:hover{ color:var(--accent-dark); text-decoration:underline; }
   .fairshot{ margin:26px 0 10px; }
   .fairshot img{ display:block; width:100%; border-radius:6px; }
   .alsowork{ font-size:15px; color:var(--muted); margin-top:4px; }
@@ -769,6 +778,17 @@
             <p>Carnegie Hall is the line people remember. Before it came almost ten years of weekly lessons on an instrument that very few people outside the Korean community still play.</p>
           </div>
 
+          <p class="vid-cue">Ninety seconds, if you want to hear it</p>
+          <div class="vid-embed">
+            <iframe src="https://www.youtube-nocookie.com/embed/fdf1MdoQg4Y?rel=0"
+              title="Daniel Son &middot; Ten Years of Haegeum, 2017&ndash;2026"
+              loading="lazy" allowfullscreen
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+          <p class="photo-cap">Ten Years of Haegeum, 2017&ndash;2026 &middot; 1 min 33 sec</p>
+          <p class="alsowork">Also: <a href="https://www.youtube.com/watch?v=S1UBykEo4eg" target="_blank" rel="noopener">Yangcheong Dodeuri, 2026 &nearr;</a> &mdash; Korean classical chamber music, and said to be the fastest piece in that repertoire.</p>
+
           <p>The haegeum is a two-stringed Korean fiddle with no fingerboard. You get pitch by pressing on the strings in midair, so every note depends on your hand. I started in third grade, so this is my tenth year playing. In June 2024 I played it solo at Weill Recital Hall in Carnegie Hall, at the American Prot&eacute;g&eacute; winners&rsquo; recital.</p>
 
           <p>I co-founded the Haegeum Sarang Orchestra, a student ensemble within the Korean Traditional Music Institute of America, so more people here would hear this music live. We&rsquo;ve given 50+ performances at city hall ceremonies, consulate events, and cultural festivals, along with music programs for seniors and underserved communities.</p>
@@ -777,16 +797,18 @@
 
           <p>Competitions: award winner at the World Competition of Korean Traditional Performing Arts since 2020. At the American Protégé International Music Talent Competition, Third Place in Fall 2025 and Honorable Mention in Fall 2023.</p>
 
+          <p>Thirteen performances are recorded on my channel, <a href="https://www.youtube.com/@danielson9007" target="_blank" rel="noopener">youtube.com/@danielson9007</a> &mdash; sanjo, ensemble work, and the competition rounds.</p>
+
           <ul class="award-list">
             <li><span>Haegeum Sarang Orchestra, Annual Concert (1st&ndash;4th)</span><span class="yr">2022&ndash;25</span></li>
-            <li><span>World Competition of Korean Traditional Performing Arts, KTMIA</span><span class="yr">2018&ndash;24</span></li>
+            <li><span>World Competition of Korean Traditional Performing Arts, KTMIA <a class="vid" href="https://www.youtube.com/watch?v=1S0JWVTsf-4" target="_blank" rel="noopener">Watch &nearr;</a></span><span class="yr">2018&ndash;24</span></li>
             <li><span>Weill Recital Hall, Carnegie Hall &mdash; American Prot&eacute;g&eacute; recital</span><span class="yr">June 22, 2024</span></li>
             <li><span>KTMIA 50th Anniversary Concert, &ldquo;Sounds of Korea&rdquo;</span><span class="yr">2023</span></li>
-            <li><span>TEDxWhitneyHigh, invited performance with my sister</span><span class="yr">2025</span></li>
+            <li><span>TEDxWhitneyHigh, invited performance with my sister <a class="vid" href="https://www.youtube.com/watch?v=rD_nT1N9tgA" target="_blank" rel="noopener">Watch &nearr;</a></span><span class="yr">2025</span></li>
             <li><span>Whitney High School Talent Show, haegeum sanjo</span><span class="yr">2025</span></li>
             <li><span>Ebell + LA Festival, with the Korean Cultural Center Los Angeles</span><span class="yr">2026</span></li>
             <li><span>Mid-Wilshire Health Care Center and the Korean-American Dementia Center</span><span class="yr">2026</span></li>
-            <li><span>Irvine Korean Cultural Festival, KX Fest at Levitt Pavilion</span><span class="yr">2018&ndash;19</span></li>
+            <li><span>Irvine Korean Cultural Festival, KX Fest at Levitt Pavilion <a class="vid" href="https://www.youtube.com/watch?v=roOWIgAr70k" target="_blank" rel="noopener">Watch &nearr;</a></span><span class="yr">2018&ndash;19</span></li>
           </ul>
 
           <div class="img-grid-2">
