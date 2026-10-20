@@ -20,7 +20,7 @@ body{font-family:var(--font);font-size:16px;line-height:22.72px;color:var(--ink)
 a{color:inherit;text-decoration:none}
 
 /* header */
-.header{position:sticky;top:0;z-index:20;height:clamp(52px,8vh,75px);background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px}
+.header{position:sticky;top:0;z-index:20;height:75px;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px}
 .toportfolio{font-size:14px;color:var(--navy);border-bottom:1.5px solid var(--navy);padding-bottom:2px;white-space:nowrap}
 .toportfolio:hover{opacity:.6}
 .logo{display:flex;align-items:center;gap:12px;width:176px;height:38px;color:var(--black)}
@@ -41,7 +41,7 @@ a{color:inherit;text-decoration:none}
 .pagegrid div:last-child{border-right:1px solid var(--line)}
 
 /* hero */
-.hero{position:relative;z-index:2;margin:0 17px;border-bottom:1px solid var(--line);padding:clamp(6px,1.2vh,14px) 24px clamp(4px,0.8vh,10px);
+.hero{position:relative;z-index:2;margin:0 17px;min-height:760px;border-bottom:1px solid var(--line);padding:52px 24px 24px;
   background-image:radial-gradient(rgba(0,0,0,.035) 1px,transparent 1px);background-size:3px 3px}
 .hero-top{display:flex;justify-content:flex-end;gap:12px;height:58px;flex-wrap:wrap}
 .pill{min-width:232px;height:58px;background:var(--white);border:1.5px solid var(--navy);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 18px;font-size:14px;line-height:1.2;color:var(--navy);position:relative;overflow:hidden;transition:color .3s}
@@ -79,9 +79,9 @@ a{color:inherit;text-decoration:none}
 .alsoline a{color:var(--navy);text-decoration:underline;text-underline-offset:2px}
 .alsoline a:hover{opacity:.6}
 
-.hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:clamp(6px,1.4vh,16px);height:auto}
-.slogan{font-size:clamp(21px,3.3vh,28px);line-height:1.16;color:#222;letter-spacing:-.01em}
-.slogan small{display:block;font-size:clamp(13px,2vh,16px);line-height:1.4;margin-top:2px;color:var(--ink);letter-spacing:0}
+.hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:42px;height:122px}
+.slogan{font-size:28px;line-height:33px;color:#222;letter-spacing:-.01em}
+.slogan small{display:block;font-size:16px;line-height:23px;color:var(--ink);letter-spacing:0}
 .writing{width:717px}
 .writing-head{display:flex;justify-content:space-between;align-items:center;height:23px;margin-bottom:16px}
 .writing-title{display:flex;align-items:center;gap:16px;font-size:14px;text-transform:uppercase}
@@ -169,37 +169,37 @@ a{color:inherit;text-decoration:none}
 }
 @media (max-width:760px){ .col{grid-template-columns:1fr} }
 
-.gotoall{text-align:center;margin:clamp(6px,1.4vh,16px) 0 clamp(2px,0.5vh,6px)}
-.bigbtn{display:inline-flex;align-items:center;gap:18px;height:clamp(44px,6vh,56px);padding:0 38px;
+.gotoall{text-align:center;margin:34px 0 10px}
+.bigbtn{display:inline-flex;align-items:center;gap:18px;height:66px;padding:0 42px;
   background:var(--navy);color:#fff;border-radius:8px;font-size:19px;font-weight:600;
   letter-spacing:.3px;box-shadow:0 6px 22px rgba(20,35,75,.22);
   transition:transform .2s,box-shadow .2s}
 .bigbtn b{font-weight:400;font-size:22px;transition:transform .2s}
 .bigbtn:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(20,35,75,.3);color:#fff}
 .bigbtn:hover b{transform:translateX(6px)}
-.gotoall p{margin-top:8px;font-size:12.5px;letter-spacing:1.2px;text-transform:uppercase;color:#737b8c}
+.gotoall p{margin-top:12px;font-size:12.5px;letter-spacing:1.2px;text-transform:uppercase;color:#737b8c}
 @media (max-width:760px){ .bigbtn{width:100%;justify-content:center;padding:0 20px;font-size:17px} }
 
 /* Cards carry a photograph, the institution, and one unfinished thought */
 .callout{padding:0;overflow:hidden}
-.callout .shot{display:block;aspect-ratio:auto;height:clamp(40px,8vh,104px);overflow:hidden;background:#e9edf3}
+.callout .shot{display:block;aspect-ratio:16/10;overflow:hidden;background:#e9edf3}
 .callout .shot img{width:100%;height:100%;object-fit:cover;display:block;
   transition:transform .5s ease}
 .callout:hover .shot img{transform:scale(1.045)}
-.callout .chip{display:block;margin:8px 18px 0;font-size:10.5px;font-weight:600;
+.callout .chip{display:block;margin:16px 18px 0;font-size:10.5px;font-weight:600;
   letter-spacing:1.5px;text-transform:uppercase;color:#c2410c}
-.callout .ctitle{display:block;margin:4px 18px 0;font-size:20px;font-weight:600;
+.callout .ctitle{display:block;margin:7px 18px 0;font-size:21px;font-weight:600;
   letter-spacing:-.01em;color:var(--navy);line-height:1.2}
-.callout p{margin:6px 18px 0;padding-top:0;font-size:13.5px;line-height:1.5;color:#3b4253}
+.callout p{margin:9px 18px 0;padding-top:0;font-size:14px;line-height:1.55;color:#3b4253}
 .callout .go{display:flex;align-items:center;justify-content:space-between;
-  margin:7px 0 0;padding:7px 18px 8px;border-top:1px solid var(--ds-line);
+  margin:15px 0 0;padding:12px 18px 14px;border-top:1px solid var(--ds-line);
   font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--navy);opacity:.75}
 .callout .go b{font-size:16px;transition:transform .2s}
 .callout:hover .go{opacity:1}
 .callout:hover .go b{transform:translateX(5px)}
-.stage{grid-template-columns:356px minmax(0,1fr) 356px;gap:14px;align-items:stretch;max-width:1254px;margin:0 auto;overflow:visible}
+.stage{grid-template-columns:356px minmax(0,1fr) 356px;gap:18px;align-items:stretch;max-width:1254px;margin:0 auto;overflow:visible}
 .col{gap:18px;justify-content:space-between;overflow:visible}
-#sphere{max-width:430px;max-height:34vh;opacity:.88}
+#sphere{max-width:520px;opacity:.88}
 .orb{align-self:center}
 @media (max-width:1180px){ .stage{grid-template-columns:1fr} #sphere{max-width:260px} }
 @media (max-width:760px){ #sphere{max-width:150px;opacity:.6} .orb{margin-bottom:-8px} }
@@ -319,30 +319,6 @@ a{color:inherit;text-decoration:none}
   .callout:hover{scale:1.05}
 }
 @media (hover:none){ .callout{animation-duration:4.4s} }
-
-/* ===== 첫 화면: 창 높이에 맞춰 절대 넘치지 않도록 ===== */
-@media (min-width:1181px){
-  .hero{
-    max-height:calc(100dvh - clamp(52px,8vh,75px));
-    display:flex; flex-direction:column; justify-content:flex-start;
-    min-height:0; box-sizing:border-box;
-  }
-  .stage{flex:1 1 auto; min-height:0; align-items:stretch}
-  .stage > .col{display:flex; flex-direction:column; gap:14px; min-height:0}
-  .callout{display:flex; flex-direction:column; flex:1 1 0; min-height:0; overflow:hidden}
-  .callout .shot{flex:1 1 auto; height:auto; min-height:0; aspect-ratio:auto}
-  .callout .chip,.callout .ctitle,.callout p{flex:0 0 auto}
-  .callout .go{flex:0 0 auto; margin-top:auto}
-  .orb{min-height:0; overflow:hidden}
-  #sphere{max-height:100%; height:auto}
-  .gotoall,.hero-bottom{flex:0 0 auto}
-}
-
-/* 얇은 띠로 잘릴 때 각 사진에서 보여줄 지점 (인물 얼굴 기준) */
-.callout.tl .shot img{object-position:32% 30%}   /* research: 데니얼 얼굴 좌측 상단 */
-.callout.bl .shot img{object-position:72% 56%}   /* carnegie: 무대 우측에 앉은 데니얼 */
-.callout.tr .shot img{object-position:50% 44%}   /* ckf: 서 있는 강사들 얼굴 */
-.callout.br .shot img{object-position:50% 52%}   /* freeflight: 들판의 두 사람 */
 </style>
 </head>
 <body>
@@ -394,12 +370,13 @@ a{color:inherit;text-decoration:none}
 
   <div class="gotoall">
     <a class="bigbtn" href="portfolio.html" target="_blank" rel="noopener"><span>Full Portfolio</span><b>&rarr;</b></a>
+    <p>Research, CKF, flying, music, art, service &mdash; ten sections</p>
   </div>
 
   <div class="hero-bottom">
     <div class="slogan">Daniel Son<br>Physics<small>Cerritos, California</small></div>
     <div class="alsoline">
-      
+      <p>Also: <a href="portfolio.html#ckf" target="_blank" rel="noopener">CKF</a>, <a href="portfolio.html#cap" target="_blank" rel="noopener">Civil Air Patrol</a>, <a href="portfolio.html#scioly" target="_blank" rel="noopener">Science Olympiad</a>, <a href="portfolio.html#art" target="_blank" rel="noopener">Art</a>, <a href="portfolio.html#csclub" target="_blank" rel="noopener">CS Club</a>, <a href="portfolio.html#yg" target="_blank" rel="noopener">Youth &amp; Government</a> and <a href="portfolio.html#church" target="_blank" rel="noopener">church</a>.</p>
       <p><a href="https://connectkeyfoundation.org/curiocrate" target="_blank" rel="noopener">connectkeyfoundation.org</a> &nbsp;&middot;&nbsp; <a href="https://www.youtube.com/@danielson9007" target="_blank" rel="noopener">youtube.com/@danielson9007</a></p>
     </div>
   </div>
@@ -407,8 +384,6 @@ a{color:inherit;text-decoration:none}
 
 
 <script>
-if('scrollRestoration' in history){history.scrollRestoration='manual';}
-window.addEventListener('load',function(){window.scrollTo(0,0);});
 (function(){
   var c=document.getElementById('sphere'),g=c.getContext('2d');
   var W=c.width,H=c.height,R=W*0.40,NU=72,NV=144;
