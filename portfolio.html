@@ -199,6 +199,15 @@
     letter-spacing:1.1px; text-transform:uppercase; color:var(--accent); text-decoration:none;
     border-bottom:1px solid var(--accent); padding-bottom:2px; }
   .vidlink:hover{ color:var(--accent-dark); border-bottom-color:var(--accent-dark); }
+  .chanbtn{ display:flex; align-items:center; gap:15px; margin:22px 0 26px; padding:16px 20px;
+    border:1.5px solid var(--navy); border-radius:8px; background:var(--navy); text-decoration:none; }
+  .chanbtn:hover{ background:#0d1733; border-color:#0d1733; }
+  .chanbtn .yt{ flex:none; width:44px; height:31px; border-radius:7px; background:#ff0033;
+    display:grid; place-items:center; color:#fff; font-size:13px; padding-left:3px; }
+  .chanbtn b{ display:block; font-family:'Poppins', sans-serif; font-size:16px; font-weight:600;
+    color:#fff; letter-spacing:.1px; }
+  .chanbtn i{ display:block; font-style:normal; font-size:13px; color:#b9c4dd; margin-top:2px; }
+  .chanbtn .arw{ margin-left:auto; color:#fff; font-size:18px; }
   .vid-cue{ font-family:'Poppins', sans-serif; font-size:11px; font-weight:600; letter-spacing:1.6px;
     text-transform:uppercase; color:var(--accent); margin:26px 0 9px; }
   .vid-embed{ position:relative; aspect-ratio:16/9; margin:0 0 9px; border-radius:6px;
@@ -829,6 +838,12 @@
             <p>Carnegie Hall is the line people remember. Before it came almost ten years of weekly lessons on an instrument that very few people outside the Korean community still play.</p>
           </div>
 
+          <a class="chanbtn" href="https://www.youtube.com/@danielson9007" target="_blank" rel="noopener">
+            <span class="yt">&#9654;</span>
+            <span><b>Thirteen performances on video</b><i>youtube.com/@danielson9007</i></span>
+            <span class="arw">&nearr;</span>
+          </a>
+
           <p class="vid-cue">Ninety seconds, if you want to hear it</p>
           <div class="vid-embed">
             <iframe src="https://www.youtube-nocookie.com/embed/fdf1MdoQg4Y?rel=0"
@@ -838,7 +853,15 @@
               referrerpolicy="strict-origin-when-cross-origin"></iframe>
           </div>
           <p class="photo-cap">Ten Years of Haegeum, 2017&ndash;2026 &middot; 1 min 33 sec</p>
-          <p class="alsowork">Also: <a href="https://www.youtube.com/watch?v=S1UBykEo4eg" target="_blank" rel="noopener">Yangcheong Dodeuri, 2026 &nearr;</a> &mdash; Korean classical chamber music, and said to be the fastest piece in that repertoire.</p>
+          <p class="vid-cue">And a full piece</p>
+          <div class="vid-embed">
+            <iframe src="https://www.youtube-nocookie.com/embed/S1UBykEo4eg?rel=0"
+              title="Daniel Son &middot; Yangcheong Dodeuri, 2026"
+              loading="lazy" allowfullscreen
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+          <p class="photo-cap">Yangcheong Dodeuri, 2026 &middot; Korean classical chamber music, said to be the fastest piece in that repertoire</p>
 
           <p>The haegeum is a two-stringed Korean fiddle with no fingerboard. You get pitch by pressing on the strings in midair, so every note depends on your hand. I started in third grade, so this is my tenth year playing. In June 2024 I played it solo at Weill Recital Hall in Carnegie Hall, at the American Prot&eacute;g&eacute; winners&rsquo; recital.</p>
 
