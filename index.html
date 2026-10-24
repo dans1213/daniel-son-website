@@ -200,7 +200,11 @@ a{color:inherit;text-decoration:none}
 .stage{grid-template-columns:356px minmax(0,1fr) 356px;gap:18px;align-items:stretch;max-width:1254px;margin:0 auto;overflow:visible}
 .col{gap:18px;justify-content:space-between;overflow:visible}
 #sphere{max-width:520px;opacity:.88}
-.orb{align-self:center}
+.orb{align-self:center;position:relative}
+.orbbtn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:4;
+  box-shadow:0 14px 34px rgba(20,35,75,.30)}
+.orbbtn:hover{transform:translate(-50%,-50%) translateY(-2px)}
+@media (max-width:1180px){ .orbbtn{position:static;transform:none} .orb{margin-bottom:10px} }
 @media (max-width:1180px){ .stage{grid-template-columns:1fr} #sphere{max-width:260px} }
 @media (max-width:760px){ #sphere{max-width:150px;opacity:.6} .orb{margin-bottom:-8px} }
 
@@ -349,7 +353,9 @@ a{color:inherit;text-decoration:none}
       <span class="go">Open this section <b>&rarr;</b></span>
     </a>
     </div>
-    <div class="orb"><canvas id="sphere" width="1170" height="1170" aria-label="Rotating wireframe sphere"></canvas></div>
+    <div class="orb"><canvas id="sphere" width="1170" height="1170" aria-label="Rotating wireframe sphere"></canvas>
+      <a class="bigbtn orbbtn" href="portfolio.html" target="_blank" rel="noopener"><span>Full Portfolio</span><b>&rarr;</b></a>
+    </div>
     <div class="col">
       <a class="callout tr" href="https://connectkeyfoundation.org/curiocrate" target="_blank" rel="noopener">
       <span class="shot"><img src="images/ckf-curioworkshop.jpg" alt="CurioCrate student instructors running a hands-on science session" loading="lazy"></span>
@@ -369,7 +375,6 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <div class="gotoall">
-    <a class="bigbtn" href="portfolio.html" target="_blank" rel="noopener"><span>Full Portfolio</span><b>&rarr;</b></a>
     <p>Research, CKF, flying, music, art, service &mdash; ten sections</p>
   </div>
 
